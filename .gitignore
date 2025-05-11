@@ -37,4 +37,4 @@ ENV/
 *.swo
 
 # Secret keys
-.env
+.env.env
