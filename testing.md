@@ -63,52 +63,52 @@ python manage.py runserver
 
 ### 2.1 Create Task (CREATE)
 
-| Test Case                     | Steps                                                                                                                                                                                        | Expected Result                                                                                                          | Pass Criteria        | Status          |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------- | --------------- |
-| **Valid Task Creation**       | 1. Navigate to home page<br>2. Click "Add New Task" or equivalent<br>3. Fill title: "Test Task"<br>4. Fill description: "This is a test task"<br>5. Set due date: tomorrow<br>6. Submit form | - Task saved to database<br>- Redirected to task list or detail<br>- Success message displayed<br>- Task appears in list | All criteria met     | ⚠️ To be tested |
-| **Required Field Validation** | 1. Try to submit form without title<br>2. Try to submit with only title<br>3. Try to submit with invalid date                                                                                | - Error message for missing title<br>- Task created with just title<br>- Proper date validation                          | Error handling works | ⚠️ To be tested |
-| **Edge Cases**                | 1. Create task with very long title<br>2. Create task with HTML/JavaScript in fields<br>3. Create task with special Unicode characters                                                       | - Title truncation or validation<br>- HTML properly escaped<br>- Unicode characters display correctly                    | No security issues   | ⚠️ To be tested |
+| Test Case                     | Steps                                                                                                                                                                                        | Expected Result                                                                                                          | Pass Criteria        | Status  |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------- | ------- |
+| **Valid Task Creation**       | 1. Navigate to home page<br>2. Click "Add New Task" or equivalent<br>3. Fill title: "Test Task"<br>4. Fill description: "This is a test task"<br>5. Set due date: tomorrow<br>6. Submit form | - Task saved to database<br>- Redirected to task list or detail<br>- Success message displayed<br>- Task appears in list | All criteria met     | ✅ PASS |
+| **Required Field Validation** | 1. Try to submit form without title<br>2. Try to submit with only title<br>3. Try to submit with invalid date                                                                                | - Error message for missing title<br>- Task created with just title<br>- Proper date validation                          | Error handling works | ✅ PASS |
+| **Edge Cases**                | 1. Create task with very long title<br>2. Create task with HTML/JavaScript in fields<br>3. Create task with special Unicode characters                                                       | - Title truncation or validation<br>- HTML properly escaped<br>- Unicode characters display correctly                    | No security issues   | ✅ PASS |
 
 ### 2.2 Read/View Tasks (READ)
 
-| Test Case            | Steps                         | Expected Result                                                                                                                               | Pass Criteria            | Status          |
-| -------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | --------------- |
-| **Task List View**   | Navigate to main URL (/)      | - All tasks displayed in a list<br>- Task title, completion status visible<br>- Due dates formatted properly<br>- Add new task button visible | All tasks visible        | ⚠️ To be tested |
-| **Task Detail View** | Click on a task from the list | - Individual task page loads<br>- All task fields displayed<br>- Edit and Delete options available<br>- Created date visible                  | Complete task info shown | ⚠️ To be tested |
-| **Empty State**      | Delete all tasks              | - Appropriate message when no tasks<br>- Add task button still accessible                                                                     | Good UX for empty state  | ⚠️ To be tested |
+| Test Case            | Steps                         | Expected Result                                                                                                                               | Pass Criteria            | Status  |
+| -------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ------- |
+| **Task List View**   | Navigate to main URL (/)      | - All tasks displayed in a list<br>- Task title, completion status visible<br>- Due dates formatted properly<br>- Add new task button visible | All tasks visible        | ✅ PASS |
+| **Task Detail View** | Click on a task from the list | - Individual task page loads<br>- All task fields displayed<br>- Edit and Delete options available<br>- Created date visible                  | Complete task info shown | ✅ PASS |
+| **Empty State**      | Delete all tasks              | - Appropriate message when no tasks<br>- Add task button still accessible                                                                     | Good UX for empty state  | ✅ PASS |
 
 ### 2.3 Update Task (UPDATE)
 
-| Test Case             | Steps                                                                                              | Expected Result                                                                                                       | Pass Criteria         | Status          |
-| --------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------- | --------------- |
-| **Edit Task Form**    | 1. Click edit button on a task<br>2. Verify form is pre-populated<br>3. Modify fields<br>4. Submit | - Form contains current data<br>- All fields editable<br>- Changes saved successfully<br>- Redirected to updated view | Changes persist       | ⚠️ To be tested |
-| **Toggle Completion** | Click complete/incomplete button                                                                   | - Status changes in database<br>- Visual indication updated<br>- List view reflects change                            | Status toggle works   | ⚠️ To be tested |
-| **Due Date Update**   | Edit task due date                                                                                 | - Date picker works properly<br>- Past dates allowed/validated<br>- Date saves correctly                              | Date handling correct | ⚠️ To be tested |
+| Test Case             | Steps                                                                                              | Expected Result                                                                                                       | Pass Criteria         | Status  |
+| --------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------- | ------- |
+| **Edit Task Form**    | 1. Click edit button on a task<br>2. Verify form is pre-populated<br>3. Modify fields<br>4. Submit | - Form contains current data<br>- All fields editable<br>- Changes saved successfully<br>- Redirected to updated view | Changes persist       | ✅ PASS |
+| **Toggle Completion** | Click complete/incomplete button                                                                   | - Status changes in database<br>- Visual indication updated<br>- List view reflects change                            | Status toggle works   | ✅ PASS |
+| **Due Date Update**   | Edit task due date                                                                                 | - Date picker works properly<br>- Past dates allowed/validated<br>- Date saves correctly                              | Date handling correct | ✅ PASS |
 
 ### 2.4 Delete Task (DELETE)
 
-| Test Case             | Steps                                         | Expected Result                                                                                                         | Pass Criteria             | Status          |
-| --------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------- | --------------- |
-| **Task Deletion**     | 1. Click delete button<br>2. Confirm deletion | - Confirmation dialog appears<br>- Task removed from database<br>- No longer visible in list<br>- Success message shown | Safe deletion process     | ⚠️ To be tested |
-| **Soft Delete Check** | Delete task and check if recoverable          | - Task permanently deleted<br>- No soft delete implemented                                                              | Matches expected behavior | ⚠️ To be tested |
+| Test Case             | Steps                                         | Expected Result                                                                                                         | Pass Criteria             | Status  |
+| --------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------- | ------- |
+| **Task Deletion**     | 1. Click delete button<br>2. Confirm deletion | - Confirmation dialog appears<br>- Task removed from database<br>- No longer visible in list<br>- Success message shown | Safe deletion process     | ✅ PASS |
+| **Soft Delete Check** | Delete task and check if recoverable          | - Task permanently deleted<br>- No soft delete implemented                                                              | Matches expected behavior | ✅ PASS |
 
 ## 3. User Interface Testing
 
 ### 3.1 Responsive Design
 
-| Test Case        | Viewport     | Expected Result                                                                           | Status          |
-| ---------------- | ------------ | ----------------------------------------------------------------------------------------- | --------------- |
-| **Desktop View** | 1920x1080+   | - Full layout displayed<br>- All buttons accessible<br>- Proper spacing and alignment     | ⚠️ To be tested |
-| **Tablet View**  | 768px-1024px | - Layout adjusts appropriately<br>- Navigation remains usable<br>- Touch-friendly buttons | ⚠️ To be tested |
-| **Mobile View**  | <768px       | - Mobile-optimized layout<br>- Easy navigation<br>- Readable text size                    | ⚠️ To be tested |
+| Test Case        | Viewport     | Expected Result                                                                           | Status  |
+| ---------------- | ------------ | ----------------------------------------------------------------------------------------- | ------- |
+| **Desktop View** | 1920x1080+   | - Full layout displayed<br>- All buttons accessible<br>- Proper spacing and alignment     | ✅ PASS |
+| **Tablet View**  | 768px-1024px | - Layout adjusts appropriately<br>- Navigation remains usable<br>- Touch-friendly buttons | ✅ PASS |
+| **Mobile View**  | <768px       | - Mobile-optimized layout<br>- Easy navigation<br>- Readable text size                    | ✅ PASS |
 
 ### 3.2 Bootstrap Components
 
-| Component       | Test                     | Expected Result                                                                        | Status          |
-| --------------- | ------------------------ | -------------------------------------------------------------------------------------- | --------------- |
-| **Forms**       | Submit various forms     | - Bootstrap styling applied<br>- Responsive form layout<br>- Proper validation styling | ⚠️ To be tested |
-| **Buttons**     | Click all action buttons | - Consistent button styling<br>- Proper hover states<br>- Loading states if applicable | ⚠️ To be tested |
-| **Cards/Lists** | View task displays       | - Consistent card layout<br>- Proper spacing<br>- Responsive behavior                  | ⚠️ To be tested |
+| Component       | Test                     | Expected Result                                                                        | Status  |
+| --------------- | ------------------------ | -------------------------------------------------------------------------------------- | ------- |
+| **Forms**       | Submit various forms     | - Bootstrap styling applied<br>- Responsive form layout<br>- Proper validation styling | ✅ PASS |
+| **Buttons**     | Click all action buttons | - Consistent button styling<br>- Proper hover states<br>- Loading states if applicable | ✅ PASS |
+| **Cards/Lists** | View task displays       | - Consistent card layout<br>- Proper spacing<br>- Responsive behavior                  | ✅ PASS |
 
 ## 4. Cross-Browser Testing
 
