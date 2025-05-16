@@ -160,6 +160,13 @@ if 'RAILWAY_ENVIRONMENT' in os.environ:
         'localhost', 
         '127.0.0.1'
     ]
+
+    # CSRF settings for Railway
+    CSRF_TRUSTED_ORIGINS = [
+        'https://todo-project-production.up.railway.app',
+        'https://*.up.railway.app',
+        'https://*.railway.app',
+    ]
     
     # Static files for production
     STATIC_ROOT = '/app/staticfiles'  # Use absolute path for Railway
