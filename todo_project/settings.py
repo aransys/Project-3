@@ -146,16 +146,28 @@ else:
         }
     }
 
-    # Railway deployment settings
+ # Static files configuration (replace your existing static files section)
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Railway deployment settings  
 if 'RAILWAY_ENVIRONMENT' in os.environ:
     DEBUG = False
-    ALLOWED_HOSTS = ['.railway.app', 'localhost', '127.0.0.1']
+    ALLOWED_HOSTS = [
+        '.up.railway.app',
+        '.railway.app', 
+        'todo-project-production.up.railway.app',
+        'localhost', 
+        '127.0.0.1'
+    ]
     
-    # Static files
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Static files for production
+    STATIC_ROOT = '/app/staticfiles'  # Use absolute path for Railway
     
-    # Add whitenoise middleware if not already added
-    if 'whitenoise.middleware.WhiteNoiseMiddleware' not in MIDDLEWARE:
-        MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+    # Add whitenoise middleware
+    MIDDLEWARE = [
+        'django.middleware.security.SecurityMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this early in middleware
+    ] + [mw for mw in MIDDLEWARE if mw != 'django.middleware.security.SecurityMiddleware']
     
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

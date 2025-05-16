@@ -1,1 +1,1 @@
-web: gunicorn todo_project.wsgi --log-file -
+web: python manage.py collectstatic --noinput && python manage.py migrate && gunicorn todo_project.wsgi --log-file -
