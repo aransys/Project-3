@@ -127,3 +127,23 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+import dj_database_url
+import os
+
+# Railway deployment settings
+if 'RAILWAY_ENVIRONMENT' in os.environ:
+    DEBUG = False
+    ALLOWED_HOSTS = ['.railway.app', 'localhost', '127.0.0.1']
+    
+    # Database
+    DATABASES['default'] = dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    
+    # Static files
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
+    # Security
+    SECURE_SSL_REDIRECT = True
+    SECURE_BROWSER_XSS_FILTER = True
