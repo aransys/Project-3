@@ -287,25 +287,28 @@ python manage.py runserver
 - Production deployment would show user-friendly error pages
 - No security vulnerabilities exposed through error messages
 
-## 8. Deployment Testing (Heroku)
+## 8. Deployment Testing (Railway)
 
 ### 8.1 Production Environment
 
-| Test Case                 | Description                      | Expected Result                                               | Status          |
-| ------------------------- | -------------------------------- | ------------------------------------------------------------- | --------------- |
-| **Environment Variables** | Check SECRET_KEY, DEBUG settings | - Secure configuration<br>- Debug mode disabled in production | ⚠️ To be tested |
-| **Static Files**          | Verify CSS/JS loading            | - All static files accessible<br>- Bootstrap styles applied   | ⚠️ To be tested |
-| **Database Migration**    | Apply migrations on Heroku       | - Successful migration<br>- Schema matches expected           | ⚠️ To be tested |
-| **SSL Certificate**       | Check HTTPS redirect             | - Forced HTTPS in production<br>- Valid SSL certificate       | ⚠️ To be tested |
+| Test Case                 | Status  | Notes                          |
+| ------------------------- | ------- | ------------------------------ |
+| **Environment Variables** | ✅ PASS | SECRET_KEY, DEBUG properly set |
+| **Static Files**          | ✅ PASS | Bootstrap loading correctly    |
+| **Database Migration**    | ✅ PASS | PostgreSQL working properly    |
+| **SSL Certificate**       | ✅ PASS | HTTPS enabled automatically    |
+
+**Live Application:** https://todo-project-production.up.railway.app
+**Status:** ✅ Successfully deployed and functional
 
 ## 9. Test Execution Log
 
 ### Testing Session Details
 
-- **Tester**: [Your Name]
-- **Testing Date**: [Current Date]
-- **Environment**: Local Development / Heroku Production
-- **Browser Used**: [Browser and Version]
+- **Tester**: [Aurimas Ransys]
+- **Testing Date**: [16 5 2025]
+- **Environment**: Local Development / Railway Production
+- **Browser Used**: [Chrome - Latest]
 - **Django Version**: [From requirements.txt]
 
 ### Test Results Summary
