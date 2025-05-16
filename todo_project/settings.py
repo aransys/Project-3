@@ -128,22 +128,34 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-import dj_database_url
 import os
+import dj_database_url
 
-# Railway deployment settings
+# Database configuration
+if 'DATABASE_URL' in os.environ:
+    # Production (Railway) with PostgreSQL
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    # Development with SQLite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+    # Railway deployment settings
 if 'RAILWAY_ENVIRONMENT' in os.environ:
     DEBUG = False
     ALLOWED_HOSTS = ['.railway.app', 'localhost', '127.0.0.1']
     
-    # Database
-    DATABASES['default'] = dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    
     # Static files
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
-    # Security
-    SECURE_SSL_REDIRECT = True
-    SECURE_BROWSER_XSS_FILTER = True
+    # Add whitenoise middleware if not already added
+    if 'whitenoise.middleware.WhiteNoiseMiddleware' not in MIDDLEWARE:
+        MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+    
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
