@@ -90,7 +90,9 @@ templates/
    ```
 
 2. **Template Logic**
-   django{% for task in tasks %}
+
+   ```django
+   {% for task in tasks %}
    {% if task.completed %}
    <span class="badge bg-success">Completed</span>
    {% else %}
@@ -100,15 +102,25 @@ templates/
    <p>No tasks available.</p>
    {% endfor %}
 
+   ```
+
 3. **URL Reversing**
-   django<a href="{% url 'task_detail' task.pk %}">View Task</a>
+
+   ```django
+   <a href="{% url 'task_detail' task.pk %}">View Task</a>
+
+   ```
 
 4. **Form Rendering**
-django<form method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<button type="submit" class="btn btn-primary">Save</button>
-</form>
+
+   ```django
+   <form method="post">
+   {% csrf_token %}
+   {{ form.as_p }}
+   < button type="submit" class="btn btn-primary">Save</>
+   </form>
+
+   ```
 
 ## Project Structure
 
