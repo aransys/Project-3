@@ -22,19 +22,50 @@ The application serves as a practical solution for personal task management, hel
 - **Deployment**: Heroku
 - **Version Control**: Git, GitHub
 
+## Project Rationale
+
+### Target Audience
+
+This task management application addresses the needs of:
+
+- **Students**: Managing coursework deadlines and assignments
+- **Professionals**: Tracking daily tasks and project milestones
+- **General Users**: Organizing personal responsibilities
+
+### Problem Statement
+
+Many existing task management solutions are overly complex for simple personal use. This application provides:
+
+- Straightforward CRUD operations without unnecessary features
+- Clean, distraction-free interface
+- Essential fields only (title, description, due date, completion status)
+
+### Design Decisions
+
+- **Bootstrap 5**: Ensures responsive design across all devices
+- **Django Framework**: Provides robust backend with built-in security
+- **Minimal UI**: Reduces cognitive load and improves user focus
+- **Single Task Model**: Simplifies data management while meeting core needs
+
 ## Data Schema
 
-The application uses a single `Task` model with the following fields:
+### Task Model Structure
 
-| Field       | Type          | Description                                 |
-| ----------- | ------------- | ------------------------------------------- |
-| title       | CharField     | The name of the task                        |
-| description | TextField     | Detailed description of the task (optional) |
-| completed   | BooleanField  | Task completion status                      |
-| created_at  | DateTimeField | Timestamp when task was created             |
-| due_date    | DateField     | When the task is due (optional)             |
+| Field       | Type          | Constraints                     | Default | Description          |
+| ----------- | ------------- | ------------------------------- | ------- | -------------------- |
+| id          | AutoField     | Primary Key                     | Auto    | Unique identifier    |
+| title       | CharField     | max_length=200, NOT NULL        | -       | Task title/name      |
+| description | TextField     | Optional, blank=True            | ''      | Detailed description |
+| completed   | BooleanField  | -                               | False   | Completion status    |
+| created_at  | DateTimeField | auto_now_add=True               | Now     | Creation timestamp   |
+| due_date    | DateField     | Optional, blank=True, null=True | None    | Due date             |
 
-The data schema is intentionally designed to be simple yet effective, focusing on the core information needed for task management while avoiding unnecessary complexity.
+### Database Design Decisions
+
+- **Simple flat structure**: Chosen for clarity and assignment scope
+- **No user relationships**: Application designed for single-user usage
+- **Optional fields**: Description and due_date allow flexible task creation
+- **Automatic timestamps**: created_at auto-populated for audit trail
 
 ## Project Structure
 
