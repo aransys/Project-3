@@ -71,13 +71,15 @@ Many existing task management solutions are overly complex for simple personal u
 
 ### Template Structure
 
+```
 templates/
 └── todo_app/
-├── base.html # Base template with common elements
-├── task_list.html # Homepage showing all tasks
-├── task_detail.html # Individual task view
-├── task_form.html # Create/Edit task form
-└── task_confirm_delete.html # Deletion confirmation
+    ├── base.html          # Base template with common elements
+    ├── task_list.html     # Homepage showing all tasks
+    ├── task_detail.html   # Individual task view
+    ├── task_form.html     # Create/Edit task form
+    └── task_confirm_delete.html # Deletion confirmation
+```
 
 ### Key Template Features
 
@@ -124,6 +126,7 @@ templates/
 
 ## Project Structure
 
+```
 todo_project/
 ├── todo_app/ # Main application
 │ ├── migrations/ # Database migrations
@@ -142,6 +145,7 @@ todo_project/
 ├── Procfile # Heroku deployment configuration
 ├── README.md # This documentation
 └── requirements.txt # Python dependencies
+```
 
 ## Installation and Setup for Local Development
 
