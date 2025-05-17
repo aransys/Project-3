@@ -15,6 +15,7 @@ The Todo application was designed following a user-centered approach, focusing o
 
 ### Desktop View - Task List
 
+```
 +------------------------------------------------------+
 | Todo Application [+ New Task]|
 +------------------------------------------------------+
@@ -29,9 +30,11 @@ The Todo application was designed following a user-centered approach, focusing o
 | ☐ Prepare presentation [Due: Tomorrow]|
 | Details | Edit | Delete |
 +------------------------------------------------------+
+```
 
 ### Mobile View - Task List
 
+```
 +-------------------------+
 | Todo Application [+] |
 +-------------------------+
@@ -45,9 +48,11 @@ The Todo application was designed following a user-centered approach, focusing o
 | [Due: Yesterday] |
 | Details | Edit | Delete |
 +-------------------------+
+```
 
 ### Task Detail View
 
+```
 +------------------------------------------------------+
 | Todo Application [Back to List] |
 +------------------------------------------------------+
@@ -64,6 +69,7 @@ The Todo application was designed following a user-centered approach, focusing o
 | |
 | [Edit] [Delete] |
 +------------------------------------------------------+
+```
 
 ## Information Hierarchy
 
