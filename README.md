@@ -47,6 +47,30 @@ Many existing task management solutions are overly complex for simple personal u
 - **Minimal UI**: Reduces cognitive load and improves user focus
 - **Single Task Model**: Simplifies data management while meeting core needs
 
+```markdown
+## Screenshots
+
+### Task List View
+
+![Task List](screenshots/task_list.png)
+_Main task list showing completed and pending tasks_
+
+### Task Detail View
+
+![Task Detail](screenshots/task_detail.png)
+_Detailed view of an individual task_
+
+### Create/Edit Form
+
+![Task Form](screenshots/task_form.png)
+_Form for creating and editing tasks_
+
+### Responsive Mobile View
+
+![Mobile View](screenshots/mobile_view.png)
+_Application appearance on mobile devices_
+```
+
 ## Data Schema
 
 ### Task Model Structure
@@ -145,6 +169,21 @@ todo_project/
 ├── Procfile # Heroku deployment configuration
 ├── README.md # This documentation
 └── requirements.txt # Python dependencies
+```
+
+```markdown
+## Code Quality Standards
+
+This project follows high standards for code quality and organization:
+
+- **PEP8 Compliant**: All Python code follows PEP8 style guidelines
+- **Semantic HTML**: Proper HTML5 structure with semantic elements
+- **DRY Principle**: Code repetition minimized through templates and helper functions
+- **Documentation**: Comprehensive docstrings and comments throughout
+- **Error Handling**: Robust error handling with user-friendly messages
+- **Security Best Practices**: CSRF protection, input validation, and XSS prevention
+
+For complete code quality documentation, see [CODE_QUALITY.md](CODE_QUALITY.md).
 ```
 
 ## Installation and Setup for Local Development

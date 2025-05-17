@@ -365,7 +365,42 @@ flake8 .
 python manage.py check --deploy
 ```
 
-## 12. Acceptance Criteria
+## Accessibility Testing
+
+### WCAG Compliance Testing
+
+```
+| Test Category       | Tool Used               | Result  | Notes                                     |
+| ------------------- | ----------------------- | ------- | ----------------------------------------- |
+| Color Contrast      | WebAIM Contrast Checker | ✅ PASS | All text meets WCAG AA standards          |
+| Keyboard Navigation | Manual Testing          | ✅ PASS | All functions accessible with keyboard    |
+| Screen Reader       | NVDA Simulation         | ✅ PASS | All content readable, form fields labeled |
+| HTML Validation     | W3C Validator           | ✅ PASS | Semantic HTML structure validated         |
+```
+
+### Screen Reader Testing Details
+
+```
+| Element        | Expected Behavior               | Actual Behavior     | Status  |
+| -------------- | ------------------------------- | ------------------- | ------- |
+| Task List      | Read task titles and status     | Correctly announced | ✅ PASS |
+| Form Labels    | Associate labels with inputs    | Properly associated | ✅ PASS |
+| Buttons        | Announce purpose                | Clearly identified  | ✅ PASS |
+| Error Messages | Alert user to validation issues | Properly announced  | ✅ PASS |
+```
+
+### Keyboard Navigation Testing
+
+```
+| Action             | Key Commands      | Expected Behavior               | Status  |
+| ------------------ | ----------------- | ------------------------------- | ------- |
+| Navigate Task List | Tab               | Move through tasks sequentially | ✅ PASS |
+| Complete Task      | Space on checkbox | Toggle completion status        | ✅ PASS |
+| Submit Form        | Enter             | Save form data                  | ✅ PASS |
+| Cancel Action      | Esc               | Return to previous screen       | ✅ PASS |
+```
+
+## Acceptance Criteria
 
 ### Must-Have Features
 
