@@ -67,6 +67,49 @@ Many existing task management solutions are overly complex for simple personal u
 - **Optional fields**: Description and due_date allow flexible task creation
 - **Automatic timestamps**: created_at auto-populated for audit trail
 
+## Template Implementation
+
+### Template Structure
+
+templates/
+└── todo_app/
+├── base.html # Base template with common elements
+├── task_list.html # Homepage showing all tasks
+├── task_detail.html # Individual task view
+├── task_form.html # Create/Edit task form
+└── task_confirm_delete.html # Deletion confirmation
+
+### Key Template Features
+
+1. **Template Inheritance**
+
+   ```django
+   {% extends 'todo_app/base.html' %}
+   {% block content %}...{% endblock %}
+
+   ```
+
+2. **Template Logic**
+   django{% for task in tasks %}
+   {% if task.completed %}
+   <span class="badge bg-success">Completed</span>
+   {% else %}
+   <span class="badge bg-warning">Pending</span>
+   {% endif %}
+   {% empty %}
+   <p>No tasks available.</p>
+   {% endfor %}
+
+3. **URL Reversing**
+   django<a href="{% url 'task_detail' task.pk %}">View Task</a>
+
+4. **Form Rendering**
+django<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="btn btn-primary">Save</button>
+</form>
+
 ## Project Structure
 
 todo_project/
