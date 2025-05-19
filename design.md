@@ -1,15 +1,66 @@
 # Design Documentation
 
-## UX Design Process
+## UX Design
 
-The Todo application was designed following a user-centered approach, focusing on simplicity, accessibility, and functionality.
+The user experience design for this application focuses on simplicity, clarity, and efficiency—allowing users to manage their tasks with minimal friction. The design follows established UX principles to create an intuitive and accessible interface.
 
-### Design Goals
+### Design Principles
 
-1. **Simplicity**: Create an interface that is intuitive and requires minimal learning
-2. **Focus**: Eliminate distractions to help users concentrate on task management
-3. **Accessibility**: Ensure the application is usable by people with diverse abilities
-4. **Responsiveness**: Provide a consistent experience across all device sizes
+#### Information Hierarchy
+
+- Task information is presented in a clear, organized fashion with each piece of information being easy to find
+- Semantic HTML5 markup is used to convey the structure of the application
+- Information is prioritized with the most important task details (title, due date, status) visible at a glance
+- Tasks are sorted by due date by default, placing the most urgent items at the top
+
+#### User Control
+
+- All interactions with the application aim to produce a positive emotional response
+- Users have clear feedback for all actions (task creation, updates, completion)
+- Error messages are descriptive and suggest solutions
+- Users are never asked for information the application already possesses
+- Progress indicators and confirmation messages are shown for all significant actions
+
+#### Consistency
+
+- Visual and interactive elements maintain consistency across all pages
+- Navigation elements are consistently positioned
+- Color coding is consistent (e.g., red for overdue tasks, green for completed)
+- Form elements and controls follow the same patterns throughout
+
+#### Accessibility
+
+- The application adheres to WCAG 2.1 guidelines
+- High contrast color schemes ensure readability
+- All form elements include proper labels and ARIA attributes
+- Keyboard navigation is fully supported throughout the application
+- Semantic HTML provides structure for screen readers
+
+### User Journey
+
+The main user journeys through the application are designed to be intuitive and efficient:
+
+1. **Task Creation Journey**:
+
+   - User navigates to the dashboard
+   - Clicks prominently displayed "Add Task" button
+   - Completes the task creation form with minimal required fields
+   - Receives confirmation upon successful creation
+   - Is returned to the dashboard with the new task visible
+
+2. **Task Completion Journey**:
+
+   - User identifies a completed task in their list
+   - Toggles the completion status with a single click/tap
+   - Receives immediate visual feedback of the status change
+   - Task is visually indicated as complete
+
+3. **Task Management Journey**:
+   - User selects a task that needs updating
+   - Navigates to the detail view via a clear call-to-action
+   - Updates the necessary information
+   - Saves changes with a single action
+   - Receives confirmation of successful update
 
 ## Wireframes
 
