@@ -1,36 +1,41 @@
-# Todo List Application
+## Project Overview
 
-A full-stack web application built with Python and Django for managing tasks. This project was developed as part of the L5 Diploma in Web Application Development, Unit 3: Back End Development.
+Task Manager is a full-stack web application built with Python and Django that provides a comprehensive solution for organizing and tracking personal tasks. Developed as part of the L5 Diploma in Web Application Development (Unit 3: Back End Development), this project demonstrates proficiency in creating database-backed web applications using Python and web frameworks.
 
-## Purpose and Features
+### Purpose and Value
 
-This application provides a comprehensive task management system that allows users to:
+The application addresses the common need for organized task management in daily life. In today's fast-paced environment, people often struggle to keep track of their responsibilities, leading to missed deadlines and increased stress. This application provides:
 
-- Create, view, update, and delete tasks (CRUD functionality)
-- Mark tasks as complete/incomplete
-- Organize tasks with due dates
-- Add detailed descriptions to tasks
-- View both a list of all tasks and individual task details
+- A centralized system to record and manage all tasks
+- Clear visualization of task status and deadlines
+- The ability to update tasks as circumstances change
+- A simple, intuitive interface that reduces the cognitive load of tracking tasks mentally
 
-The application serves as a practical solution for personal task management, helping users keep track of their responsibilities in an organized and efficient manner.
+### Target Audience
+
+This application is designed for:
+
+- Individuals seeking a simple, personal task management solution
+- Students managing assignments and project deadlines
+- Professionals tracking work-related tasks and deadlines
+- Anyone looking to improve their personal productivity and organization
+
+### Key Features
+
+- **Complete CRUD Functionality**: Create, read, update, and delete tasks
+- **Task Status Tracking**: Mark tasks as complete/incomplete with visual indicators
+- **Due Date Management**: Assign and track deadlines for time-sensitive tasks
+- **Detailed Task Descriptions**: Add comprehensive notes and context to tasks
+- **Responsive Design**: Access and manage tasks from any device with consistent user experience
+- **Intuitive Interface**: Simple, clean design focused on usability and accessibility
 
 ## Technologies Used
 
 - **Backend**: Python, Django
 - **Frontend**: HTML, CSS, Bootstrap 5
 - **Database**: SQLite (development), PostgreSQL (production)
-- **Deployment**: Heroku
+- **Deployment**: Railway
 - **Version Control**: Git, GitHub
-
-## Project Rationale
-
-### Target Audience
-
-This task management application addresses the needs of:
-
-- **Students**: Managing coursework deadlines and assignments
-- **Professionals**: Tracking daily tasks and project milestones
-- **General Users**: Organizing personal responsibilities
 
 ### Problem Statement
 
