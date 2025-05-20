@@ -49,6 +49,53 @@ This application is designed for:
   - Enables collaboration and provides an audit trail of development
 
 ```markdown
+## UX Design Process and Principles
+
+## UX Design Process and Principles
+
+### User Flow Analysis and Testing
+
+**Task Creation Efficiency:**
+The application was designed for rapid task entry, requiring only 5 clicks from homepage to completed task creation. This strikes an optimal balance between speed and data completeness - users can quickly capture tasks while still providing essential details like due dates when needed.
+
+**Immediate Visual Feedback:**
+Task completion provides instant visual feedback through strikethrough text and color changes (black to grey), ensuring users immediately understand their action succeeded. This eliminates the uncertainty common in web applications where users wonder "did that work?"
+
+**Reversible Actions:**
+All task status changes are instantly reversible with a single click, acknowledging that users frequently change their minds or accidentally click buttons. This reduces anxiety about making mistakes.
+
+### Design Principles Applied
+
+#### Information Hierarchy
+
+- **Primary Action Prominence**: The "Add New Task" button is visually prominent, making task creation the most obvious action
+- **Status Visual Hierarchy**: Completed tasks are de-emphasized through greying and strikethrough, keeping focus on active tasks
+- **Content Organization**: Tasks are ordered with active items first, completed items naturally move to bottom of list
+
+#### User Control
+
+- **Immediate Feedback**: Task completion status changes instantly without page reload
+- **Reversible Actions**: All status changes can be undone with a single click
+- **No Confirmation Dialogs**: For non-destructive actions like status changes, eliminating unnecessary friction
+
+#### Mobile-First Design
+
+- **Touch-Friendly Targets**: All buttons sized appropriately for finger taps
+- **Responsive Layout**: Interface adapts seamlessly to mobile viewport
+- **Readable Typography**: Text remains legible across all device sizes
+- **No Horizontal Scrolling**: Content fits within mobile viewport boundaries
+
+### Design Philosophy and Rationale
+
+**WHY this design approach:**
+This application was designed with a "cognitive load reduction" philosophy, recognizing that task management tools often become part of the problem rather than the solution. Every design decision prioritizes mental simplicity over feature complexity. The instant visual feedback system (strikethrough and color changes) was implemented because task completion should feel rewarding and definitive - users need that psychological "closure" moment when they finish something. The 5-click task creation process was deliberately chosen to balance speed with completeness; fewer clicks would sacrifice important metadata like due dates, while more clicks would create friction that discourages regular use.
+
+**WHO this serves:**
+The interface targets busy individuals who need task management to be effortless rather than elaborate. This includes professionals juggling multiple responsibilities, students managing assignments and deadlines, and anyone seeking to reduce mental overhead of remembering tasks. The design specifically accommodates users who may be stressed, distracted, or multitasking - hence the large, obvious buttons, clear visual states, and forgiving interaction model where all actions are easily reversible. The mobile-first approach recognizes that modern users expect to capture and check tasks anywhere, anytime.
+
+**WHAT problems this solves:**
+Traditional task managers often suffer from "feature bloat" that makes simple actions complicated, or provide so little feedback that users lose confidence in the system. This design solves three critical problems: the "did it work?" uncertainty through immediate visual feedback, the "oops I clicked wrong" frustration through instant reversibility, and the "too much friction" barrier through streamlined task creation. By making task completion feel satisfying (visual strikethrough) and task creation feel effortless (5 focused clicks), the app encourages consistent daily use rather than abandonment after initial enthusiasm.
+
 ## Screenshots
 
 ### Task List View
