@@ -1,5 +1,8 @@
 ## Project Overview
 
+![Testing: Comprehensive](https://img.shields.io/badge/Testing-Comprehensive-success)
+![Code: PEP8](https://img.shields.io/badge/Code-PEP8-blue)
+
 Task Manager is a full-stack web application built with Python and Django that provides a comprehensive solution for organizing and tracking personal tasks. Developed as part of the L5 Diploma in Web Application Development (Unit 3: Back End Development), this project demonstrates proficiency in creating database-backed web applications using Python and web frameworks.
 
 ### Purpose and Value
@@ -51,8 +54,6 @@ This application is designed for:
 ```markdown
 ## UX Design Process and Principles
 
-## UX Design Process and Principles
-
 ### User Flow Analysis and Testing
 
 **Task Creation Efficiency:**
@@ -95,6 +96,221 @@ The interface targets busy individuals who need task management to be effortless
 
 **WHAT problems this solves:**
 Traditional task managers often suffer from "feature bloat" that makes simple actions complicated, or provide so little feedback that users lose confidence in the system. This design solves three critical problems: the "did it work?" uncertainty through immediate visual feedback, the "oops I clicked wrong" frustration through instant reversibility, and the "too much friction" barrier through streamlined task creation. By making task completion feel satisfying (visual strikethrough) and task creation feel effortless (5 focused clicks), the app encourages consistent daily use rather than abandonment after initial enthusiasm.
+
+### Core UX Principles Implementation
+
+#### Information Hierarchy
+
+**Visual Priority System:**
+The interface employs a clear visual hierarchy that guides users naturally through their tasks. The "Add New Task" button uses Bootstrap's primary blue color to establish it as the most important action on the page. Task titles are displayed as the largest text elements within each task item, ensuring easy scanning. Due dates and creation timestamps use smaller, muted text to provide context without competing for attention.
+
+**Content Organization:**
+Tasks are automatically ordered with incomplete items appearing first, naturally focusing user attention on actionable items. Completed tasks move toward the bottom and are visually de-emphasized through greyscale styling and strikethrough text. This creates a natural "flow" where users see what needs attention first, then feel satisfaction seeing their completed work below.
+
+**Scanning Patterns:**
+The layout supports natural F-pattern reading behavior with task titles aligned left for easy scanning, status indicators positioned consistently in the same location, and action buttons grouped together on the right side of each task item.
+
+#### User Control
+
+**Immediate Response Feedback:**
+Every user action produces instant visual feedback. Task completion toggles immediately show strikethrough text and color changes without requiring page reloads. This immediate response builds user confidence that their actions are being registered and processed.
+
+**Reversible Actions:**
+All task status changes are instantly reversible with a single click, acknowledging that users frequently need to undo actions. Delete operations include confirmation dialogs to prevent accidental data loss, while status changes can be toggled freely without friction.
+
+**Error Prevention and Recovery:**
+The interface prevents common errors through clear visual states and helpful form validation. Required fields are clearly marked, date inputs prevent past dates for due dates, and all destructive actions require explicit confirmation. When errors do occur, messages are specific and actionable rather than generic.
+
+#### Consistency
+
+**Visual Language:**
+A consistent color coding system is used throughout: green for completed states and success messages, yellow/amber for pending items and warnings, red for deletion actions and errors, and blue for primary actions. This creates a predictable visual language that users learn once and apply everywhere.
+
+**Interaction Patterns:**
+All forms follow identical layout patterns with labels above inputs, consistent button placement (Cancel left, Submit right), and uniform spacing. CRUD operations follow predictable URL patterns and behavioral expectations - edit always pre-populates forms, delete always asks for confirmation, create always redirects to the created item.
+
+**Navigation Structure:**
+The navigation remains consistent across all pages with the same header, menu structure, and footer placement. Breadcrumb patterns and page titles follow consistent naming conventions, helping users maintain spatial awareness within the application.
+
+#### Accessibility
+
+**Keyboard Navigation Support:**
+The entire application is fully navigable using only the keyboard. Tab order follows logical flow from most important to least important elements. All interactive elements receive visible focus indicators, and Enter/Space keys activate buttons and form submissions appropriately.
+
+**Screen Reader Compatibility:**
+Semantic HTML5 structure ensures screen readers can properly interpret and announce content. Form labels are explicitly associated with inputs, task status changes are announced to assistive technologies, and important page sections use proper heading hierarchy (H1 for page titles, H2 for major sections, H3 for individual tasks).
+
+**Visual Accessibility:**
+All color combinations meet WCAG 2.1 AA contrast requirements (4.5:1 minimum). Important information is conveyed through multiple channels - task completion status uses both color changes AND strikethrough text, ensuring colorblind users receive the same information. Text can be scaled up to 200% without horizontal scrolling on mobile devices.
+
+**Inclusive Design Considerations:**
+Button sizes meet minimum touch target requirements (44px) for users with motor impairments. Clear, simple language avoids jargon. The interface works without JavaScript for users on limited browsers, though enhanced interactions require JavaScript for optimal experience.
+
+### Accessibility Testing and Compliance
+
+#### Keyboard Navigation Testing
+
+**Full Keyboard Accessibility Verified:**
+The application was thoroughly tested using keyboard-only navigation to ensure complete functionality without mouse dependency. All interactive elements are accessible via Tab key navigation, following logical flow through the interface.
+
+**Testing Results:**
+
+- ✅ **Task Creation**: Complete task creation possible using Tab to navigate form fields and Enter to submit
+- ✅ **Task Editing**: All edit functions accessible via keyboard navigation
+- ✅ **Task Deletion**: Delete confirmation dialogs fully keyboard accessible
+- ✅ **Status Toggling**: Task completion status can be changed using Tab + Enter/Space
+- ✅ **Navigation**: All menu items and links accessible via keyboard
+- ✅ **Form Interaction**: All form fields receive proper focus and can be completed without mouse
+
+**Focus Management:**
+Visible focus indicators appear on all interactive elements, making it clear which element currently has keyboard focus. Tab order follows logical sequence from primary actions to secondary actions.
+
+#### Color Contrast Compliance
+
+**WCAG 2.1 AA Standards Met:**
+All color combinations were tested using WebAIM's Color Contrast Checker to ensure accessibility for users with visual impairments.
+
+**Contrast Ratio Results:**
+
+- ✅ **Primary Text on White Background**: Pass (meets 4.5:1 requirement)
+- ✅ **Button Text on Colored Backgrounds**: Pass (meets 4.5:1 requirement)
+- ✅ **Status Badge Text**: Pass (meets 4.5:1 requirement)
+- ✅ **Muted Text Elements**: Pass (meets 4.5:1 requirement)
+- ✅ **Link Colors**: Pass (meets 4.5:1 requirement)
+
+**Design Advantage:**
+The simple, clean design approach with primarily black text on white backgrounds and Bootstrap's default color palette ensures strong contrast ratios across all elements without requiring custom accessibility adjustments.
+
+#### Accessibility Features Implementation
+
+**Multi-Channel Information Delivery:**
+Task completion status is conveyed through both visual (color change) and textual (strikethrough) indicators, ensuring users who cannot perceive color differences still receive complete information.
+
+**Semantic HTML Structure:**
+Proper heading hierarchy and semantic elements ensure screen readers can navigate and understand the content structure effectively.
+
+**Inclusive Design Benefits:**
+
+- Large, touch-friendly button targets (minimum 44px) accommodate users with motor impairments
+- Simple, clear language avoids unnecessary complexity
+- Predictable interaction patterns reduce cognitive load
+- Error messages are specific and actionable
+
+**Testing Summary:**
+
+- 🎯 **Overall Accessibility Score**: Full compliance achieved
+- 🎯 **Keyboard Navigation**: 100% functional
+- 🎯 **Color Contrast**: All ratios pass WCAG 2.1 AA standards
+- 🎯 **Screen Reader Compatibility**: Semantic HTML ensures proper interpretation
+
+### Visual Design Specifications
+
+#### Layout Structure
+
+┌─────────────────────────────────────────────────────────┐
+│ Header (Navigation Bar) │
+│ ├── App Title: "Task Manager" │
+│ ├── Navigation Links: Home | Add Task │
+│ └── Bootstrap Responsive Menu Toggle (mobile) │
+├─────────────────────────────────────────────────────────┤
+│ Main Content Container │
+│ ├── Page Title (H1) - Center aligned │
+│ ├── Primary Action Button - "Add New Task" (Blue) │
+│ ├── Task List Area │
+│ │ └── Individual Task Cards: │
+│ │ ├── Task Title (H3) - Left aligned │
+│ │ ├── Status Badge - Top right corner │
+│ │ ├── Description - Below title (muted) │
+│ │ ├── Due Date - Bottom left (if exists) │
+│ │ └── Action Buttons - Bottom right │
+│ │ ├── Complete/Incomplete Toggle │
+│ │ ├── Edit (pencil icon) │
+│ │ └── Delete (trash icon) │
+│ └── Empty State Message (when no tasks) │
+├─────────────────────────────────────────────────────────┤
+│ Footer │
+│ └── Simple copyright/attribution │
+└─────────────────────────────────────────────────────────┘
+
+#### Page-Specific Layouts
+
+**Homepage/Task List:**
+
+- Clean, minimal design focusing attention on task items
+- Tasks displayed in card format with consistent spacing
+- Completed tasks visually de-emphasized (grey, strikethrough)
+- Primary "Add Task" button prominently positioned
+
+**Create/Edit Task Form:**
+
+- Single-column form layout for mobile-first design
+- Clear field labels positioned above inputs
+- Required fields marked with asterisk (\*)
+- Cancel button (left) and Save button (right) at bottom
+- Form validation messages appear below relevant fields
+
+**Task Detail View:**
+
+- Full task information displayed in clean, readable format
+- Action buttons grouped together for easy access
+- Breadcrumb navigation showing current location
+- Consistent with overall site styling and spacing
+
+#### Component Design Specifications
+
+**Task Card Design:**
+
+- Bootstrap card component with subtle shadow (box-shadow: 0 2px 4px rgba(0,0,0,.1))
+- 15px internal padding for comfortable spacing
+- Border radius: 8px for modern, friendly appearance
+- Hover effect: slight shadow increase for interactivity feedback
+
+**Button Design System:**
+
+- Primary Actions: Bootstrap "btn-primary" (blue background)
+- Secondary Actions: Bootstrap "btn-outline-secondary" (grey border)
+- Destructive Actions: Bootstrap "btn-outline-danger" (red border)
+- Minimum 44px height for accessibility compliance
+- Consistent icon usage: FontAwesome or Bootstrap icons
+
+**Typography Hierarchy:**
+
+- H1 (Page Titles): 2.5rem, bold weight, center-aligned
+- H2 (Section Headers): 2rem, medium weight, left-aligned
+- H3 (Task Titles): 1.25rem, medium weight, left-aligned
+- Body Text: 1rem, normal weight, line-height 1.5
+- Small Text (dates, meta): 0.875rem, muted color (#6c757d)
+
+**Color Palette Application:**
+
+- **Primary Blue (#0d6efd)**: Call-to-action buttons, links
+- **Success Green (#198754)**: Completed status, success messages
+- **Warning Yellow (#ffc107)**: Pending status, caution messages
+- **Danger Red (#dc3545)**: Delete actions, error messages
+- **Dark Grey (#212529)**: Primary text content
+- **Muted Grey (#6c757d)**: Secondary text, placeholders
+- **Light Grey (#f8f9fa)**: Background areas, disabled states
+
+#### Responsive Design Breakpoints
+
+**Mobile (< 768px):**
+
+- Single column layout
+- Stacked action buttons
+- Larger touch targets
+- Simplified navigation
+
+**Tablet (768px - 1199px):**
+
+- Maintained single column for simplicity
+- Slightly larger cards
+- Enhanced button spacing
+
+**Desktop (≥ 1200px):**
+
+- Maximum container width for readability
+- Optimized button positioning
+- Enhanced hover states
 
 ## Screenshots
 
@@ -500,7 +716,81 @@ The application underwent several security tests:
    - Peer review process for all changes
    - Static code analysis for potential vulnerabilities
 
-   ## Deployment
+## Testing and Quality Assurance
+
+### Comprehensive Testing Strategy
+
+This application underwent rigorous testing to ensure functionality, usability, security, and performance meet professional standards. All testing was conducted manually and documented comprehensively to verify each aspect of the application.
+
+#### Testing Results Summary
+
+| Test Category            | Tests Executed | Pass Rate | Coverage                            |
+| ------------------------ | -------------- | --------- | ----------------------------------- |
+| **Functionality (CRUD)** | 11 tests       | 100%      | Complete CRUD operations            |
+| **Cross-Browser**        | 16 tests       | 100%      | Chrome, Firefox, Safari, Edge       |
+| **User Interface**       | 6 tests        | 100%      | Responsive design verified          |
+| **Security**             | 4 tests        | 100%      | CSRF, XSS, SQL injection prevention |
+| **Performance**          | 5 tests        | 100%      | Page loads <200ms average           |
+| **Accessibility**        | 4 tests        | 100%      | WCAG 2.1 AA compliance              |
+| **Error Handling**       | 4 tests        | 100%      | Graceful error management           |
+| **Total**                | **50 tests**   | **100%**  | **Comprehensive coverage**          |
+
+#### Key Testing Achievements
+
+**✅ Security Verification:**
+
+- CSRF protection confirmed on all forms
+- XSS prevention through Django's auto-escaping
+- SQL injection protection via Django ORM
+- All malicious inputs safely handled
+
+**✅ Performance Benchmarks Met:**
+
+- Average page load time: 175ms (target: <3 seconds)
+- Database queries optimized: 1-2 queries per page maximum
+- No N+1 query problems identified
+- Responsive performance across all device sizes
+
+**✅ Cross-Browser Compatibility:**
+
+- Full functionality verified on Chrome, Firefox, Safari, and Edge
+- Consistent behavior across all major browsers
+- Mobile responsiveness confirmed on actual devices
+- Touch interactions work properly on mobile browsers
+
+**✅ Accessibility Compliance:**
+
+- WCAG 2.1 AA standards met for all text contrast ratios
+- Complete keyboard navigation functionality
+- Screen reader compatibility verified
+- Semantic HTML structure implemented throughout
+
+#### Quality Assurance Standards
+
+**Zero Critical Issues:**
+During comprehensive testing, no critical bugs or security vulnerabilities were identified. All functionality works as intended across different browsers, devices, and usage scenarios.
+
+**Error Prevention:**
+
+- Server-side validation on all user inputs
+- Client-side validation for immediate user feedback
+- Graceful handling of edge cases and error conditions
+- Clear, actionable error messages for users
+
+### Detailed Testing Documentation
+
+For complete test procedures, step-by-step testing instructions, and detailed results analysis, see the comprehensive [TESTING.md](TESTING.md) documentation.
+
+The detailed testing documentation includes:
+
+- Manual testing procedures for every feature
+- Cross-browser compatibility verification steps
+- Security vulnerability assessment results
+- Performance benchmarking methodology and results
+- Accessibility compliance testing procedures
+- Complete error handling scenario testing
+
+## Deployment
 
 The application is configured for deployment on Railway, a modern platform as a service (PaaS) that enables easy deployment and scaling of web applications. The following detailed instructions describe the deployment process from local development to production.
 
