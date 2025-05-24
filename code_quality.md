@@ -1,254 +1,485 @@
-# Code Quality Documentation
+# Code Quality Standards
 
-This document outlines the coding standards, organization, and quality practices implemented in the Todo application.
+## Overview
 
-## Naming Conventions
+This document outlines the code quality standards and practices followed throughout the Task Manager application development. Consistent code quality ensures maintainability, readability, and professional-grade software development.
 
-### Python Files and Modules
+## Python Style Standards
 
-- Snake case: `models.py`, `views.py`, `forms.py`
-- Descriptive names indicating purpose: `models.py` for data models
+### PEP 8 Compliance
 
-### Classes
+All Python code strictly follows PEP 8 guidelines, the official Python style guide. This ensures consistency and readability across the entire codebase.
 
-- PascalCase (e.g., `Task`, `TaskForm`)
-- Meaningful names describing the entity
+#### Code Quality Verification
 
-### Functions and Methods
+```bash
+# Commands used to verify code quality
+flake8 . --max-line-length=88
+python -m py_compile *.py
+python manage.py check --deploy
+```
 
-- Snake case: `create_task`, `get_task_list`
-- Verb-noun naming: `delete_task`, `update_task_status`
+#### Key PEP 8 Standards Applied
 
-### Variables
+**1. Import Organization**
 
-- Snake case: `task_list`, `form_data`
-- Clear, descriptive names avoiding abbreviations
+```python
+# Standard library imports
+import os
+from datetime import datetime
 
-### Templates
+# Third-party imports
+from django.db import models
+from django.urls import reverse
+from django.contrib.auth.models import User
 
-- Lowercase with underscores: `task_list.html`, `task_detail.html`
-- Named after the view they represent
+# Local application imports
+from .forms import TaskForm
+```
 
-### URL Patterns
+**2. Line Length and Formatting**
 
-- Lowercase, hyphenated: `task-list`, `create-task`
-- RESTful naming where appropriate
+```python
+# Good: Under 88 characters, readable
+class Task(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    completed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    due_date = models.DateField(null=True, blank=True)
+```
 
-## File Organization
+**3. Function and Variable Naming**
+
+```python
+# Good: Descriptive snake_case names
+def toggle_task_completion(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    task.completed = not task.completed
+    task.save()
+    return redirect('task-list')
+
+# Good: Clear variable names
+incomplete_tasks = Task.objects.filter(completed=False)
+total_task_count = Task.objects.count()
+```
+
+**4. Class Naming and Structure**
+
+```python
+# Good: CamelCase for classes, clear inheritance
+class TaskCreateView(CreateView):
+    model = Task
+    template_name = 'todo_app/task_form.html'
+    fields = ['title', 'description', 'due_date']
+    success_url = reverse_lazy('task-list')
+```
+
+## File Organization Standards
+
+### Project Structure Philosophy
+
+The application follows Django's recommended project structure with clear separation of concerns and logical file grouping.
 
 ```
 todo_project/
-├── todo_app/                  # Main application package
-│   ├── migrations/            # Database migrations
-│   ├── templates/             # HTML templates
-│   │   └── todo_app/          # App-specific templates
-│   │       ├── base.html      # Base template with common elements
-│   │       ├── task_list.html # Homepage showing task list
-│   │       ├── task_detail.html # Individual task view
-│   │       ├── task_form.html # Create/edit form
-│   │       └── task_confirm_delete.html # Delete confirmation
-│   │
-│   ├── admin.py              # Admin site configuration
-│   ├── apps.py               # App configuration
-│   ├── forms.py              # Form definitions
-│   ├── models.py             # Data models
-│   ├── tests.py              # Unit tests
-│   ├── urls.py               # URL routing
-│   └── views.py              # View controllers
-│
+├── todo_app/                 # Main application logic
+│   ├── migrations/           # Database schema changes
+│   ├── templates/            # HTML templates
+│   │   └── todo_app/         # App-specific templates
+│   ├── __init__.py          # Package initialization
+│   ├── admin.py             # Admin interface configuration
+│   ├── apps.py              # Application configuration
+│   ├── forms.py             # Form definitions and validation
+│   ├── models.py            # Data models and business logic
+│   ├── tests.py             # Unit and integration tests
+│   ├── urls.py              # URL routing for the app
+│   └── views.py             # View logic and HTTP handling
 ├── todo_project/             # Project configuration
-│   ├── settings.py           # Django settings
-│   ├── urls.py               # Top-level URL routing
-│   └── wsgi.py               # WSGI configuration
-│
-├── static/                   # Static files (CSS, JS)
-│   └── css/                  # Custom CSS
-│
-├── .gitignore                # Git ignore file
-├── LICENSE                   # MIT License
-├── Procfile                  # Heroku deployment configuration
-├── README.md                 # Project documentation
-├── DESIGN.md                 # Design documentation
-├── CODE_QUALITY.md           # This documentation
-├── testing.md                # Testing documentation
-└── requirements.txt          # Python dependencies
+│   ├── __init__.py          # Package initialization
+│   ├── settings.py          # Django configuration
+│   ├── urls.py              # Main URL routing
+│   └── wsgi.py              # Web server interface
+├── manage.py                # Django management commands
+├── requirements.txt         # Python dependencies
+├── Procfile                 # Deployment configuration
+├── README.md                # Project documentation
+├── TESTING.md               # Testing documentation
+└── CODE_QUALITY.md          # This file
 ```
 
-## Code Quality Principles Applied
+### File Naming Conventions
 
-### DRY (Don't Repeat Yourself)
+**Consistent Naming Standards:**
 
-- Base template with blocks prevents HTML duplication
-- Helper functions for common operations
-- Form validation centralized in forms.py
+- **Python files**: snake_case (e.g., `task_views.py`, `url_patterns.py`)
+- **Templates**: snake_case with descriptive names (e.g., `task_list.html`, `task_confirm_delete.html`)
+- **Static files**: kebab-case for CSS/JS (e.g., `main-styles.css`, `task-interactions.js`)
+- **No spaces or special characters**: Ensures cross-platform compatibility
 
-### Single Responsibility
+**File Purpose Clarity:**
 
-- Each model represents one entity type
-- Each view handles one specific operation
-- Templates separated by function
+- Each file has a single, clear responsibility
+- Related functionality grouped logically
+- Import statements organized and minimal
 
-### Separation of Concerns
+## Code Documentation Standards
 
-- Models handle data structure and validation
-- Views control application logic
-- Templates manage presentation
-- URLs handle routing
+### Comprehensive Commenting Approach
 
-### Defensive Programming
+The codebase uses a multi-level documentation strategy to ensure code clarity and maintainability.
 
-- Form validation to catch invalid input
-- Try-except blocks for database operations
-- Default values for optional fields
+#### 1. Docstring Documentation
 
-## PEP 8 Compliance
-
-The Python code follows PEP 8 style guidelines:
-
-- 4 spaces for indentation
-- Maximum line length of 79 characters
-- Imports grouped by standard library, third-party, local
-- Two blank lines before class definitions
-- One blank line before method definitions
-- Docstrings for all classes and functions
-
-Example:
+**Class Documentation:**
 
 ```python
 class Task(models.Model):
     """
     Represents a single task in the todo application.
 
-    Each task has a title, optional description, completion status,
-    creation timestamp, and optional due date.
+    A task contains a title (required), optional description, completion status,
+    creation timestamp, and optional due date. Tasks can be toggled between
+    completed and incomplete states.
+
+    Attributes:
+        title (str): The main task description, max 200 characters
+        description (str): Optional detailed description
+        completed (bool): Whether the task has been completed
+        created_at (datetime): Automatic timestamp when task was created
+        due_date (date): Optional deadline for task completion
     """
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     due_date = models.DateField(null=True, blank=True)
-
-    def __str__(self):
-        """Return a string representation of the task."""
-        return self.title
 ```
 
-## Error Handling
-
-- Form validation errors displayed to user
-- 404 errors handled with custom templates
-- Database exceptions caught and logged
-- User-friendly error messages
-
-## Code Documentation
-
-### Docstrings
-
-Every class and function includes a docstring explaining:
-
-- Purpose and functionality
-- Parameters and return values
-- Exceptions raised
-
-### Comments
-
-- Complex logic explained with inline comments
-- "Why" not just "what" is documented
-- TODO comments for future improvements
-
-### Type Hints
-
-Used where helpful for clarity:
+**Function Documentation:**
 
 ```python
-def get_upcoming_tasks(days: int = 7) -> QuerySet:
+def toggle_task_completion(request, task_id):
     """
-    Return tasks due within the specified number of days.
+    Toggle the completion status of a specific task.
+
+    Changes a task from incomplete to complete or vice versa, then
+    redirects the user back to the task list with updated status.
 
     Args:
-        days: Number of days to look ahead
+        request (HttpRequest): The HTTP request object containing user data
+        task_id (int): Primary key of the task to toggle
 
     Returns:
-        QuerySet of Task objects
+        HttpResponseRedirect: Redirect to task list page
+
+    Raises:
+        Http404: If task with given task_id doesn't exist
+
+    Example:
+        POST /task/5/toggle/ toggles completion status of task with ID 5
     """
-    today = date.today()
-    deadline = today + timedelta(days=days)
-    return Task.objects.filter(due_date__range=[today, deadline])
+    task = get_object_or_404(Task, id=task_id)
+    task.completed = not task.completed
+    task.save()
+    return redirect('task-list')
 ```
 
-## Template Structure
+#### 2. Inline Comments for Complex Logic
 
-### Base Template
+**Template Logic Explanation:**
 
-The `base.html` template contains:
+```django
+<!-- Check if tasks exist before rendering list -->
+{% if tasks %}
+    <div class="list-group">
+        {% for task in tasks %}
+            <!-- Apply completed styling conditionally -->
+            <div class="list-group-item {% if task.completed %}completed{% endif %}">
+                <!-- Dynamic button text based on completion status -->
+                <a href="{% url 'toggle-complete' task.id %}"
+                   class="btn btn-sm btn-outline-{% if task.completed %}secondary{% else %}success{% endif %}">
+                    {% if task.completed %}Mark Incomplete{% else %}Complete{% endif %}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <!-- Helpful empty state for new users -->
+    <div class="alert alert-info">
+        You have no tasks. Add a new task to get started!
+    </div>
+{% endif %}
+```
 
-- HTML boilerplate
-- Viewport meta tag
-- CSS and JS includes
-- Navigation bar
-- Content blocks
-- Footer
+**Model Method Documentation:**
 
-### Template Blocks
+```python
+class Task(models.Model):
+    # ... field definitions ...
 
-Defined blocks include:
+    def __str__(self):
+        """Return string representation of task for admin and debugging."""
+        return self.title
 
-- `{% block title %}` - Page title
-- `{% block content %}` - Main content
-- `{% block extra_css %}` - Page-specific CSS
-- `{% block extra_js %}` - Page-specific JavaScript
+    def is_overdue(self):
+        """
+        Check if task is past its due date and still incomplete.
 
-### CSS Organization
+        Returns:
+            bool: True if task has due_date, is incomplete, and due_date is past
+        """
+        if self.due_date and not self.completed:
+            return self.due_date < timezone.now().date()
+        return False
 
-- Bootstrap 5 provides base styling
-- Custom CSS for specific components
-- Mobile-first responsive approach
+    class Meta:
+        """Model metadata configuration."""
+        ordering = ['due_date', 'created_at']  # Order by due date, then creation
+        verbose_name = 'Task'
+        verbose_name_plural = 'Tasks'
+```
 
-## Security Practices
+## Error Handling and Validation
 
-### XSS Prevention
+### Robust Input Validation
 
-- Django's automatic template escaping
-- Forms validate and sanitize input
+**Form-Level Validation:**
 
-### CSRF Protection
+```python
+class TaskForm(forms.ModelForm):
+    """Form for creating and editing tasks with custom validation."""
 
-- `{% csrf_token %}` included in all forms
-- CSRF middleware enabled
+    class Meta:
+        model = Task
+        fields = ['title', 'description', 'due_date']
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter task title'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 3,
+                'placeholder': 'Optional task description'
+            }),
+            'due_date': forms.DateInput(attrs={
+                'class': 'form-control',
+                'type': 'date'
+            })
+        }
 
-### SQL Injection Prevention
+    def clean_title(self):
+        """Validate and clean the title field."""
+        title = self.cleaned_data.get('title')
+        if not title or not title.strip():
+            raise forms.ValidationError("Task title cannot be empty.")
+        if len(title.strip()) < 3:
+            raise forms.ValidationError("Task title must be at least 3 characters long.")
+        return title.strip()
 
-- Django ORM used for all database queries
-- No raw SQL queries
+    def clean_due_date(self):
+        """Validate that due date is not in the past."""
+        due_date = self.cleaned_data.get('due_date')
+        if due_date and due_date < timezone.now().date():
+            raise forms.ValidationError("Due date cannot be in the past.")
+        return due_date
+```
 
-## Performance Considerations
+**View-Level Error Handling:**
 
-- Database indexes on frequently queried fields
-- Template inheritance to minimize HTML duplication
-- Static files properly managed for caching
-- Database queries optimized to minimize N+1 problems
+```python
+class TaskUpdateView(UpdateView):
+    """Handle task editing with proper error handling."""
+    model = Task
+    form_class = TaskForm
+    template_name = 'todo_app/task_form.html'
 
-## Testing Approach
+    def form_valid(self, form):
+        """Process valid form submission with success messaging."""
+        messages.success(self.request, 'Task updated successfully!')
+        return super().form_valid(form)
 
-- Unit tests for models and forms
-- View tests for page rendering and actions
-- Manual testing procedure documented
-- Security testing for common vulnerabilities
+    def form_invalid(self, form):
+        """Handle invalid form submission with error messaging."""
+        messages.error(self.request, 'Please correct the errors below.')
+        return super().form_invalid(form)
 
-## Development Workflow
+    def get_success_url(self):
+        """Redirect to task detail page after successful update."""
+        return reverse('task-detail', kwargs={'pk': self.object.pk})
+```
 
-### Git Practices
+## Security Best Practices
 
-- Descriptive commit messages
-- Small, focused commits
-- Feature branches for new functionality
+### Input Sanitization and Protection
+
+**CSRF Protection:**
+
+```python
+# All forms include CSRF protection
+class TaskForm(forms.ModelForm):
+    # Form definition includes automatic CSRF token handling
+    pass
+```
+
+```django
+<!-- Template forms include CSRF token -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save Task</button>
+</form>
+```
+
+**XSS Prevention:**
+
+```django
+<!-- Django templates automatically escape output -->
+<h3>{{ task.title }}</h3>  <!-- Automatically escaped -->
+<p>{{ task.description|linebreaks }}</p>  <!-- Safe filter applied -->
+
+<!-- Manual escaping when needed -->
+{% autoescape off %}
+    {{ trusted_content|safe }}  <!-- Only for verified safe content -->
+{% endautoescape %}
+```
+
+**SQL Injection Prevention:**
+
+```python
+# Good: Using Django ORM (parameterized queries)
+tasks = Task.objects.filter(completed=False, due_date__lte=timezone.now().date())
+
+# Good: Safe filtering with user input
+search_term = request.GET.get('search', '')
+tasks = Task.objects.filter(title__icontains=search_term)
+
+# Never: Direct SQL with user input (avoided)
+# cursor.execute("SELECT * FROM tasks WHERE title = '%s'" % user_input)
+```
+
+## Testing Standards
+
+### Comprehensive Testing Approach
+
+**Unit Testing Example:**
+
+```python
+class TaskModelTest(TestCase):
+    """Test cases for Task model functionality."""
+
+    def setUp(self):
+        """Set up test data for each test method."""
+        self.task = Task.objects.create(
+            title="Test Task",
+            description="This is a test task",
+            due_date=timezone.now().date() + timezone.timedelta(days=1)
+        )
+
+    def test_task_creation(self):
+        """Test that tasks are created with correct defaults."""
+        self.assertEqual(self.task.title, "Test Task")
+        self.assertFalse(self.task.completed)  # Default should be False
+        self.assertIsNotNone(self.task.created_at)
+
+    def test_task_str_representation(self):
+        """Test string representation returns title."""
+        self.assertEqual(str(self.task), "Test Task")
+
+    def test_is_overdue_method(self):
+        """Test overdue detection logic."""
+        # Task with future due date should not be overdue
+        self.assertFalse(self.task.is_overdue())
+
+        # Task with past due date should be overdue
+        self.task.due_date = timezone.now().date() - timezone.timedelta(days=1)
+        self.task.save()
+        self.assertTrue(self.task.is_overdue())
+
+        # Completed task should never be overdue
+        self.task.completed = True
+        self.task.save()
+        self.assertFalse(self.task.is_overdue())
+```
+
+## Code Quality Metrics
+
+### Measurable Quality Standards
+
+**Complexity Management:**
+
+- Functions kept under 50 lines where possible
+- Classes focused on single responsibilities
+- Deep nesting avoided (max 3 levels)
+
+**Readability Standards:**
+
+- Descriptive variable and function names
+- Consistent formatting and indentation
+- Logical code organization and flow
+
+**Maintainability Features:**
+
+- DRY principle applied (Don't Repeat Yourself)
+- Clear separation of concerns
+- Modular design for easy testing and modification
+
+## Continuous Improvement
 
 ### Code Review Process
 
-- Self-review checklist before submission
-- Documentation updated with code changes
-- Manual testing performed before commits
+**Self-Review Checklist:**
 
+- [ ] PEP 8 compliance verified
+- [ ] All functions have docstrings
+- [ ] Error handling implemented
+- [ ] Security considerations addressed
+- [ ] Tests written for new functionality
+- [ ] Performance impact considered
+
+**Refactoring Examples:**
+
+**Before - Repetitive Code:**
+
+```python
+# Original repetitive view logic
+def task_list(request):
+    tasks = Task.objects.all()
+    return render(request, 'task_list.html', {'tasks': tasks})
+
+def completed_tasks(request):
+    tasks = Task.objects.filter(completed=True)
+    return render(request, 'task_list.html', {'tasks': tasks})
 ```
 
+**After - DRY Principle Applied:**
+
+```python
+# Improved with class-based views and inheritance
+class TaskListView(ListView):
+    model = Task
+    template_name = 'todo_app/task_list.html'
+    context_object_name = 'tasks'
+
+    def get_queryset(self):
+        """Override to allow filtering by completion status."""
+        status = self.request.GET.get('status')
+        if status == 'completed':
+            return Task.objects.filter(completed=True)
+        elif status == 'pending':
+            return Task.objects.filter(completed=False)
+        return Task.objects.all()
 ```
+
+## Conclusion
+
+These code quality standards ensure that the Task Manager application maintains professional-grade code that is:
+
+- **Readable**: Clear naming and comprehensive documentation
+- **Maintainable**: Modular structure and consistent patterns
+- **Secure**: Input validation and protection against common vulnerabilities
+- **Testable**: Unit tests and clear separation of concerns
+- **Performant**: Efficient database queries and optimized templates
+
+Regular adherence to these standards throughout development has resulted in a robust, professional application suitable for production deployment.
