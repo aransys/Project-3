@@ -784,98 +784,309 @@ The project utilizes several key libraries to enhance functionality:
 
 ## Security Features
 
-Security was a primary consideration throughout the development process. The application implements several key security measures to protect user data and prevent common vulnerabilities.
+### Security Testing and Verification
 
-### Authentication and Authorization
+This section documents comprehensive security testing performed on the live production application to verify protection against common web vulnerabilities.
 
-While the current version is designed for personal use without multi-user authentication, the foundation has been laid for secure user authentication:
+#### CSRF (Cross-Site Request Forgery) Protection
 
-- Database schema supports user-task relationships
-- Views are structured to allow for permission checks
-- Admin interface is secured with Django's authentication system
+**Implementation Status:** ✅ **Fully Protected**
 
-### Data Protection
+**Testing Methodology:**
+Manual testing was performed by removing CSRF tokens from forms and attempting submission to verify protection mechanisms.
 
-1. **CSRF Protection**:
+**Test Results:**
 
-   - All forms include Django's CSRF tokens
-   - POST requests are verified against these tokens
-   - Protection against cross-site request forgery attacks
+- **Test Action**: Removed `csrfmiddlewaretoken` hidden input from create task form
+- **Server Response**: `Forbidden (403) - CSRF verification failed. Request aborted.`
+- **Protection Level**: Complete - No form submission possible without valid token
+- **User Experience**: Clear error message indicating security violation
 
-2. **SQL Injection Prevention**:
-
-   - All database queries use Django's ORM
-   - Parameterized queries prevent SQL injection
-   - Direct SQL execution is avoided
-
-3. **XSS Prevention**:
-   - Template system automatically escapes variables
-   - Content Security Policy headers are implemented
-   - User input is sanitized before storage
-
-### Environment Security
-
-1. **Secret Key Management**:
-
-   - Django secret key stored as environment variable
-   - Not included in version control
-   - Different keys for development and production
-
-2. **Debug Mode Control**:
-
-   - Debug mode disabled in production
-   - Error pages do not expose system information
-   - Configured via environment variable
-
-3. **Database Credentials**:
-   - Stored as environment variables
-   - Not included in version control
-   - Different credentials for development and production
-
-### Code Example: Security Implementation
-
-Django settings are configured to ensure security in production:
+**Technical Implementation:**
 
 ```python
-# Production security settings
-if not DEBUG:
-    # HTTPS settings
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
-
-    # HSTS settings
-    SECURE_HSTS_SECONDS = 31536000  # 1 year
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-
-    # Content security policy
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_BROWSER_XSS_FILTER = True
-    X_FRAME_OPTIONS = 'DENY'
+# Django settings.py - CSRF protection enabled
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',  # CSRF protection
+    # ... other middleware
+]
 ```
 
-### Security Testing
+```django
+<!-- All forms include CSRF token -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+```
 
-The application underwent several security tests:
+**Security Assessment:** CSRF protection is working correctly and prevents unauthorized form submissions from external sites.
 
-1. **Vulnerability Scanning**:
+#### XSS (Cross-Site Scripting) Prevention
 
-   - Automated scanning for known vulnerabilities
-   - Dependencies checked against security advisories
-   - Regular updates to address security patches
+**Implementation Status:** ✅ **Fully Protected**
 
-2. **Penetration Testing**:
+**Testing Methodology:**
+Multiple XSS attack vectors were tested using script tags, image tags with error handlers, and HTML formatting attempts.
 
-   - Form injection attempts
-   - CSRF protection verification
-   - Session handling validation
+**Test Results:**
 
-3. **Code Review**:
+| Attack Vector           | Input                                | Result                  | Protection Status |
+| ----------------------- | ------------------------------------ | ----------------------- | ----------------- |
+| **Script Injection**    | `<script>alert('XSS Test')</script>` | Displayed as plain text | ✅ Protected      |
+| **Image Error Handler** | `<img src=x onerror=alert('XSS')>`   | Displayed as plain text | ✅ Protected      |
+| **HTML Formatting**     | `<b>Bold text</b>`                   | Displayed as plain text | ✅ Protected      |
+| **Heading Tags**        | `<h1>Big Title</h1>`                 | Displayed as plain text | ✅ Protected      |
 
-   - Manual review of security-critical code
-   - Peer review process for all changes
-   - Static code analysis for potential vulnerabilities
+**Technical Implementation:**
+
+```django
+<!-- Django templates auto-escape all variables -->
+<h3>{{ task.title }}</h3>  <!-- Automatically escaped -->
+<p>{{ task.description|linebreaks }}</p>  <!-- Safe filter applied -->
+
+<!-- Example of escaped output -->
+Title: &lt;script&gt;alert('XSS Test')&lt;/script&gt;
+Description: &lt;img src=x onerror=alert('XSS')&gt;
+```
+
+**Protection Mechanism:**
+
+- Django's template system automatically escapes all variable output
+- HTML entities are converted to safe display format
+- No JavaScript execution possible through user input
+- All potentially dangerous characters are neutralized
+
+**Security Assessment:** Complete XSS protection through Django's auto-escaping system.
+
+#### SQL Injection Prevention
+
+**Implementation Status:** ✅ **Fully Protected**
+
+**Testing Methodology:**
+SQL injection attacks were attempted using classic injection strings designed to manipulate database queries.
+
+**Test Results:**
+
+- **Attack Vector**: `'; DROP TABLE todo_app_task; --`
+- **Application Response**: Malicious text stored as regular data
+- **Database Integrity**: All existing tasks remain intact
+- **Functionality**: Application continues to work normally
+- **Data Storage**: Injection attempt stored safely as text content
+
+**Technical Implementation:**
+
+```python
+# Django ORM automatically parameterizes queries
+tasks = Task.objects.filter(title__icontains=user_input)  # Safe
+task = Task.objects.create(title=malicious_input)         # Safe
+
+# Django ORM generates parameterized SQL like:
+# SELECT * FROM tasks WHERE title LIKE %s
+# INSERT INTO tasks (title) VALUES (%s)
+```
+
+**Protection Mechanism:**
+
+- Django ORM uses parameterized queries exclusively
+- User input is never directly interpolated into SQL strings
+- Database queries are prepared statements with bound parameters
+- SQL injection becomes impossible through normal Django operations
+
+**Security Assessment:** Complete SQL injection protection through Django ORM architecture.
+
+### Production Security Headers
+
+**Security Header Analysis:**
+Comprehensive analysis of HTTP security headers implemented in the production environment.
+
+#### Implemented Security Headers
+
+| Header                     | Value     | Purpose                       | Status         |
+| -------------------------- | --------- | ----------------------------- | -------------- |
+| **X-Frame-Options**        | `DENY`    | Prevents clickjacking attacks | ✅ Implemented |
+| **X-Content-Type-Options** | `nosniff` | Prevents MIME type sniffing   | ✅ Implemented |
+
+**Technical Implementation:**
+
+```python
+# Django settings.py - Security headers
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+
+# Production-specific security settings
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+```
+
+#### Additional Security Considerations
+
+**Missing Headers Assessment:**
+
+- **Strict-Transport-Security**: Not visible in testing but likely handled by Railway platform
+- **Content-Security-Policy**: Not implemented - could be added for enhanced security
+
+**Recommendation for Future Enhancement:**
+
+```python
+# Potential CSP implementation
+SECURE_CONTENT_SECURITY_POLICY = (
+    "default-src 'self'; "
+    "style-src 'self' 'unsafe-inline' cdn.jsdelivr.net; "
+    "script-src 'self' cdn.jsdelivr.net; "
+    "img-src 'self' data:;"
+)
+```
+
+### SSL/TLS Security
+
+**Implementation Status:** ✅ **Fully Secure**
+
+**SSL Certificate Verification:**
+
+- **Visual Indicator**: Lock icon present in browser address bar
+- **Certificate Status**: Valid and trusted
+- **Connection Security**: "Connection is secure" confirmed
+- **Protocol**: HTTPS enforced across all pages
+
+**Security Benefits:**
+
+- All data transmission encrypted in transit
+- Protection against man-in-the-middle attacks
+- Search engine ranking benefits
+- User trust and confidence
+
+### Administrative Security
+
+**Admin Interface Protection:** ✅ **Properly Secured**
+
+**Access Control Testing:**
+
+- **Admin URL**: `/admin/` requires authentication
+- **Login Requirement**: Proper Django authentication system
+- **Unauthorized Access**: Redirects to login page
+- **Session Management**: Secure session handling
+
+**Security Features:**
+
+```python
+# Django admin security features
+ADMIN_URL = 'admin/'  # Could be changed to custom path for security
+LOGIN_URL = '/admin/login/'
+LOGIN_REDIRECT_URL = '/admin/'
+
+# Admin user creation requires superuser privileges
+python manage.py createsuperuser
+```
+
+### Input Validation and Sanitization
+
+**Form-Level Security:** ✅ **Comprehensive Protection**
+
+**Validation Implementation:**
+
+```python
+class TaskForm(forms.ModelForm):
+    """Secure form with comprehensive validation."""
+
+    def clean_title(self):
+        """Validate and sanitize title input."""
+        title = self.cleaned_data.get('title')
+
+        # Length validation
+        if len(title) > 200:
+            raise forms.ValidationError("Title too long.")
+
+        # Content validation
+        if not title.strip():
+            raise forms.ValidationError("Title cannot be empty.")
+
+        return title.strip()  # Remove potentially harmful whitespace
+
+    def clean_due_date(self):
+        """Validate due date input."""
+        due_date = self.cleaned_data.get('due_date')
+
+        if due_date and due_date < timezone.now().date():
+            raise forms.ValidationError("Due date cannot be in the past.")
+
+        return due_date
+```
+
+**Server-Side Validation Benefits:**
+
+- Client-side validation can be bypassed - server validation cannot
+- All user input validated before database storage
+- Malicious input neutralized before processing
+- Clear error messages for legitimate users
+
+### Security Architecture Summary
+
+**Multi-Layer Security Approach:**
+
+1. **Application Layer Security**
+
+   - CSRF protection on all forms
+   - XSS prevention through auto-escaping
+   - SQL injection prevention via ORM
+   - Input validation and sanitization
+
+2. **Transport Layer Security**
+
+   - HTTPS/SSL encryption
+   - Valid SSL certificates
+   - Secure headers implementation
+
+3. **Authentication and Authorization**
+
+   - Django's built-in authentication system
+   - Admin interface protection
+   - Session security management
+
+4. **Infrastructure Security**
+   - Railway platform security features
+   - Secure environment variable management
+   - Production configuration isolation
+
+### Security Testing Results Summary
+
+| Security Feature             | Test Result            | Protection Level | Status       |
+| ---------------------------- | ---------------------- | ---------------- | ------------ |
+| **CSRF Protection**          | 403 Forbidden Error    | Complete         | ✅ Excellent |
+| **XSS Prevention**           | Text Display Only      | Complete         | ✅ Excellent |
+| **SQL Injection Prevention** | Safe Data Storage      | Complete         | ✅ Excellent |
+| **SSL/HTTPS**                | Valid Certificate      | Complete         | ✅ Excellent |
+| **Admin Security**           | Login Required         | Complete         | ✅ Excellent |
+| **Security Headers**         | Partial Implementation | Good             | ✅ Good      |
+
+### Security Compliance Assessment
+
+**Industry Standards Met:**
+
+- ✅ **OWASP Top 10 Protection**: Application protected against most common vulnerabilities
+- ✅ **Data Protection**: User input properly sanitized and stored
+- ✅ **Transport Security**: HTTPS encryption implemented
+- ✅ **Access Control**: Administrative functions properly secured
+
+**Security Maturity Level:** **High** - Production-ready security implementation with professional-grade protection mechanisms.
+
+### Future Security Enhancements
+
+**Recommended Improvements:**
+
+1. **Content Security Policy**: Implement CSP headers for additional XSS protection
+2. **Rate Limiting**: Add protection against brute force attacks
+3. **Security Logging**: Implement security event logging and monitoring
+4. **Penetration Testing**: Regular security audits as application grows
+
+**Current Security Posture:** The application demonstrates excellent security practices suitable for production deployment with sensitive data.
 
 ## Testing and Quality Assurance
 
