@@ -1,7 +1,11 @@
-## Project Overview
+# Task Manager Documentation
 
-![Testing: Comprehensive](https://img.shields.io/badge/Testing-Comprehensive-success)
-![Code: PEP8](https://img.shields.io/badge/Code-PEP8-blue)
+![Testing](https://img.shields.io/badge/Testing-Comprehensive-success)
+![Code Quality](https://img.shields.io/badge/Code_Quality-PEP8-blue)
+![Security](https://img.shields.io/badge/Security-Verified-green)
+![Performance](https://img.shields.io/badge/Performance-Excellent-brightgreen)
+
+## Project Overview
 
 Task Manager is a full-stack web application built with Python and Django that provides a comprehensive solution for organizing and tracking personal tasks. Developed as part of the L5 Diploma in Web Application Development (Unit 3: Back End Development), this project demonstrates proficiency in creating database-backed web applications using Python and web frameworks.
 
@@ -51,7 +55,6 @@ This application is designed for:
   - Git with GitHub for source code management
   - Enables collaboration and provides an audit trail of development
 
-```markdown
 ## User Stories and Requirements
 
 ### Target Users and Their Needs
@@ -374,30 +377,32 @@ Proper heading hierarchy and semantic elements ensure screen readers can navigat
 
 #### Layout Structure
 
+```
 ┌─────────────────────────────────────────────────────────┐
-│ Header (Navigation Bar) │
-│ ├── App Title: "Task Manager" │
-│ ├── Navigation Links: Home | Add Task │
-│ └── Bootstrap Responsive Menu Toggle (mobile) │
+│ Header (Navigation Bar)                                 │
+│ ├── App Title: "Task Manager"                          │
+│ ├── Navigation Links: Home | Add Task                  │
+│ └── Bootstrap Responsive Menu Toggle (mobile)          │
 ├─────────────────────────────────────────────────────────┤
-│ Main Content Container │
-│ ├── Page Title (H1) - Center aligned │
-│ ├── Primary Action Button - "Add New Task" (Blue) │
-│ ├── Task List Area │
-│ │ └── Individual Task Cards: │
-│ │ ├── Task Title (H3) - Left aligned │
-│ │ ├── Status Badge - Top right corner │
-│ │ ├── Description - Below title (muted) │
-│ │ ├── Due Date - Bottom left (if exists) │
-│ │ └── Action Buttons - Bottom right │
-│ │ ├── Complete/Incomplete Toggle │
-│ │ ├── Edit (pencil icon) │
-│ │ └── Delete (trash icon) │
-│ └── Empty State Message (when no tasks) │
+│ Main Content Container                                  │
+│ ├── Page Title (H1) - Center aligned                   │
+│ ├── Primary Action Button - "Add New Task" (Blue)      │
+│ ├── Task List Area                                      │
+│ │ └── Individual Task Cards:                           │
+│ │     ├── Task Title (H3) - Left aligned               │
+│ │     ├── Status Badge - Top right corner              │
+│ │     ├── Description - Below title (muted)            │
+│ │     ├── Due Date - Bottom left (if exists)           │
+│ │     └── Action Buttons - Bottom right                │
+│ │         ├── Complete/Incomplete Toggle                │
+│ │         ├── Edit (pencil icon)                       │
+│ │         └── Delete (trash icon)                      │
+│ └── Empty State Message (when no tasks)                │
 ├─────────────────────────────────────────────────────────┤
-│ Footer │
-│ └── Simple copyright/attribution │
+│ Footer                                                  │
+│ └── Simple copyright/attribution                       │
 └─────────────────────────────────────────────────────────┘
+```
 
 #### Page-Specific Layouts
 
@@ -479,45 +484,18 @@ Proper heading hierarchy and semantic elements ensure screen readers can navigat
 - Optimized button positioning
 - Enhanced hover states
 
-## Screenshots
-
-### Task List View
-
-![Task List](screenshots/task_list.png)
-_Main task list showing completed and pending tasks_
-
-### Task Detail View
-
-![Task Detail](screenshots/task_detail.png)
-_Detailed view of an individual task_
-
-### Create/Edit Form
-
-![Task Form](screenshots/task_form.png)
-_Form for creating and editing tasks_
-
-### Responsive Mobile View
-
-![Mobile View](screenshots/mobile_view.png)
-_Application appearance on mobile devices_
-```
-
 ## Data Schema
 
 ### Task Model Structure
 
-| Field       | Type          | Constraints                     | Default | Description          |
-| ----------- | ------------- | ------------------------------- | ------- | -------------------- |
-| id          | AutoField     | Primary Key                     | Auto    | Unique identifier    |
-| title       | CharField     | max_length=200, NOT NULL        | -       | Task title/name      |
-| description | TextField     | Optional, blank=True            | ''      | Detailed description |
-| completed   | BooleanField  | -                               | False   | Completion status    |
-| created_at  | DateTimeField | auto_now_add=True               | Now     | Creation timestamp   |
-| due_date    | DateField     | Optional, blank=True, null=True | None    | Due date             |
-
-#### Entity Relationship Diagram
-
-[ERD diagram here]
+| Field         | Type          | Constraints                     | Default | Description          |
+| ------------- | ------------- | ------------------------------- | ------- | -------------------- |
+| `id`          | AutoField     | Primary Key                     | Auto    | Unique identifier    |
+| `title`       | CharField     | max_length=200, NOT NULL        | -       | Task title/name      |
+| `description` | TextField     | Optional, blank=True            | ''      | Detailed description |
+| `completed`   | BooleanField  | -                               | False   | Completion status    |
+| `created_at`  | DateTimeField | auto_now_add=True               | Now     | Creation timestamp   |
+| `due_date`    | DateField     | Optional, blank=True, null=True | None    | Due date             |
 
 #### Data Modeling Decisions
 
@@ -550,14 +528,14 @@ class Task(models.Model):
 
 The application implements the following URL routes:
 
-| URL Pattern              | View                 | Function                 | HTTP Methods |
-| ------------------------ | -------------------- | ------------------------ | ------------ |
-| `/`                      | task_list            | Display all tasks        | GET          |
-| `/task/create/`          | task_create          | Create a new task        | GET, POST    |
-| `/task/<int:pk>/`        | task_detail          | View a specific task     | GET          |
-| `/task/<int:pk>/update/` | task_update          | Update a task            | GET, POST    |
-| `/task/<int:pk>/delete/` | task_delete          | Delete a task            | GET, POST    |
-| `/task/<int:pk>/toggle/` | task_toggle_complete | Toggle completion status | POST         |
+| URL Pattern              | View                   | Function                 | HTTP Methods |
+| ------------------------ | ---------------------- | ------------------------ | ------------ |
+| `/`                      | `task_list`            | Display all tasks        | GET          |
+| `/task/create/`          | `task_create`          | Create a new task        | GET, POST    |
+| `/task/<int:pk>/`        | `task_detail`          | View a specific task     | GET          |
+| `/task/<int:pk>/update/` | `task_update`          | Update a task            | GET, POST    |
+| `/task/<int:pk>/delete/` | `task_delete`          | Delete a task            | GET, POST    |
+| `/task/<int:pk>/toggle/` | `task_toggle_complete` | Toggle completion status | POST         |
 
 Each endpoint corresponds to a specific view function that handles the appropriate HTTP methods and renders the corresponding template or redirects as necessary.
 
@@ -743,7 +721,6 @@ templates/
    ```django
    {% extends 'todo_app/base.html' %}
    {% block content %}...{% endblock %}
-
    ```
 
 2. **Template Logic**
@@ -758,14 +735,12 @@ templates/
    {% empty %}
    <p>No tasks available.</p>
    {% endfor %}
-
    ```
 
 3. **URL Reversing**
 
    ```django
    <a href="{% url 'task_detail' task.pk %}">View Task</a>
-
    ```
 
 4. **Form Rendering**
@@ -774,9 +749,8 @@ templates/
    <form method="post">
    {% csrf_token %}
    {{ form.as_p }}
-   < button type="submit" class="btn btn-primary">Save</>
+   <button type="submit" class="btn btn-primary">Save</button>
    </form>
-
    ```
 
 ### Project Structure
@@ -810,7 +784,6 @@ The project follows the standard Django project structure, with clear separation
 - **Forms**: Manage data validation and user input
 - **URLs**: Define the routing between endpoints
 
-```markdown
 ## Code Quality Standards
 
 This project follows high standards for code quality and organization:
@@ -821,9 +794,6 @@ This project follows high standards for code quality and organization:
 - **Documentation**: Comprehensive docstrings and comments throughout
 - **Error Handling**: Robust error handling with user-friendly messages
 - **Security Best Practices**: CSRF protection, input validation, and XSS prevention
-
-For complete code quality documentation, see [CODE_QUALITY.md](CODE_QUALITY.md).
-```
 
 ## Development Process
 
@@ -838,7 +808,7 @@ This project follows a structured Git workflow to maintain code quality and prov
 
 Example commit message pattern:
 
-```
+```bash
 feat: Add task completion toggle functionality
 
 - Add toggle endpoint and view function
@@ -957,7 +927,7 @@ This section documents comprehensive security testing performed on the live prod
 
 #### CSRF (Cross-Site Request Forgery) Protection
 
-**Implementation Status:** ✅ **Fully Protected**
+![Status](https://img.shields.io/badge/Status-Fully_Protected-success)
 
 **Testing Methodology:**
 Manual testing was performed by removing CSRF tokens from forms and attempting submission to verify protection mechanisms.
@@ -994,7 +964,7 @@ MIDDLEWARE = [
 
 #### XSS (Cross-Site Scripting) Prevention
 
-**Implementation Status:** ✅ **Fully Protected**
+![Status](https://img.shields.io/badge/Status-Fully_Protected-success)
 
 **Testing Methodology:**
 Multiple XSS attack vectors were tested using script tags, image tags with error handlers, and HTML formatting attempts.
@@ -1031,7 +1001,7 @@ Description: &lt;img src=x onerror=alert('XSS')&gt;
 
 #### SQL Injection Prevention
 
-**Implementation Status:** ✅ **Fully Protected**
+![Status](https://img.shields.io/badge/Status-Fully_Protected-success)
 
 **Testing Methodology:**
 SQL injection attacks were attempted using classic injection strings designed to manipulate database queries.
@@ -1114,7 +1084,7 @@ SECURE_CONTENT_SECURITY_POLICY = (
 
 ### SSL/TLS Security
 
-**Implementation Status:** ✅ **Fully Secure**
+![Status](https://img.shields.io/badge/Status-Fully_Secure-success)
 
 **SSL Certificate Verification:**
 
@@ -1132,7 +1102,7 @@ SECURE_CONTENT_SECURITY_POLICY = (
 
 ### Administrative Security
 
-**Admin Interface Protection:** ✅ **Properly Secured**
+![Status](https://img.shields.io/badge/Status-Properly_Secured-success)
 
 **Access Control Testing:**
 
@@ -1150,12 +1120,12 @@ LOGIN_URL = '/admin/login/'
 LOGIN_REDIRECT_URL = '/admin/'
 
 # Admin user creation requires superuser privileges
-python manage.py createsuperuser
+# python manage.py createsuperuser
 ```
 
 ### Input Validation and Sanitization
 
-**Form-Level Security:** ✅ **Comprehensive Protection**
+![Status](https://img.shields.io/badge/Status-Comprehensive_Protection-success)
 
 **Validation Implementation:**
 
@@ -1257,6 +1227,9 @@ class TaskForm(forms.ModelForm):
 
 ## Testing and Quality Assurance
 
+![Testing](https://img.shields.io/badge/Testing-Comprehensive-success)
+![Quality](https://img.shields.io/badge/Quality-Professional-blue)
+
 ### Comprehensive Testing Strategy
 
 This application underwent rigorous testing to ensure functionality, usability, security, and performance meet professional standards. All testing was conducted manually and documented comprehensively to verify each aspect of the application.
@@ -1276,28 +1249,28 @@ This application underwent rigorous testing to ensure functionality, usability, 
 
 #### Key Testing Achievements
 
-**✅ Security Verification:**
+![Security](https://img.shields.io/badge/Security-Verified-green)
 
 - CSRF protection confirmed on all forms
 - XSS prevention through Django's auto-escaping
 - SQL injection protection via Django ORM
 - All malicious inputs safely handled
 
-**✅ Performance Benchmarks Met:**
+![Performance](https://img.shields.io/badge/Performance-Excellent-brightgreen)
 
 - Average page load time: 175ms (target: <3 seconds)
 - Database queries optimized: 1-2 queries per page maximum
 - No N+1 query problems identified
 - Responsive performance across all device sizes
 
-**✅ Cross-Browser Compatibility:**
+![Browser](https://img.shields.io/badge/Browser-Compatible-blue)
 
 - Full functionality verified on Chrome, Firefox, Safari, and Edge
 - Consistent behavior across all major browsers
 - Mobile responsiveness confirmed on actual devices
 - Touch interactions work properly on mobile browsers
 
-**✅ Accessibility Compliance:**
+![Accessibility](https://img.shields.io/badge/Accessibility-WCAG_2.1_AA-green)
 
 - WCAG 2.1 AA standards met for all text contrast ratios
 - Complete keyboard navigation functionality
@@ -1316,20 +1289,9 @@ During comprehensive testing, no critical bugs or security vulnerabilities were 
 - Graceful handling of edge cases and error conditions
 - Clear, actionable error messages for users
 
-### Detailed Testing Documentation
-
-For complete test procedures, step-by-step testing instructions, and detailed results analysis, see the comprehensive [TESTING.md](TESTING.md) documentation.
-
-The detailed testing documentation includes:
-
-- Manual testing procedures for every feature
-- Cross-browser compatibility verification steps
-- Security vulnerability assessment results
-- Performance benchmarking methodology and results
-- Accessibility compliance testing procedures
-- Complete error handling scenario testing
-
 ## Performance Testing Results
+
+![Performance](https://img.shields.io/badge/Performance-Excellent-brightgreen)
 
 ### Load Time Analysis
 
@@ -1344,20 +1306,20 @@ All performance testing was conducted on the live production environment (Railwa
 
 ### Performance Benchmarks Met
 
-**✅ Load Time Targets Exceeded:**
+![Load Time](https://img.shields.io/badge/Load_Time-Under_1s-success)
 
 - Target: <3 seconds for acceptable performance
 - Achieved: <1 second average (783ms)
-- Performance rating: **Excellent** (74% faster than target)
+- Performance rating: **Excellent** (74% of target time)
 
-**✅ Resource Efficiency:**
+![Resource](https://img.shields.io/badge/Resources-Optimized-blue)
 
 - Lightweight pages averaging 325KB total size
 - Minimal HTTP requests (8-9 per page)
 - No failed requests or broken resources
 - Efficient use of external CDN resources
 
-**✅ Network Optimization:**
+![Network](https://img.shields.io/badge/Network-Optimized-green)
 
 - Bootstrap CSS cached effectively (233KB)
 - JavaScript kept minimal (2KB largest file)
@@ -1475,6 +1437,9 @@ These results indicate a well-optimized application that provides an excellent u
 
 ## Deployment
 
+![Deployment](https://img.shields.io/badge/Deployment-Railway-blue)
+![Status](https://img.shields.io/badge/Status-Production_Ready-success)
+
 The application is configured for deployment on Railway, a modern platform as a service (PaaS) that enables easy deployment and scaling of web applications. The following detailed instructions describe the deployment process from local development to production.
 
 ### Prerequisites
@@ -1510,7 +1475,7 @@ Before deployment, ensure you have:
 4. **Set up local environment variables**:
    Create a `.env` file in the project root with:
 
-   ```
+   ```bash
    SECRET_KEY=your_secret_key_here
    DEBUG=True
    DATABASE_URL=sqlite:///db.sqlite3
@@ -1554,7 +1519,7 @@ Before deployment, ensure you have:
    - Click on your web service
    - Go to the "Variables" tab
    - Add the following variables:
-     ```
+     ```bash
      SECRET_KEY=your_production_secret_key
      DEBUG=False
      ALLOWED_HOSTS=your-railway-domain.up.railway.app
@@ -1654,6 +1619,8 @@ Railway supports continuous deployment from your GitHub repository:
 6. Verify functionality in production
 
 ## Future Improvements
+
+![Future](https://img.shields.io/badge/Future-Roadmap-blue)
 
 While the current application provides a solid foundation for task management, several enhancements could improve functionality and user experience in future iterations:
 
