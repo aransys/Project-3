@@ -5,7 +5,178 @@
 ![Security](https://img.shields.io/badge/Security-Verified-green)
 ![Performance](https://img.shields.io/badge/Performance-Excellent-brightgreen)
 
+## 📑 Table of Contents
+
+### 🏠 [Project Overview](#project-overview)
+
+- [Purpose and Value](#purpose-and-value)
+- [Target Audience](#target-audience)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+
+### 👤 [User Stories and Requirements](#user-stories-and-requirements)
+
+- [Target Users and Their Needs](#target-users-and-their-needs)
+- [Primary User Stories](#primary-user-stories)
+  - [The Overwhelmed Professional](#1-the-overwhelmed-professional)
+  - [The Deadline-Conscious Student](#2-the-deadline-conscious-student)
+  - [The Satisfaction-Seeking Achiever](#3-the-satisfaction-seeking-achiever)
+  - [The Mistake-Prone User](#4-the-mistake-prone-user)
+  - [The Accessibility-Conscious User](#5-the-accessibility-conscious-user)
+- [User Journey Mapping](#user-journey-mapping)
+- [Feature Mapping to User Needs](#feature-mapping-to-user-needs)
+- [Design Validation Against User Stories](#design-validation-against-user-stories)
+- [User Testing Validation](#user-testing-validation)
+- [Future User Story Considerations](#future-user-story-considerations)
+
+### 🎨 [UX Design Process and Principles](#ux-design-process-and-principles)
+
+- [User Flow Analysis and Testing](#user-flow-analysis-and-testing)
+- [Design Principles Applied](#design-principles-applied)
+  - [Information Hierarchy](#information-hierarchy)
+  - [User Control](#user-control)
+  - [Mobile-First Design](#mobile-first-design)
+- [Design Philosophy and Rationale](#design-philosophy-and-rationale)
+- [Core UX Principles Implementation](#core-ux-principles-implementation)
+  - [Consistency](#consistency)
+  - [Accessibility](#accessibility)
+- [Accessibility Testing and Compliance](#accessibility-testing-and-compliance)
+  - [Keyboard Navigation Testing](#keyboard-navigation-testing)
+  - [Color Contrast Compliance](#color-contrast-compliance)
+  - [Accessibility Features Implementation](#accessibility-features-implementation)
+- [Visual Design Specifications](#visual-design-specifications)
+  - [Layout Structure](#layout-structure)
+  - [Page-Specific Layouts](#page-specific-layouts)
+  - [Component Design Specifications](#component-design-specifications)
+  - [Responsive Design Breakpoints](#responsive-design-breakpoints)
+
+### 🗃️ [Data Schema](#data-schema)
+
+- [Task Model Structure](#task-model-structure)
+- [Data Modeling Decisions](#data-modeling-decisions)
+- [API Endpoints/Routes](#api-endpointsroutes)
+
+### 🏗️ [Template Architecture and Django Logic](#template-architecture-and-django-logic)
+
+- [Template Structure Overview](#template-structure-overview)
+- [Template Inheritance Implementation](#template-inheritance-implementation)
+- [Advanced Template Logic Examples](#advanced-template-logic-examples)
+  - [Dynamic Button Styling with Multiple Conditionals](#1-dynamic-button-styling-with-multiple-conditionals)
+  - [Context-Aware Form with Dynamic Headings](#2-context-aware-form-with-dynamic-headings)
+  - [List Display with Empty State Handling](#3-list-display-with-empty-state-handling)
+  - [Multi-Channel Status Indication](#4-multi-channel-status-indication)
+  - [Advanced Form Rendering with Bootstrap Integration](#5-advanced-form-rendering-with-bootstrap-integration)
+- [Template Features Utilized](#template-features-utilized)
+
+### 📄 [Template Implementation](#template-implementation)
+
+- [Template Structure](#template-structure)
+- [Key Template Features](#key-template-features)
+- [Project Structure](#project-structure)
+
+### 💎 [Code Quality Standards](#code-quality-standards)
+
+### 🔨 [Development Process](#development-process)
+
+- [Version Control Workflow](#version-control-workflow)
+- [Design Decisions and Rationale](#design-decisions-and-rationale)
+  - [Framework Selection: Django](#1-framework-selection-django)
+  - [Single-Model Architecture](#2-single-model-architecture)
+  - [Bootstrap Integration](#3-bootstrap-integration)
+  - [Form-Based Interactions](#4-form-based-interactions)
+- [Challenges and Solutions](#challenges-and-solutions)
+  - [Challenge 1: Date Handling](#challenge-1-date-handling)
+  - [Challenge 2: Task Status Updates](#challenge-2-task-status-updates)
+  - [Challenge 3: Responsive Design](#challenge-3-responsive-design)
+- [Third-Party Libraries](#third-party-libraries)
+
+### 🔒 [Security Features](#security-features)
+
+- [Security Testing and Verification](#security-testing-and-verification)
+  - [CSRF (Cross-Site Request Forgery) Protection](#csrf-cross-site-request-forgery-protection)
+  - [XSS (Cross-Site Scripting) Prevention](#xss-cross-site-scripting-prevention)
+  - [SQL Injection Prevention](#sql-injection-prevention)
+- [Production Security Headers](#production-security-headers)
+  - [Implemented Security Headers](#implemented-security-headers)
+  - [Additional Security Considerations](#additional-security-considerations)
+- [SSL/TLS Security](#ssltls-security)
+- [Administrative Security](#administrative-security)
+- [Input Validation and Sanitization](#input-validation-and-sanitization)
+- [Security Architecture Summary](#security-architecture-summary)
+- [Security Testing Results Summary](#security-testing-results-summary)
+- [Security Compliance Assessment](#security-compliance-assessment)
+- [Future Security Enhancements](#future-security-enhancements)
+
+### 🧪 [Testing and Quality Assurance](#testing-and-quality-assurance)
+
+- [Comprehensive Testing Strategy](#comprehensive-testing-strategy)
+  - [Testing Results Summary](#testing-results-summary)
+  - [Key Testing Achievements](#key-testing-achievements)
+  - [Quality Assurance Standards](#quality-assurance-standards)
+
+### ⚡ [Performance Testing Results](#performance-testing-results)
+
+- [Load Time Analysis](#load-time-analysis)
+- [Performance Benchmarks Met](#performance-benchmarks-met)
+- [Resource Breakdown Analysis](#resource-breakdown-analysis)
+  - [External Dependencies](#external-dependencies)
+  - [Application Assets](#application-assets)
+- [Database Performance Assessment](#database-performance-assessment)
+  - [Query Efficiency](#query-efficiency)
+  - [Scalability Analysis](#scalability-analysis)
+- [Performance Optimization Strategies Implemented](#performance-optimization-strategies-implemented)
+  - [Frontend Optimization](#frontend-optimization)
+  - [Backend Optimization](#backend-optimization)
+- [Production Environment Performance](#production-environment-performance)
+  - [Railway Platform Benefits](#railway-platform-benefits)
+  - [Security vs Performance Balance](#security-vs-performance-balance)
+- [Performance Monitoring and Maintenance](#performance-monitoring-and-maintenance)
+  - [Key Metrics to Track](#key-metrics-to-track)
+  - [Performance Best Practices Followed](#performance-best-practices-followed)
+- [Future Performance Considerations](#future-performance-considerations)
+  - [Scalability Enhancements](#scalability-enhancements)
+  - [Performance Testing Recommendations](#performance-testing-recommendations)
+- [Performance Summary](#performance-summary)
+
+### 🚀 [Deployment](#deployment)
+
+- [Prerequisites](#prerequisites)
+- [Local Environment Setup](#local-environment-setup)
+- [Railway Deployment Process](#railway-deployment-process)
+- [Deployment Verification](#deployment-verification)
+- [Common Deployment Issues and Solutions](#common-deployment-issues-and-solutions)
+- [Continuous Deployment](#continuous-deployment)
+
+### 🔮 [Future Improvements](#future-improvements)
+
+- [User Authentication and Multi-User Support](#user-authentication-and-multi-user-support)
+- [Enhanced Task Features](#enhanced-task-features)
+- [Notification System](#notification-system)
+- [Advanced UI Features](#advanced-ui-features)
+- [Performance and Scalability](#performance-and-scalability)
+- [Integration Capabilities](#integration-capabilities)
+- [Implementation Priorities](#implementation-priorities)
+
+### 🧪 [Testing](#testing)
+
+- [Testing Methodology](#testing-methodology)
+  - [Automated Testing](#automated-testing)
+  - [Manual Testing](#manual-testing)
+
+### 📝 [Conclusion](#conclusion)
+
+### 👨‍💻 [Author](#author)
+
+### 📄 [License](#license)
+
+---
+
 ## Project Overview
+
+![Testing](https://img.shields.io/badge/Testing-Comprehensive-success)
+![Code Quality](https://img.shields.io/badge/Code_Quality-PEP8-blue)
+![Security](https://img.shields.io/badge/Security-Verified-green)
+![Performance](https://img.shields.io/badge/Performance-Excellent-brightgreen)
 
 Task Manager is a full-stack web application built with Python and Django that provides a comprehensive solution for organizing and tracking personal tasks. Developed as part of the L5 Diploma in Web Application Development (Unit 3: Back End Development), this project demonstrates proficiency in creating database-backed web applications using Python and web frameworks.
 
