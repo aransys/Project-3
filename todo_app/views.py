@@ -1,49 +1,59 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib import messages
 from .models import Task
 from .forms import TaskForm
 
-# List view - show all tasks
 class TaskListView(ListView):
     model = Task
     template_name = 'todo_app/task_list.html'
     context_object_name = 'tasks'
-    
-    def get_queryset(self):
-        # Order by created date (newest first)
-        return Task.objects.order_by('-created_at')
+    ordering = ['-created_at']  # Show newest tasks first
 
-# Detail view - show single task
 class TaskDetailView(DetailView):
     model = Task
     template_name = 'todo_app/task_detail.html'
     context_object_name = 'task'
 
-# Create view - add new task
 class TaskCreateView(CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'todo_app/task_form.html'
-    success_url = reverse_lazy('task-list')
+    success_url = reverse_lazy('todo_app:task_list')
+    
+    def form_valid(self, form):
+        messages.success(self.request, 'Task created successfully!')
+        return super().form_valid(form)
 
-# Update view - edit task
 class TaskUpdateView(UpdateView):
     model = Task
     form_class = TaskForm
     template_name = 'todo_app/task_form.html'
-    success_url = reverse_lazy('task-list')
+    success_url = reverse_lazy('todo_app:task_list')
+    
+    def form_valid(self, form):
+        messages.success(self.request, 'Task updated successfully!')
+        return super().form_valid(form)
 
-# Delete view - remove task
 class TaskDeleteView(DeleteView):
     model = Task
     template_name = 'todo_app/task_confirm_delete.html'
-    success_url = reverse_lazy('task-list')
-    context_object_name = 'task'
+    success_url = reverse_lazy('todo_app:task_list')
+    
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'Task deleted successfully!')
+        return super().delete(request, *args, **kwargs)
 
-# Toggle completion status
+# Function-based view for toggling task completion
 def toggle_complete(request, pk):
     task = get_object_or_404(Task, pk=pk)
     task.completed = not task.completed
     task.save()
-    return redirect('task-list')
+    
+    if task.completed:
+        messages.success(request, f'Task "{task.title}" marked as complete!')
+    else:
+        messages.info(request, f'Task "{task.title}" marked as incomplete.')
+    
+    return redirect('todo_app:task_list')
