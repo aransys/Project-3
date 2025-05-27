@@ -150,6 +150,11 @@ else:
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Additional directories where Django looks for static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Project-level static directory
+]
+
 # Railway deployment settings  
 if 'RAILWAY_ENVIRONMENT' in os.environ:
     DEBUG = False
