@@ -240,6 +240,22 @@ class Task(models.Model):
         verbose_name_plural = 'Tasks'
 ```
 
+## Technical Design Decision: Class-Based Views
+
+This project implements Django's class-based views (CBVs) instead of function-based views for the following reasons:
+
+1. **Code Reusability**: CBVs inherit from Django's generic views, reducing code duplication
+2. **Professional Standards**: CBVs are the recommended approach for CRUD operations in modern Django
+3. **Maintainability**: Easier to extend and customize through inheritance
+4. **Built-in Features**: Automatic handling of GET/POST requests, form processing, and redirects
+
+Example of the efficiency gained:
+
+- Function-based view for list: ~15 lines of code
+- Class-based ListView: 4 lines of code with same functionality
+
+This demonstrates understanding of Django's advanced features and commitment to clean, maintainable code.
+
 ## Error Handling and Validation
 
 ### Robust Input Validation
