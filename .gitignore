@@ -38,3 +38,5 @@ ENV/
 
 # Secret keys
 .env.env
+
+*.pyc
