@@ -21,7 +21,7 @@ This Task Manager application is a professional-grade, full-stack web applicatio
 - ✅ **Comprehensive Testing** with 100% pass rate across 50 test cases
 - ✅ **Zero Logic Errors** - production-ready codebase
 
-![Task Manager Dashboard](docs/screenshots/hero-dashboard.png)
+![Task Manager Dashboard](/docs/hero-dashboard.png)
 _Task Manager - A clean, intuitive interface for managing your daily tasks_
 
 ---
