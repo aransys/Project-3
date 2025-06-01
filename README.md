@@ -21,6 +21,9 @@ This Task Manager application is a professional-grade, full-stack web applicatio
 - ✅ **Comprehensive Testing** with 100% pass rate across 50 test cases
 - ✅ **Zero Logic Errors** - production-ready codebase
 
+![Task Manager Dashboard](docs/screenshots/hero-dashboard.png)
+_Task Manager - A clean, intuitive interface for managing your daily tasks_
+
 ---
 
 ## 📑 Table of Contents
@@ -712,7 +715,10 @@ base.html (Master template)
     <title>{% block title %}Task Manager{% endblock %}</title>
 
     <!-- Bootstrap 5 CSS from CDN for performance -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
     {% block extra_css %}{% endblock %}
   </head>
@@ -721,7 +727,9 @@ base.html (Master template)
       <!-- Navigation header -->
       <header class="py-3 mb-4 border-bottom">
         <h1 class="h4 mb-0">
-          <a href="{% url 'task_list' %}" class="text-decoration-none"> 📋 Task Manager </a>
+          <a href="{% url 'task_list' %}" class="text-decoration-none">
+            📋 Task Manager
+          </a>
         </h1>
       </header>
 
@@ -751,13 +759,16 @@ base.html (Master template)
 
 ```html
 <!-- task_form.html - Demonstrates advanced template logic -->
-{% extends 'todo_app/base.html' %} {% block title %} {% if form.instance.id %}Edit Task{% else %}Add New Task{% endif %} - Task Manager {% endblock %} {% block content %}
+{% extends 'todo_app/base.html' %} {% block title %} {% if form.instance.id
+%}Edit Task{% else %}Add New Task{% endif %} - Task Manager {% endblock %} {%
+block content %}
 <div class="row justify-content-center">
   <div class="col-md-8">
     <!-- Dynamic heading based on context -->
     <h2 class="mb-4">
       {% if form.instance.id %}
-      <i class="bi bi-pencil-square"></i> Edit Task {% else %} <i class="bi bi-plus-circle"></i> Add New Task {% endif %}
+      <i class="bi bi-pencil-square"></i> Edit Task {% else %}
+      <i class="bi bi-plus-circle"></i> Add New Task {% endif %}
     </h2>
 
     <form method="post" novalidate class="needs-validation">
@@ -773,11 +784,16 @@ base.html (Master template)
         </label>
 
         <!-- Field-specific styling -->
-        {% if field.name == 'description' %} {{ field|add_class:"form-control"|attr:"rows:4" }} {% elif field.name == 'due_date' %} {{ field|add_class:"form-control"|attr:"type:date" }} {% else %} {{ field|add_class:"form-control" }} {% endif %}
+        {% if field.name == 'description' %} {{
+        field|add_class:"form-control"|attr:"rows:4" }} {% elif field.name ==
+        'due_date' %} {{ field|add_class:"form-control"|attr:"type:date" }} {%
+        else %} {{ field|add_class:"form-control" }} {% endif %}
 
         <!-- Error handling with styling -->
         {% if field.errors %}
-        <div class="invalid-feedback d-block">{% for error in field.errors %} {{ error }} {% endfor %}</div>
+        <div class="invalid-feedback d-block">
+          {% for error in field.errors %} {{ error }} {% endfor %}
+        </div>
         {% endif %}
 
         <!-- Help text display -->
@@ -789,10 +805,13 @@ base.html (Master template)
 
       <!-- Context-aware button text and styling -->
       <div class="d-flex justify-content-between">
-        <a href="{% url 'task_list' %}" class="btn btn-outline-secondary"> <i class="bi bi-arrow-left"></i> Cancel </a>
+        <a href="{% url 'task_list' %}" class="btn btn-outline-secondary">
+          <i class="bi bi-arrow-left"></i> Cancel
+        </a>
         <button type="submit" class="btn btn-primary">
           {% if form.instance.id %}
-          <i class="bi bi-check-circle"></i> Update Task {% else %} <i class="bi bi-plus-circle"></i> Create Task {% endif %}
+          <i class="bi bi-check-circle"></i> Update Task {% else %}
+          <i class="bi bi-plus-circle"></i> Create Task {% endif %}
         </button>
       </div>
     </form>
@@ -810,14 +829,17 @@ base.html (Master template)
 {% extends 'todo_app/base.html' %} {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h2>My Tasks</h2>
-  <a href="{% url 'task_create' %}" class="btn btn-primary"> <i class="bi bi-plus-circle"></i> Add New Task </a>
+  <a href="{% url 'task_create' %}" class="btn btn-primary">
+    <i class="bi bi-plus-circle"></i> Add New Task
+  </a>
 </div>
 
 <!-- Conditional rendering based on data availability -->
 {% if tasks %}
 <!-- Task statistics -->
 <div class="row mb-4">
-  {% with total=tasks|length completed=tasks|completed_count pending=tasks|pending_count %}
+  {% with total=tasks|length completed=tasks|completed_count
+  pending=tasks|pending_count %}
   <div class="col-md-4">
     <div class="card text-center">
       <div class="card-body">
@@ -854,11 +876,17 @@ base.html (Master template)
         <div class="d-flex justify-content-between align-items-start">
           <div class="flex-grow-1">
             <!-- Dynamic title styling based on completion status -->
-            <h5 class="card-title {% if task.completed %}text-decoration-line-through text-muted{% endif %}">{{ task.title }}</h5>
+            <h5
+              class="card-title {% if task.completed %}text-decoration-line-through text-muted{% endif %}"
+            >
+              {{ task.title }}
+            </h5>
 
             <!-- Conditional description display -->
             {% if task.description %}
-            <p class="card-text {% if task.completed %}text-muted{% endif %}">{{ task.description|linebreaks }}</p>
+            <p class="card-text {% if task.completed %}text-muted{% endif %}">
+              {{ task.description|linebreaks }}
+            </p>
             {% endif %}
 
             <!-- Multi-conditional metadata display -->
@@ -869,9 +897,12 @@ base.html (Master template)
               </span>
 
               {% if task.due_date %}
-              <span class="{% if task.is_overdue and not task.completed %}text-danger{% endif %}">
+              <span
+                class="{% if task.is_overdue and not task.completed %}text-danger{% endif %}"
+              >
                 <i class="bi bi-calendar-event"></i>
-                Due: {{ task.due_date|date:"M d, Y" }} {% if task.is_overdue and not task.completed %}
+                Due: {{ task.due_date|date:"M d, Y" }} {% if task.is_overdue and
+                not task.completed %}
                 <span class="badge bg-danger ms-1">Overdue</span>
                 {% endif %}
               </span>
@@ -882,9 +913,13 @@ base.html (Master template)
           <!-- Status badge with conditional styling -->
           <div class="text-end">
             {% if task.completed %}
-            <span class="badge bg-success mb-2"> <i class="bi bi-check-circle"></i> Completed </span>
+            <span class="badge bg-success mb-2">
+              <i class="bi bi-check-circle"></i> Completed
+            </span>
             {% else %}
-            <span class="badge bg-warning mb-2"> <i class="bi bi-clock"></i> Pending </span>
+            <span class="badge bg-warning mb-2">
+              <i class="bi bi-clock"></i> Pending
+            </span>
             {% endif %}
           </div>
         </div>
@@ -892,15 +927,34 @@ base.html (Master template)
         <!-- Action buttons with intelligent styling -->
         <div class="d-flex gap-2 mt-3">
           <!-- Completion toggle with dynamic appearance -->
-          <a href="{% url 'task_toggle_complete' task.id %}" class="btn btn-sm {% if task.completed %}btn-outline-secondary{% else %}btn-outline-success{% endif %}">
+          <a
+            href="{% url 'task_toggle_complete' task.id %}"
+            class="btn btn-sm {% if task.completed %}btn-outline-secondary{% else %}btn-outline-success{% endif %}"
+          >
             {% if task.completed %}
-            <i class="bi bi-arrow-counterclockwise"></i> Mark Incomplete {% else %} <i class="bi bi-check-circle"></i> Complete {% endif %}
+            <i class="bi bi-arrow-counterclockwise"></i> Mark Incomplete {% else
+            %} <i class="bi bi-check-circle"></i> Complete {% endif %}
           </a>
 
           <!-- Standard action buttons -->
-          <a href="{% url 'task_detail' task.id %}" class="btn btn-sm btn-outline-info"> <i class="bi bi-eye"></i> View </a>
-          <a href="{% url 'task_update' task.id %}" class="btn btn-sm btn-outline-primary"> <i class="bi bi-pencil"></i> Edit </a>
-          <a href="{% url 'task_delete' task.id %}" class="btn btn-sm btn-outline-danger"> <i class="bi bi-trash"></i> Delete </a>
+          <a
+            href="{% url 'task_detail' task.id %}"
+            class="btn btn-sm btn-outline-info"
+          >
+            <i class="bi bi-eye"></i> View
+          </a>
+          <a
+            href="{% url 'task_update' task.id %}"
+            class="btn btn-sm btn-outline-primary"
+          >
+            <i class="bi bi-pencil"></i> Edit
+          </a>
+          <a
+            href="{% url 'task_delete' task.id %}"
+            class="btn btn-sm btn-outline-danger"
+          >
+            <i class="bi bi-trash"></i> Delete
+          </a>
         </div>
       </div>
     </div>
@@ -915,8 +969,12 @@ base.html (Master template)
     <i class="bi bi-list-task display-1 text-muted"></i>
   </div>
   <h3 class="text-muted">No tasks yet!</h3>
-  <p class="text-muted mb-4">Start organizing your life by creating your first task.</p>
-  <a href="{% url 'task_create' %}" class="btn btn-primary btn-lg"> <i class="bi bi-plus-circle"></i> Create Your First Task </a>
+  <p class="text-muted mb-4">
+    Start organizing your life by creating your first task.
+  </p>
+  <a href="{% url 'task_create' %}" class="btn btn-primary btn-lg">
+    <i class="bi bi-plus-circle"></i> Create Your First Task
+  </a>
 </div>
 {% endif %} {% endblock %}
 ```
@@ -927,15 +985,21 @@ base.html (Master template)
 
 ```html
 <!-- task_confirm_delete.html - Defensive UX design -->
-{% extends 'todo_app/base.html' %} {% block title %}Delete Task - Task Manager{% endblock %} {% block content %}
+{% extends 'todo_app/base.html' %} {% block title %}Delete Task - Task Manager{%
+endblock %} {% block content %}
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="card border-danger">
       <div class="card-header bg-danger text-white">
-        <h4 class="mb-0"><i class="bi bi-exclamation-triangle"></i> Confirm Deletion</h4>
+        <h4 class="mb-0">
+          <i class="bi bi-exclamation-triangle"></i> Confirm Deletion
+        </h4>
       </div>
       <div class="card-body">
-        <p class="mb-3">Are you sure you want to delete this task? This action cannot be undone.</p>
+        <p class="mb-3">
+          Are you sure you want to delete this task? This action cannot be
+          undone.
+        </p>
 
         <!-- Task preview -->
         <div class="alert alert-light">
@@ -943,14 +1007,21 @@ base.html (Master template)
           {% if task.description %}
           <p class="mb-1">{{ task.description|truncatewords:20 }}</p>
           {% endif %}
-          <small class="text-muted"> Created: {{ task.created_at|date:"M d, Y" }} {% if task.due_date %} | Due: {{ task.due_date|date:"M d, Y" }} {% endif %} </small>
+          <small class="text-muted">
+            Created: {{ task.created_at|date:"M d, Y" }} {% if task.due_date %}
+            | Due: {{ task.due_date|date:"M d, Y" }} {% endif %}
+          </small>
         </div>
 
         <!-- Confirmation form -->
         <form method="post" class="d-flex gap-2">
           {% csrf_token %}
-          <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Yes, Delete Task</button>
-          <a href="{% url 'task_list' %}" class="btn btn-outline-secondary"> <i class="bi bi-arrow-left"></i> Cancel </a>
+          <button type="submit" class="btn btn-danger">
+            <i class="bi bi-trash"></i> Yes, Delete Task
+          </button>
+          <a href="{% url 'task_list' %}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Cancel
+          </a>
         </form>
       </div>
     </div>
@@ -1102,12 +1173,19 @@ def task_detail(request, pk):
 {% for task in tasks %}
 <div class="card {% if task.completed %}bg-light{% endif %}">
   <div class="card-body">
-    <h5 class="{% if task.completed %}text-decoration-line-through text-muted{% endif %}">{{ task.title }}</h5>
+    <h5
+      class="{% if task.completed %}text-decoration-line-through text-muted{% endif %}"
+    >
+      {{ task.title }}
+    </h5>
     {% if task.description %}
     <p class="card-text">{{ task.description|linebreaks }}</p>
     {% endif %}
     <!-- Metadata display with conditional formatting -->
-    <small class="text-muted"> Created: {{ task.created_at|date:"M d, Y" }} {% if task.due_date %} | Due: {{ task.due_date|date:"M d, Y" }} {% endif %} </small>
+    <small class="text-muted">
+      Created: {{ task.created_at|date:"M d, Y" }} {% if task.due_date %} | Due:
+      {{ task.due_date|date:"M d, Y" }} {% endif %}
+    </small>
   </div>
 </div>
 {% endfor %}
@@ -1162,14 +1240,18 @@ def task_toggle_complete(request, pk):
 <form method="post" novalidate>
   {% csrf_token %} {% for field in form %}
   <div class="mb-3">
-    <label for="{{ field.id_for_label }}" class="form-label"> {{ field.label }} </label>
+    <label for="{{ field.id_for_label }}" class="form-label">
+      {{ field.label }}
+    </label>
     {{ field|add_class:"form-control" }} {% if field.errors %}
     <div class="invalid-feedback d-block">{{ field.errors.0 }}</div>
     {% endif %}
   </div>
   {% endfor %}
 
-  <button type="submit" class="btn btn-primary">{% if form.instance.id %}Update Task{% else %}Create Task{% endif %}</button>
+  <button type="submit" class="btn btn-primary">
+    {% if form.instance.id %}Update Task{% else %}Create Task{% endif %}
+  </button>
 </form>
 ```
 
@@ -1214,7 +1296,9 @@ def task_delete(request, pk):
     <form method="post">
       {% csrf_token %}
       <button type="submit" class="btn btn-danger">Yes, Delete Task</button>
-      <a href="{% url 'task_list' %}" class="btn btn-outline-secondary"> Cancel </a>
+      <a href="{% url 'task_list' %}" class="btn btn-outline-secondary">
+        Cancel
+      </a>
     </form>
   </div>
 </div>
@@ -1256,7 +1340,8 @@ document.addEventListener("DOMContentLoaded", function () {
   forms.forEach((form) => {
     form.addEventListener("submit", function () {
       const submitBtn = form.querySelector('button[type="submit"]');
-      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Processing...';
+      submitBtn.innerHTML =
+        '<span class="spinner-border spinner-border-sm" role="status"></span> Processing...';
       submitBtn.disabled = true;
     });
   });
@@ -1266,7 +1351,9 @@ document.addEventListener("DOMContentLoaded", function () {
   toggleBtns.forEach((btn) => {
     btn.addEventListener("click", function (e) {
       const taskTitle = this.dataset.taskTitle;
-      const action = this.textContent.includes("Complete") ? "complete" : "reopen";
+      const action = this.textContent.includes("Complete")
+        ? "complete"
+        : "reopen";
 
       if (!confirm(`Are you sure you want to ${action} "${taskTitle}"?`)) {
         e.preventDefault();
@@ -3462,7 +3549,11 @@ const TaskListScreen = ({ navigation }) => {
       <FlatList
         data={tasks}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate("TaskDetail", { taskId: item.id })}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("TaskDetail", { taskId: item.id })
+            }
+          >
             <Text>{item.title}</Text>
           </TouchableOpacity>
         )}
