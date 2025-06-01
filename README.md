@@ -339,6 +339,11 @@ def toggle_task_complete(request, pk):
 
 ### Responsive Design Strategy
 
+The application provides an excellent experience across all devices:
+
+![Mobile Responsive View](/docs/screenshots/mobile-view.png)
+_Fully responsive design works perfectly on mobile devices_
+
 #### Mobile-First Approach
 
 **Breakpoint Strategy:**
