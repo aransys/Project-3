@@ -1318,6 +1318,9 @@ def task_delete(request, pk):
 </div>
 ```
 
+![Delete Confirmation](/docs/screenshots/delete-confirmation.png)
+_Defensive design prevents accidental deletions_
+
 ### CRUD URL Configuration
 
 ```python
