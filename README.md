@@ -445,6 +445,132 @@ class Task(models.Model):
         return False
 ```
 
+### Visual Database Representation
+
+The following diagram illustrates the current database structure of the Task Manager application:
+
+```mermaid
+erDiagram
+    TASK {
+        BigAutoField id PK "Primary Key - Auto-generated"
+        CharField title "Required - Max 200 characters"
+        TextField description "Optional - Detailed task notes"
+        BooleanField completed "Default: False"
+        DateTimeField created_at "Auto-set on creation"
+        DateField due_date "Optional - Task deadline"
+    }
+
+    TASK ||--|| TASK : "Methods: is_overdue()"
+```
+
+**Key Design Decisions:**
+
+1. **Single Table Architecture**: The current implementation uses a single `Task` table, which provides:
+
+   - Simplicity in development and maintenance
+   - Fast query performance without joins
+   - Clear upgrade path to multi-table design
+
+2. **Field Design Rationale**:
+
+   - `title` (CharField): Required field with 200 character limit - sufficient for descriptive titles while maintaining database efficiency
+   - `description` (TextField): Optional field allowing unlimited text for detailed task information
+   - `completed` (BooleanField): Simple binary state for task completion status
+   - `created_at` (DateTimeField): Automatic timestamp for audit trail and sorting
+   - `due_date` (DateField): Optional to support both deadline-driven and flexible tasks
+
+3. **Database Optimization**:
+   - Primary key indexing for fast lookups
+   - Composite ordering on `['completed', 'due_date', 'created_at']` for efficient task list queries
+   - No unnecessary fields to maintain lean data structure
+
+### Future Database Architecture
+
+As outlined in our enhancement roadmap, the database will evolve to support multi-user functionality:
+
+```mermaid
+erDiagram
+    USER ||--o{ TASK : creates
+    USER ||--o{ CATEGORY : owns
+    CATEGORY ||--o{ TASK : categorizes
+    TASK ||--o{ TASK_ATTACHMENT : has
+    TASK ||--o{ TASK_SHARE : "shared via"
+    USER ||--o{ TASK_SHARE : "shared with"
+
+    USER {
+        BigAutoField id PK
+        CharField username UK "Unique username"
+        EmailField email UK "Unique email"
+        CharField timezone "User timezone"
+        ImageField avatar "Profile picture"
+    }
+
+    TASK {
+        BigAutoField id PK
+        ForeignKey user_id FK "Task owner"
+        ForeignKey category_id FK "Optional category"
+        CharField title "Required"
+        TextField description "Optional"
+        IntegerField priority "1-4 scale"
+        BooleanField completed
+        DateField due_date
+        DateTimeField created_at
+        DateTimeField updated_at
+    }
+
+    CATEGORY {
+        BigAutoField id PK
+        ForeignKey user_id FK "Category owner"
+        CharField name "Category name"
+        CharField color "Hex color code"
+        IntegerField order "Display order"
+    }
+
+    TASK_ATTACHMENT {
+        BigAutoField id PK
+        ForeignKey task_id FK
+        ForeignKey uploaded_by FK
+        FileField file
+        CharField filename
+        IntegerField file_size
+        DateTimeField uploaded_at
+    }
+
+    TASK_SHARE {
+        BigAutoField id PK
+        ForeignKey task_id FK
+        ForeignKey shared_by FK
+        ForeignKey shared_with FK
+        CharField permission_level
+        DateTimeField shared_at
+    }
+```
+
+**Future Schema Enhancements:**
+
+1. **Multi-User Support**:
+
+   - User authentication and authorization
+   - Personal task isolation
+   - Sharing capabilities
+
+2. **Organizational Features**:
+
+   - Categories for task grouping
+   - Priority levels for better task management
+   - File attachments for documentation
+
+3. **Collaboration Features**:
+
+   - Task sharing with permission levels
+   - Shared categories for teams
+   - Activity tracking with timestamps
+
+4. **Performance Considerations**:
+   - Indexed foreign keys for fast joins
+   - Denormalized fields where appropriate
+   - Prepared for horizontal scaling
+
 ### Data Model Justification
 
 #### Field Selection Rationale
