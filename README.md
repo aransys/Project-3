@@ -5,7 +5,7 @@
 ![Security](https://img.shields.io/badge/Security-Verified-green)
 ![Performance](https://img.shields.io/badge/Performance-Excellent-brightgreen)
 
-**Live Application:** [Task Manager on Railway](https://your-app-url.railway.app)  
+**Live Application:** [Task Manager on Railway](https://todo-project-production.up.railway.app/)  
 **Repository:** [GitHub - aransys/Project-3](https://github.com/aransys/Project-3)
 
 ## Executive Summary
@@ -51,82 +51,6 @@ _Task Manager - A clean, intuitive interface for managing your daily tasks_
 ### 🚀 [Deployment Process](#deployment-process)
 
 ### 🔮 [Future Enhancements](#future-enhancements)
-
----
-
-## Assessment Criteria Alignment
-
-This project comprehensively meets all requirements for **DISTINCTION** level achievement in Unit 3: Back End Development. Below is the explicit mapping to assessment criteria:
-
-### Learning Outcome 1: Design, develop and implement a Back end for a web application using Python and a framework
-
-| Criteria                                                    | Implementation                                             | Evidence Location                                                |
-| ----------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
-| **1.1** Front end design with accessibility & UX principles | ✅ WCAG 2.1 AA compliant, mobile-first responsive design   | [UX Design Section](#ux-design-process-and-principles)           |
-| **1.2** Custom HTML/CSS responsive full-stack application   | ✅ Bootstrap 5 + custom CSS, responsive across all devices | [Template Architecture](#template-architecture-and-django-logic) |
-| **1.3** Database-backed web application for data storage    | ✅ PostgreSQL production, SQLite development               | [Data Schema](#data-schema-and-model-design)                     |
-| **1.4** Database structure with relationships               | ✅ Task model with proper field relationships              | [Data Schema](#data-schema-and-model-design)                     |
-| **1.5** Test procedures (automated/manual)                  | ✅ Comprehensive testing with 50 test cases                | [Testing Section](#testing-and-quality-assurance)                |
-| **1.6** PEP8 compliant Python code                          | ✅ All code follows PEP8 standards                         | [Code Quality](#code-quality-and-standards)                      |
-| **1.7** Python logic demonstrating proficiency              | ✅ Advanced Django views, forms, and models                | Throughout codebase                                              |
-| **1.8** Functions with compound statements                  | ✅ Complex conditionals and loops in templates/views       | [Template Logic](#template-architecture-and-django-logic)        |
-| **1.9** Readable code with comments and naming              | ✅ Comprehensive documentation and naming                  | [Code Quality](#code-quality-and-standards)                      |
-| **1.10** Consistent file naming                             | ✅ Cross-platform compatible naming                        | Project structure                                                |
-
-### Learning Outcome 2: Model and manage data
-
-| Criteria                                | Implementation                              | Evidence                                     |
-| --------------------------------------- | ------------------------------------------- | -------------------------------------------- |
-| **2.1** Data model fits project purpose | ✅ Task model optimized for task management | [Data Schema](#data-schema-and-model-design) |
-| **2.2** Usable relational database      | ✅ Well-organized, consistent data storage  | [Data Schema](#data-schema-and-model-design) |
-
-### Learning Outcome 3: Query and manipulate data
-
-| Criteria                            | Implementation                                               | Evidence                                            |
-| ----------------------------------- | ------------------------------------------------------------ | --------------------------------------------------- |
-| **3.1** Complete CRUD functionality | ✅ Create, Read, Update, Delete with immediate UI reflection | [CRUD Implementation](#crud-functionality-evidence) |
-
-### Learning Outcome 4: Deploy a Full Stack web application to Cloud platform
-
-| Criteria                            | Implementation                        | Evidence                          |
-| ----------------------------------- | ------------------------------------- | --------------------------------- |
-| **4.1** Deploy to cloud platform    | ✅ Railway platform deployment        | [Deployment](#deployment-process) |
-| **4.2** Clean final code            | ✅ No commented code, no broken links | Code review                       |
-| **4.3** Document deployment process | ✅ Step-by-step deployment guide      | [Deployment](#deployment-process) |
-
-### Learning Outcome 5: Identify and apply security features
-
-| Criteria                                  | Implementation                                    | Evidence                             |
-| ----------------------------------------- | ------------------------------------------------- | ------------------------------------ |
-| **5.1** Git & GitHub version control      | ✅ Clear commit history with descriptive messages | Git history                          |
-| **5.2** No passwords in repository        | ✅ Environment variables for all secrets          | `.gitignore` and settings            |
-| **5.3** Environment variables for secrets | ✅ All sensitive data in environment variables    | [Security](#security-implementation) |
-| **5.4** DEBUG off in production           | ✅ Production settings properly configured        | `settings.py`                        |
-
-### Merit Criteria Achievement
-
-| Merit Criteria                                                   | Implementation                                         |
-| ---------------------------------------------------------------- | ------------------------------------------------------ |
-| **M(i-iii)** Professional UX design immediately evident to users | ✅ Clean, intuitive interface with clear purpose       |
-| **M(iv)** Advanced template syntax and logic                     | ✅ Complex Django template logic demonstrated          |
-| **M(v)** Robust, error-free code                                 | ✅ Zero logic errors, comprehensive error handling     |
-| **M(vi)** Fully documented testing procedures                    | ✅ Complete testing documentation with results         |
-| **M(vii-ix)** Professional project structure and documentation   | ✅ Complete README, schema documentation, config files |
-| **M(x-xi)** Working CRUD with immediate UI feedback              | ✅ All operations work seamlessly                      |
-| **M(xii)** Regular commits with clear messages                   | ✅ Development process clearly documented              |
-| **M(xiii-xiv)** Comprehensive documentation and rationale        | ✅ This README provides complete project rationale     |
-
-### Distinction Characteristics Achieved
-
-This project demonstrates **craftsmanship** and **professional-grade quality**:
-
-- **Real-world Application**: Addresses genuine task management needs
-- **Professional Interface**: Publication-ready user experience
-- **Clean Code**: No logic errors, follows best practices
-- **Comprehensive Testing**: Professional testing procedures
-- **Security Conscious**: Production-level security implementation
-- **Performance Optimized**: Sub-second load times
-- **Well Documented**: Complete development lifecycle documentation
 
 ---
 
@@ -3324,6 +3248,8 @@ git push origin main
 
 **Comprehensive Testing Checklist:**
 
+**Live Production URL:** [https://todo-project-production.up.railway.app](https://todo-project-production.up.railway.app)
+
 ```bash
 ✅ Application loads successfully
 ✅ All pages render correctly
@@ -3754,7 +3680,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Live Application:** [Task Manager](https://your-app-url.railway.app)  
+**Live Application:** [Task Manager](https://todo-project-production.up.railway.app/)  
 **Repository:** [GitHub - aransys/Project-3](https://github.com/aransys/Project-3)
-
-_Developed as part of the L5 Diploma in Web Application Development (Unit 3: Back End Development)_
