@@ -30,8 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-key-for-dev-only')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'todo-project-production.up.railway.app', '.up.railway.app']
 
 # Application definition
 
@@ -46,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.gzip.GZipMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -165,6 +165,16 @@ if 'RAILWAY_ENVIRONMENT' in os.environ:
         'localhost', 
         '127.0.0.1'
     ]
+
+    # Static file caching configuration
+    WHITENOISE_MAX_AGE = 31536000  # 1 year cache
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_AUTOREFRESH = True
+
+    # Security headers for production
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_BROWSER_XSS_FILTER = True
+    X_FRAME_OPTIONS = 'DENY'
 
     # CSRF settings for Railway
     CSRF_TRUSTED_ORIGINS = [

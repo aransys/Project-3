@@ -1,12 +1,3 @@
-/* todo_app/static/todo_app/css/tasks.css */
-
-/* ================================
-   CSS Custom Properties (Variables)
-   ================================
-   These variables make it easy to maintain consistent colors and values
-   throughout your app. Think of them as a painter's palette - you define
-   your colors once and use them everywhere. */
-
 :root {
   /* Color Palette - Using a modern, friendly color scheme */
   --primary-color: #8b5cf6; /* Soft blue - calming and professional */
@@ -17,7 +8,7 @@
   --dark-color: #1e293b; /* Almost black for text */
   --gray-light: #f8fafc; /* Very light gray for backgrounds */
   --gray-medium: #e2e8f0; /* Medium gray for borders */
-  --gray-dark: #64748b; /* Dark gray for secondary text */
+  --gray-dark: #374151; /* Dark gray for secondary text */
 
   /* Spacing System - Creates visual rhythm and consistency */
   --spacing-xs: 0.25rem; /* 4px */
@@ -203,8 +194,7 @@ header p {
 
 /* ================================
    Button Styling
-   ================================
-   Enhancing Bootstrap's buttons with our design system */
+   ================================ */
 
 .btn {
   border-radius: var(--spacing-sm);
@@ -271,8 +261,7 @@ header p {
 
 /* ================================
    Form Styling
-   ================================
-   Making forms more inviting and easier to use */
+   ================================ */
 
 .form-control {
   border: 2px solid var(--gray-medium);
@@ -310,8 +299,7 @@ header p {
 
 /* ================================
    Empty State Styling
-   ================================
-   Making empty states encouraging rather than stark */
+   ================================ */
 
 .empty-state {
   text-align: center;
@@ -351,8 +339,7 @@ footer {
 
 /* ================================
    Utility Classes
-   ================================
-   Reusable classes for common patterns */
+   ================================ */
 
 .text-muted {
   color: var(--gray-dark) !important;
@@ -376,8 +363,7 @@ footer {
 
 /* ================================
    Animations
-   ================================
-   Subtle animations for a polished feel */
+   ================================ */
 
 @keyframes slideIn {
   from {
@@ -396,8 +382,7 @@ footer {
 
 /* ================================
    Responsive Design
-   ================================
-   Making sure everything looks good on mobile */
+   ================================ */
 
 @media (max-width: 768px) {
   header {
@@ -427,14 +412,4 @@ footer {
     display: flex;
     flex-direction: column;
   }
-}
-
-/* ================================
-   Dark Mode Support (Optional)
-   ================================
-   If you want to add dark mode in the future */
-
-@media (prefers-color-scheme: dark) {
-  /* Dark mode styles would go here */
-  /* For now, we're keeping it light mode only */
 }
