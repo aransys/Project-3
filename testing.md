@@ -150,16 +150,16 @@ _Mobile-optimized layout with easy navigation and readable text_
 | Opera   | Latest  | ✅     | ✅   | ✅     | ✅     | ✅ PASS |
 
 **Visual Evidence:**
-![Chrome Browser](docs/screenshots/browsers/chrome-test.png)
+![Chrome Browser](/docs/screenshots/browsers/chrome.png)
 _Application running perfectly in Chrome showing consistent styling_
 
-![Firefox Browser](docs/screenshots/browsers/firefox-test.png)
+![Firefox Browser](/docs/screenshots/browsers/firefox.png)
 _Cross-browser compatibility verified in Firefox_
 
-![Safari Browser](docs/screenshots/browsers/safari-test.png)
+![Safari Browser](/docs/screenshots/browsers/safari.png)
 _Safari compatibility confirming universal browser support_
 
-![Opera Browser](docs/screenshots/browsers/safari-test.png)
+![Opera Browser](/docs/screenshots/browsers/opera.png)
 _Application running perfectly in Opera_
 
 ## 5. Performance Testing
