@@ -2,11 +2,12 @@
 
 ## Project Overview
 
-This document provides comprehensive testing procedures for the Django todo application created by Aurimas Ransys as part of the L5 Diploma in Web Application Development, Unit 3: Back End Development.
+This document provides comprehensive testing procedures for the Django todo application created by Aurimas Ransys
 
 ### Application Details
 
-- **Repository**: https://github.com/aransys/Project-3
+- **Repository:** [GitHub - aransys/Project-3](https://github.com/aransys/Project-3)
+- **Live Application:** [Task Manager on Railway](https://todo-project-production.up.railway.app/)
 - **Technology Stack**: Python, Django, Bootstrap 5, SQLite (dev), PostgreSQL (prod)
 - **Deployment**: Heroku
 - **Key Features**: Task CRUD operations, completion status tracking, due dates
