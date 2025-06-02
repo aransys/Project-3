@@ -70,6 +70,10 @@ python manage.py runserver
 | **Required Field Validation** | 1. Try to submit form without title<br>2. Try to submit with only title<br>3. Try to submit with invalid date                                                                                | - Error message for missing title<br>- Task created with just title<br>- Proper date validation                          | Error handling works | ✅ PASS |
 | **Edge Cases**                | 1. Create task with very long title<br>2. Create task with HTML/JavaScript in fields<br>3. Create task with special Unicode characters                                                       | - Title truncation or validation<br>- HTML properly escaped<br>- Unicode characters display correctly                    | No security issues   | ✅ PASS |
 
+**Visual Evidence:**
+![Create Task Form](/docs/screenshots/crud/create_task.png)
+_Task creation form showing proper validation and field handling_
+
 ### 2.2 Read/View Tasks (READ)
 
 | Test Case            | Steps                         | Expected Result                                                                                                                               | Pass Criteria            | Status  |
@@ -77,6 +81,10 @@ python manage.py runserver
 | **Task List View**   | Navigate to main URL (/)      | - All tasks displayed in a list<br>- Task title, completion status visible<br>- Due dates formatted properly<br>- Add new task button visible | All tasks visible        | ✅ PASS |
 | **Task Detail View** | Click on a task from the list | - Individual task page loads<br>- All task fields displayed<br>- Edit and Delete options available<br>- Created date visible                  | Complete task info shown | ✅ PASS |
 | **Empty State**      | Delete all tasks              | - Appropriate message when no tasks<br>- Add task button still accessible                                                                     | Good UX for empty state  | ✅ PASS |
+
+**Visual Evidence:**
+![Task List Display](/docs/screenshots/crud/view_task.png)
+_All tasks properly displayed with completion status and formatting_
 
 ### 2.3 Update Task (UPDATE)
 
@@ -86,12 +94,23 @@ python manage.py runserver
 | **Toggle Completion** | Click complete/incomplete button                                                                   | - Status changes in database<br>- Visual indication updated<br>- List view reflects change                            | Status toggle works   | ✅ PASS |
 | **Due Date Update**   | Edit task due date                                                                                 | - Date picker works properly<br>- Past dates allowed/validated<br>- Date saves correctly                              | Date handling correct | ✅ PASS |
 
+**Visual Evidence:**
+![Edit Form Pre-population](/docs/screenshots/crud/update_task.png)
+_Edit form correctly pre-populated with existing task data_
+
+![Status Toggle](/docs/screenshots/crud/task_complete.png)
+_Task completion status toggle working with immediate visual feedback_
+
 ### 2.4 Delete Task (DELETE)
 
 | Test Case             | Steps                                         | Expected Result                                                                                                         | Pass Criteria             | Status  |
 | --------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------- | ------- |
 | **Task Deletion**     | 1. Click delete button<br>2. Confirm deletion | - Confirmation dialog appears<br>- Task removed from database<br>- No longer visible in list<br>- Success message shown | Safe deletion process     | ✅ PASS |
 | **Soft Delete Check** | Delete task and check if recoverable          | - Task permanently deleted<br>- No soft delete implemented                                                              | Matches expected behavior | ✅ PASS |
+
+**Visual Evidence:**
+![Delete Confirmation](/docs/screenshots/crud/delete_task.png)
+_Safe deletion process with user confirmation dialog_
 
 ## 3. User Interface Testing
 
