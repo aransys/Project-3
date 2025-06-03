@@ -1,3 +1,19 @@
 from django.test import TestCase
+from django.urls import reverse
+from .models import Task
 
-# Create your tests here.
+class TaskModelTest(TestCase):
+    def test_task_creation(self):
+        """Test creating a task"""
+        task = Task.objects.create(
+            title="Test Task",
+            description="Test Description"
+        )
+        self.assertEqual(task.title, "Test Task")
+        self.assertFalse(task.completed)
+
+class TaskViewTest(TestCase):
+    def test_task_list_view(self):
+        """Test task list view loads"""
+        response = self.client.get(reverse('task_list'))
+        self.assertEqual(response.status_code, 200)
