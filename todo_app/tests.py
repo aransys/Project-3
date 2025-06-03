@@ -15,5 +15,5 @@ class TaskModelTest(TestCase):
 class TaskViewTest(TestCase):
     def test_task_list_view(self):
         """Test task list view loads"""
-        response = self.client.get(reverse('task_list'))
+        response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
