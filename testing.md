@@ -231,7 +231,7 @@ _Lighthouse performance audit results_
 - Cross-site request forgery attacks are properly prevented
 
 **Visual Evidence:**
-![CSRF Protection](docs/screenshots/security/csrf-error.png)
+![CSRF Protection](/docs/screenshots/csrf-error.png)
 _CSRF protection working - 403 Forbidden error when token removed_
 
 ### 6.2 Input Validation
