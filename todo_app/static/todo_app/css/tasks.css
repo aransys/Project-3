@@ -1,25 +1,26 @@
 :root {
-  /* Color Palette - Using a modern, friendly color scheme */
-  --primary-color: #8b5cf6; /* Soft blue - calming and professional */
-  --primary-hover: #7c3aed; /* Darker blue for hover states */
-  --success-color: #10b981; /* Green for completed tasks */
-  --warning-color: #f59e0b; /* Orange for warnings */
-  --danger-color: #ef4444; /* Red for overdue/delete actions */
-  --dark-color: #1e293b; /* Almost black for text */
-  --gray-light: #f8fafc; /* Very light gray for backgrounds */
-  --gray-medium: #e2e8f0; /* Medium gray for borders */
-  --gray-dark: #374151; /* Dark gray for secondary text */
+  /* Better contrast colors */
+  --primary-color: #1d4ed8;
+  --primary-hover: #1e40af;
+  --success-color: #047857;
+  --warning-color: #d97706;
+  --danger-color: #dc2626;
+  --dark-color: #111827;
+  --gray-light: #f9fafb;
+  --gray-medium: #d1d5db;
+  --gray-dark: #4b5563;
+  --white: #ffffff;
 
   /* Spacing System */
-  --spacing-xs: 0.25rem; /* 4px */
-  --spacing-sm: 0.5rem; /* 8px */
-  --spacing-md: 1rem; /* 16px */
-  --spacing-lg: 1.5rem; /* 24px */
-  --spacing-xl: 2rem; /* 32px */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
 
   /* Design Tokens */
   --border-radius: 12px;
-  --transition: all 0.3s ease;
+  --transition: all 0.2s ease;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
@@ -33,17 +34,15 @@ body {
   background-color: var(--gray-light);
   color: var(--dark-color);
   line-height: 1.6;
-  /* Using system fonts for better performance and native feel */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-/* Improve Bootstrap's container for better readability */
 .container {
-  max-width: 900px; /* Narrower width improves readability */
+  max-width: 900px;
 }
 
 /* ================================
-   Header Styling
+   Header Styling - CENTERED
    ================================ */
 
 header {
@@ -68,6 +67,166 @@ header p {
   font-size: 1.1rem;
   margin-bottom: 0;
   text-align: center;
+}
+
+.site-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.site-header h1 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+/* ================================
+   NICE MODERN BUTTONS
+   ================================ */
+
+.btn {
+  border-radius: 6px;
+  padding: 0.625rem 1.25rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  transition: var(--transition);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Primary button */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--white);
+}
+
+/* Success button */
+.btn-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: var(--white);
+}
+
+.btn-success:hover,
+.btn-success:focus {
+  background-color: #065f46;
+  border-color: #065f46;
+  color: var(--white);
+}
+
+/* Danger button */
+.btn-danger {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+  color: var(--white);
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background-color: #b91c1c;
+  border-color: #b91c1c;
+  color: var(--white);
+}
+
+/* Warning button */
+.btn-warning {
+  background-color: var(--warning-color);
+  border-color: var(--warning-color);
+  color: var(--white);
+}
+
+.btn-warning:hover,
+.btn-warning:focus {
+  background-color: #b45309;
+  border-color: #b45309;
+  color: var(--white);
+}
+
+/* Outline buttons */
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  background: var(--white);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-outline-secondary {
+  color: var(--gray-dark);
+  border-color: var(--gray-medium);
+  background: var(--white);
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+  background-color: var(--gray-dark);
+  border-color: var(--gray-dark);
+  color: var(--white);
+}
+
+/* Button sizes */
+.btn-sm {
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  border-radius: 4px;
+}
+
+.btn-lg {
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Button groups */
+.btn-group {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.btn-group .btn {
+  flex: 0 0 auto;
 }
 
 /* ================================
@@ -109,13 +268,11 @@ header p {
   overflow: hidden;
 }
 
-/* Hover effect for task items */
 .task-item:hover {
   box-shadow: var(--shadow-md);
   transform: translateX(4px);
 }
 
-/* Completed task styling */
 .task-item.completed {
   border-left-color: var(--success-color);
   background-color: var(--gray-light);
@@ -127,7 +284,6 @@ header p {
   color: var(--gray-dark);
 }
 
-/* Overdue task styling */
 .task-item.overdue {
   border-left-color: var(--danger-color);
 }
@@ -144,7 +300,6 @@ header p {
   border-color: transparent var(--danger-color) transparent transparent;
 }
 
-/* Task title styling */
 .task-title {
   font-size: 1.25rem;
   font-weight: 600;
@@ -152,7 +307,6 @@ header p {
   margin-bottom: var(--spacing-sm);
 }
 
-/* Task metadata (due date, created date) */
 .task-meta {
   display: flex;
   gap: var(--spacing-md);
@@ -167,7 +321,6 @@ header p {
   gap: var(--spacing-xs);
 }
 
-/* Due date badge */
 .due-date-badge {
   display: inline-block;
   padding: var(--spacing-xs) var(--spacing-sm);
@@ -179,118 +332,13 @@ header p {
 }
 
 .due-date-badge.overdue {
-  background-color: #fef2f2;
+  background-color: #fee2e2;
   color: var(--danger-color);
 }
 
 .due-date-badge.soon {
-  background-color: #fffbeb;
+  background-color: #fef3c7;
   color: var(--warning-color);
-}
-
-/* ================================
-   Button Styling
-   ================================ */
-
-.btn {
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
-  box-shadow: none;
-  transform: none;
-}
-
-.btn:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-/* Clean primary button */
-.btn-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  color: white;
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-  background-color: var(--primary-hover);
-  border-color: var(--primary-hover);
-  color: white;
-}
-
-/* Clean success button */
-.btn-success {
-  background-color: var(--success-color);
-  border-color: var(--success-color);
-}
-
-.btn-success:hover,
-.btn-success:focus {
-  background-color: #0ea770;
-  border-color: #0ea770;
-}
-
-/* Clean danger button */
-.btn-danger {
-  background-color: var(--danger-color);
-  border-color: var(--danger-color);
-}
-
-.btn-danger:hover,
-.btn-danger:focus {
-  background-color: #dc2626;
-  border-color: #dc2626;
-}
-
-/* Clean outline buttons */
-.btn-outline-primary {
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-  background: transparent;
-}
-
-.btn-outline-primary:hover,
-.btn-outline-primary:focus {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  color: white;
-}
-
-.btn-outline-secondary {
-  color: #6c757d;
-  border-color: #6c757d;
-}
-
-.btn-outline-secondary:hover,
-.btn-outline-secondary:focus {
-  background-color: #6c757d;
-  border-color: #6c757d;
-  color: white;
-}
-
-/* Small button variant - cleaner */
-.btn-sm {
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  border-radius: 4px;
-}
-
-/* Large button variant */
-.btn-lg {
-  padding: 0.75rem 1.5rem;
-  font-size: 1.125rem;
-  border-radius: 8px;
-}
-
-/* Remove mobile responsive full-width buttons if you don't want them */
-@media (max-width: 768px) {
-  .btn {
-    width: auto;
-    margin-bottom: 0.25rem;
-  }
 }
 
 /* ================================
@@ -307,7 +355,7 @@ header p {
 
 .form-control:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(91, 127, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
   outline: none;
 }
 
@@ -317,7 +365,6 @@ header p {
   margin-bottom: var(--spacing-sm);
 }
 
-/* Custom checkbox styling */
 .form-check-input {
   width: 1.25rem;
   height: 1.25rem;
@@ -415,7 +462,7 @@ footer {
 }
 
 /* ================================
-   Responsive Design
+   MOBILE RESPONSIVE
    ================================ */
 
 @media (max-width: 768px) {
@@ -437,13 +484,39 @@ footer {
     gap: var(--spacing-xs);
   }
 
+  /* Better mobile buttons */
   .btn {
-    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+    width: auto;
     margin-bottom: var(--spacing-sm);
+  }
+
+  .btn-sm {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+    min-height: 38px;
   }
 
   .btn-group {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .btn-group .btn {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .btn-group.btn-group-horizontal {
+    flex-direction: row;
+    gap: var(--spacing-xs);
+  }
+
+  .btn-group.btn-group-horizontal .btn {
+    flex: 1;
+    width: auto;
   }
 }

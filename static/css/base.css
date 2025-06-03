@@ -1,9 +1,15 @@
 :root {
-  --primary-color: #2980b9;
-  --secondary-color: #27ae60;
-  --danger-color: #e74c3c;
-  --bg-color: #f5f6fa;
-  --text-color: #2c3e50;
+  --primary-color: #1d4ed8;
+  --secondary-color: #047857;
+  --success-color: #047857;
+  --danger-color: #dc2626;
+  --bg-color: #f9fafb;
+  --text-color: #111827;
+
+  /* Additional colors for consistency */
+  --primary-hover: #1e40af;
+  --gray-dark: #4b5563;
+  --white: #ffffff;
 }
 
 body {
@@ -19,6 +25,12 @@ body {
   color: white;
   padding: 1rem 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.site-header h1 {
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 /* Footer styling for all pages */
