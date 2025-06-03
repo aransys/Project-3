@@ -10,7 +10,7 @@
   --gray-medium: #e2e8f0; /* Medium gray for borders */
   --gray-dark: #374151; /* Dark gray for secondary text */
 
-  /* Spacing System - Creates visual rhythm and consistency */
+  /* Spacing System */
   --spacing-xs: 0.25rem; /* 4px */
   --spacing-sm: 0.5rem; /* 8px */
   --spacing-md: 1rem; /* 16px */
@@ -18,8 +18,8 @@
   --spacing-xl: 2rem; /* 32px */
 
   /* Design Tokens */
-  --border-radius: 12px; /* Rounded corners for modern feel */
-  --transition: all 0.3s ease; /* Smooth animations */
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
@@ -27,9 +27,7 @@
 
 /* ================================
    Base Styles & Resets
-   ================================
-   These styles override Bootstrap's defaults to give your app
-   a unique personality while maintaining consistency. */
+   ================================ */
 
 body {
   background-color: var(--gray-light);
@@ -46,8 +44,7 @@ body {
 
 /* ================================
    Header Styling
-   ================================
-   Creating a distinctive header that sets the tone for your app */
+   ================================ */
 
 header {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
@@ -56,25 +53,26 @@ header {
   margin-bottom: var(--spacing-xl);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   box-shadow: var(--shadow-md);
+  text-align: center;
 }
 
 header h1 {
   font-weight: 700;
   margin-bottom: var(--spacing-sm);
-  /* Adding subtle text shadow for better readability */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 header p {
   opacity: 0.9;
   font-size: 1.1rem;
   margin-bottom: 0;
+  text-align: center;
 }
 
 /* ================================
    Card Styling
-   ================================
-   Making cards (used for forms and content) more visually appealing */
+   ================================ */
 
 .card {
   border: none;
@@ -82,7 +80,6 @@ header p {
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   background: white;
-  /* Subtle animation on hover */
   transform: translateY(0);
 }
 
@@ -93,8 +90,7 @@ header p {
 
 /* ================================
    Task List Styling
-   ================================
-   Creating a clean, organized look for your task items */
+   ================================ */
 
 .task-list {
   display: grid;
@@ -197,66 +193,104 @@ header p {
    ================================ */
 
 .btn {
-  border-radius: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
   font-weight: 500;
-  transition: var(--transition);
-  border: none;
-  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  box-shadow: none;
+  transform: none;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-/* Primary button customization */
-.btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: var(--primary-hover);
-  color: white;
-}
-
-/* Success button for marking tasks complete */
-.btn-success {
-  background-color: var(--success-color);
-}
-
-.btn-success:hover {
-  background-color: #0ea770;
-}
-
-/* Danger button for delete actions */
-.btn-danger {
-  background-color: var(--danger-color);
-}
-
-.btn-danger:hover {
-  background-color: #dc2626;
-}
-
-/* Outline buttons for secondary actions */
-.btn-outline-primary {
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
-  background: transparent;
+  transform: none;
   box-shadow: none;
 }
 
-.btn-outline-primary:hover {
+/* Clean primary button */
+.btn-primary {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
   color: white;
 }
 
-/* Small button variant */
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: white;
+}
+
+/* Clean success button */
+.btn-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.btn-success:hover,
+.btn-success:focus {
+  background-color: #0ea770;
+  border-color: #0ea770;
+}
+
+/* Clean danger button */
+.btn-danger {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background-color: #dc2626;
+  border-color: #dc2626;
+}
+
+/* Clean outline buttons */
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  background: transparent;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+/* Small button variant - cleaner */
 .btn-sm {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: 0.25rem 0.75rem;
   font-size: 0.875rem;
+  border-radius: 4px;
+}
+
+/* Large button variant */
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  border-radius: 8px;
+}
+
+/* Remove mobile responsive full-width buttons if you don't want them */
+@media (max-width: 768px) {
+  .btn {
+    width: auto;
+    margin-bottom: 0.25rem;
+  }
 }
 
 /* ================================
