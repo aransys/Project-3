@@ -168,9 +168,16 @@ _Application running perfectly in Opera_
 
 | Page             | Expected Load Time | Actual Time | Status  |
 | ---------------- | ------------------ | ----------- | ------- |
-| Home/Task List   | <3 seconds         | - 153ms     | ✅ PASS |
-| Task Detail      | <2 seconds         | - 182ms     | ✅ PASS |
-| Task Create/Edit | <2 seconds         | - 189ms     | ✅ PASS |
+| Home/Task List   | <3 seconds         | - 195ms     | ✅ PASS |
+| Task Detail      | <2 seconds         | - 176ms     | ✅ PASS |
+| Task Create/Edit | <2 seconds         | - 169ms     | ✅ PASS |
+
+**Visual Evidence:**
+![Network Performance](/docs/screenshots/network.png)
+_Chrome DevTools Network tab showing actual load times under 200ms_
+
+![Lighthouse Results](/docs/screenshots/lighthouse.png)
+_Lighthouse performance audit results_
 
 **Testing Notes:**
 
@@ -223,6 +230,10 @@ _Application running perfectly in Opera_
 - CSRF middleware is enabled in Django settings
 - Cross-site request forgery attacks are properly prevented
 
+**Visual Evidence:**
+![CSRF Protection](docs/screenshots/security/csrf-error.png)
+_CSRF protection working - 403 Forbidden error when token removed_
+
 ### 6.2 Input Validation
 
 | Test Case          | Input Type                      | Expected Result                                                                  | Status  |
@@ -253,6 +264,10 @@ _Application running perfectly in Opera_
 - Django ORM parameterizes queries preventing SQL injection
 - Form validation working correctly for all input types
 - No security vulnerabilities detected in CRUD operations
+
+**Visual Evidence:**
+![XSS Prevention](/docs/screenshots/xss-escaped.png)
+_XSS attack safely escaped and displayed as text_
 
 ### 6.3 Session Security
 
@@ -330,6 +345,13 @@ _Application running perfectly in Opera_
 - Production deployment would show user-friendly error pages
 - No security vulnerabilities exposed through error messages
 
+**Visual Evidence:**
+![404 Error Page](/docs/screenshots/404-error.png)
+_Professional 404 error handling_
+
+![Form Validation](/docs/screenshots/form-validation-error.png)
+_Clear, user-friendly form validation errors_
+
 ## 8. Deployment Testing (Railway)
 
 ### 8.1 Production Environment
@@ -343,6 +365,13 @@ _Application running perfectly in Opera_
 
 **Live Application:** https://todo-project-production.up.railway.app
 **Status:** ✅ Successfully deployed and functional
+
+**Visual Evidence:**
+![Live Application](/docs/screenshots/railway-live.png)
+_Successfully deployed application running on Railway_
+
+![SSL Certificate](/docs/screenshots/https-secure.png)
+_HTTPS security certificate verified_
 
 ## 9. Test Execution Log
 
