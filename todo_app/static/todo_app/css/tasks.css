@@ -533,3 +533,399 @@ p {
   margin: 0 auto;
   padding: 0 1rem;
 }
+
+/* ================================
+   RESPONSIVE FIXES FOR TASK DETAIL
+   Add this to the END of your base.css file
+   ================================ */
+
+/* Ensure no horizontal overflow */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Task description responsive text */
+.task-description {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Responsive container improvements */
+.container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Card responsive improvements */
+.card {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.card-body {
+  word-wrap: break-word;
+}
+
+/* ================================
+   MOBILE RESPONSIVE (up to 576px)
+   ================================ */
+@media (max-width: 575.98px) {
+  /* Ensure full width and no overflow */
+  .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  /* Card adjustments */
+  .card {
+    margin: 0;
+    border-radius: 8px;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Button improvements */
+  .btn {
+    min-height: 48px;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+  
+  .btn-sm {
+    min-height: 40px;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  /* Text improvements */
+  .card-title {
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+  
+  .card-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  /* Badge spacing */
+  .badge {
+    font-size: 0.8rem;
+    padding: 0.35em 0.65em;
+  }
+  
+  /* Form elements */
+  strong {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Ensure buttons don't overflow */
+  .w-100 {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Row spacing on mobile */
+  .row.g-2 {
+    margin: 0 -0.25rem;
+  }
+  
+  .row.g-2 > * {
+    padding: 0 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* ================================
+   TABLET RESPONSIVE (576px to 991px)
+   ================================ */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .card-header {
+    padding: 1rem 1.5rem;
+  }
+  
+  /* Button sizing for tablets */
+  .btn {
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+  
+  /* Better text sizing */
+  .card-title {
+    font-size: 1.25rem;
+  }
+  
+  .card-header h2 {
+    font-size: 1.25rem;
+  }
+}
+
+/* ================================
+   LANDSCAPE PHONE FIXES
+   ================================ */
+@media (max-width: 767.98px) and (orientation: landscape) {
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .btn {
+    min-height: 40px;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .card-header h2 {
+    font-size: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1rem;
+  }
+}
+
+/* ================================
+   SPECIFIC BUTTON GROUP FIXES
+   ================================ */
+
+/* Ensure button groups work on all devices */
+@media (max-width: 767.98px) {
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-group .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    border-radius: var(--border-radius) !important;
+  }
+  
+  .btn-group .btn:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* ================================
+   PREVENT HORIZONTAL SCROLL ISSUES
+   ================================ */
+
+/* Prevent any element from causing horizontal scroll */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Specific fixes for potential overflow elements */
+.card,
+.card-body,
+.card-header,
+.btn,
+.badge,
+.alert {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Long text handling */
+h1, h2, h3, h4, h5, h6, p, span, div {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ================================
+   IMPROVED TOUCH TARGETS
+   ================================ */
+
+/* Ensure all interactive elements are touch-friendly */
+@media (max-width: 767.98px) {
+  .btn,
+  a.btn,
+  button {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 0.6rem 1rem;
+  }
+  
+  .btn-sm {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  /* Add more spacing between interactive elements */
+  .btn + .btn {
+    margin-top: 0.5rem;
+  }
+}
+
+/* ================================
+   ACCESSIBILITY IMPROVEMENTS
+   ================================ */
+
+/* Better focus indicators on mobile */
+@media (max-width: 767.98px) {
+  .btn:focus,
+  .btn:focus-visible {
+    outline: 3px solid var(--primary-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* ================================
+   BOOTSTRAP GRID FIXES
+   ================================ */
+
+/* Ensure Bootstrap columns don't cause overflow */
+.row {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+.row > * {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (max-width: 575.98px) {
+  .row {
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+  }
+  
+  .row > * {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+}
+
+/* ================================
+   FORM BUTTON RESPONSIVE FIXES
+   Add this to your base.css file
+   ================================ */
+
+/* Ensure consistent button sizing in forms */
+.card-body form .btn {
+  min-height: 48px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Mobile form button improvements */
+@media (max-width: 575.98px) {
+  .card-body form .btn {
+    min-height: 50px;
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Ensure all form buttons are exactly the same height */
+  .card-body form .row.g-2 .btn {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Consistent icon spacing in form buttons */
+  .card-body form .btn i {
+    font-size: 0.9em;
+    margin-right: 0.4rem;
+  }
+  
+  /* Ensure button text doesn't wrap */
+  .card-body form .btn span {
+    white-space: nowrap;
+  }
+}
+
+/* Tablet form button improvements */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .card-body form .btn {
+    min-height: 46px;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+  
+  .card-body form .row.g-2 .btn {
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Desktop form button improvements */
+@media (min-width: 992px) {
+  .card-body form .btn {
+    min-height: 44px;
+    padding: 0.5rem 1.5rem;
+  }
+  
+  .card-body form .row.g-2 .btn {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Consistent spacing for form button rows */
+.card-body form .row.g-2 {
+  margin-top: 1.5rem;
+}
+
+.card-body form .row.g-2 > * {
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .card-body form .row.g-2 > * {
+    margin-bottom: 0;
+  }
+}
+
+/* Fix for any button text that might be too long */
+.card-body form .btn {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ensure icons and text are perfectly aligned in form buttons */
+.card-body form .btn i,
+.card-body form .btn span {
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* Form button hover effects - maintain size */
+.card-body form .btn:hover,
+.card-body form .btn:focus,
+.card-body form .btn:active {
+  transform: none;
+  /* Maintain exact same height on hover */
+  min-height: inherit;
+  height: inherit;
+}
