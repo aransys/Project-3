@@ -1,210 +1,434 @@
 /* ================================
-   TASK COMPONENTS
+   PREMIUM TASK COMPONENTS
    ================================ */
 
 .task-list {
   display: grid;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 0;
 }
 
 .task-item {
-  background: var(--white);
-  border: 1px solid var(--gray-300);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  border-left: 4px solid var(--primary-color);
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
+  background: var(--glass-bg);
+  backdrop-filter: var(--backdrop-blur);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  border-left: 5px solid var(--primary-color);
+  transition: var(--transition-slow);
+  box-shadow: var(--shadow-md);
   position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Subtle background pattern */
+.task-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.03) 0%, transparent 50%), radial-gradient(circle at 90% 90%, rgba(139, 92, 246, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  transition: var(--transition);
 }
 
 .task-item:hover {
-  border-color: var(--gray-400);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-xl), var(--shadow-primary);
   border-left-color: var(--primary-accent);
-  transform: translateY(-1px);
+}
+
+.task-item:hover::before {
+  background: radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.08) 0%, transparent 50%), radial-gradient(circle at 90% 90%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
 }
 
 .task-item:focus-within {
   outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  box-shadow: var(--shadow-xl), 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
-/* Completed tasks */
+/* Enhanced task states */
 .task-item.completed {
   border-left-color: var(--success-color);
-  background: linear-gradient(135deg, var(--success-light) 0%, var(--white) 100%);
+  background: linear-gradient(135deg, rgba(209, 250, 229, 0.3) 0%, var(--glass-bg) 100%);
+  position: relative;
+}
+
+.task-item.completed::after {
+  content: "✓";
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 32px;
+  height: 32px;
+  background: var(--success-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-md);
+  animation: scaleIn 0.3s var(--bounce);
 }
 
 .task-item.completed:hover {
   border-left-color: var(--success-hover);
+  box-shadow: var(--shadow-xl), var(--shadow-success);
 }
 
 .task-item.completed .task-title {
   text-decoration: line-through;
   color: var(--gray-600);
+  opacity: 0.8;
 }
 
-/* Overdue tasks */
 .task-item.overdue {
   border-left-color: var(--danger-color);
-  background: linear-gradient(135deg, var(--danger-light) 0%, var(--white) 100%);
+  background: linear-gradient(135deg, rgba(254, 226, 226, 0.3) 0%, var(--glass-bg) 100%);
+  animation: pulse 3s infinite;
+}
+
+.task-item.overdue::after {
+  content: "!";
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 32px;
+  height: 32px;
+  background: var(--danger-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.125rem;
+  box-shadow: var(--shadow-md);
 }
 
 .task-item.overdue:hover {
   border-left-color: var(--danger-hover);
+  box-shadow: var(--shadow-xl), var(--shadow-danger);
+  animation: none;
 }
 
-/* Task content */
+/* Priority indicators */
+.task-item.priority-high {
+  border-left-width: 8px;
+  border-left-color: var(--danger-color);
+}
+
+.task-item.priority-medium {
+  border-left-width: 6px;
+  border-left-color: var(--warning-color);
+}
+
+.task-item.priority-low {
+  border-left-width: 4px;
+  border-left-color: var(--gray-400);
+}
+
+/* Enhanced task content */
 .task-title {
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: 700;
   color: var(--gray-900);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   line-height: 1.3;
+  letter-spacing: -0.025em;
+  position: relative;
+  z-index: 1;
 }
 
 .task-description {
   color: var(--gray-700);
-  margin-bottom: 1rem;
-  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
   word-wrap: break-word;
+  font-size: 0.9375rem;
+  position: relative;
+  z-index: 1;
 }
 
 .task-meta {
   display: flex;
-  gap: 1rem;
-  margin-top: 0.75rem;
+  gap: 1.5rem;
+  margin-top: 1rem;
   font-size: 0.875rem;
   color: var(--gray-600);
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 .task-actions {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
 
 /* ================================
-   BADGE COMPONENTS
+   ENHANCED BADGE COMPONENTS
    ================================ */
 
 .badge {
-  font-size: 0.8rem;
-  padding: 0.25rem 0.5rem;
+  font-size: 0.8125rem;
+  padding: 0.375rem 0.75rem;
   border-radius: 999px;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  box-shadow: var(--shadow-sm);
 }
 
 .due-date-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
   border-radius: 999px;
   font-size: 0.8125rem;
   font-weight: 600;
-  background-color: var(--gray-200);
+  background: var(--glass-bg);
+  backdrop-filter: var(--backdrop-blur);
   color: var(--gray-800);
+  border: 1px solid var(--gray-300);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.due-date-badge::before {
+  content: "📅";
+  font-size: 0.875rem;
 }
 
 .due-date-badge.overdue {
-  background-color: var(--danger-color);
+  background: linear-gradient(135deg, var(--danger-color) 0%, var(--danger-hover) 100%);
   color: var(--white);
+  border-color: var(--danger-color);
+  animation: pulse 2s infinite;
+}
+
+.due-date-badge.overdue::before {
+  content: "⚠️";
 }
 
 .due-date-badge.soon {
-  background-color: var(--warning-color);
+  background: linear-gradient(135deg, var(--warning-color) 0%, var(--warning-hover) 100%);
   color: var(--white);
+  border-color: var(--warning-color);
+}
+
+.due-date-badge.soon::before {
+  content: "⏰";
 }
 
 .due-date-badge.completed {
-  background-color: var(--success-color);
+  background: linear-gradient(135deg, var(--success-color) 0%, var(--success-hover) 100%);
   color: var(--white);
+  border-color: var(--success-color);
+}
+
+.due-date-badge.completed::before {
+  content: "✅";
 }
 
 /* ================================
-   CARD COMPONENTS
+   PREMIUM CARD COMPONENTS
    ================================ */
 
 .card {
-  background: var(--white);
-  border: 1px solid var(--gray-300);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-sm);
+  background: var(--glass-bg);
+  backdrop-filter: var(--backdrop-blur);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(99, 102, 241, 0.02) 100%);
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .card-header {
-  background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
-  border-bottom: 1px solid var(--gray-300);
-  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+  backdrop-filter: var(--backdrop-blur);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem 2rem;
+  position: relative;
+}
+
+.card-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--primary-color) 50%, transparent 100%);
 }
 
 .card-header h2 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: 700;
   color: var(--gray-900);
+  letter-spacing: -0.025em;
+  position: relative;
+  z-index: 1;
 }
 
 .card-body {
-  padding: 1.5rem;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .card-title {
-  font-size: 1.125rem;
+  font-size: 1.1875rem;
   font-weight: 600;
   color: var(--gray-900);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.0125em;
 }
 
 /* ================================
-   EMPTY STATE COMPONENT
+   ENHANCED EMPTY STATE
    ================================ */
 
 .empty-state {
   text-align: center;
-  padding: 3rem 1.5rem;
-  background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+  padding: 4rem 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: var(--backdrop-blur);
   border: 2px dashed var(--gray-300);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-xl);
   margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.empty-state::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -60%) scale(1.1);
+  }
+}
+
+.empty-state:hover {
+  border-color: var(--primary-color);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, var(--glass-bg) 100%);
 }
 
 .empty-state h3 {
   color: var(--gray-900);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.025em;
 }
 
 .empty-state p {
   color: var(--gray-600);
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.0625rem;
+  position: relative;
+  z-index: 1;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .empty-state .btn {
   margin-top: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 /* ================================
-   TASK FORMS
+   ENHANCED TASK FORMS
    ================================ */
 
+.task-form {
+  background: var(--glass-bg);
+  backdrop-filter: var(--backdrop-blur);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.task-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  pointer-events: none;
+  border-radius: var(--border-radius-lg);
+}
+
 .task-form .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  position: relative;
+  z-index: 1;
 }
 
 .task-form .form-actions {
   display: flex;
-  gap: 0.75rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin-top: 2.5rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 .task-form .btn-group {
@@ -212,36 +436,61 @@
 }
 
 /* ================================
-   CONFIRMATION DIALOGS
+   ENHANCED CONFIRMATION DIALOGS
    ================================ */
 
 .confirmation-card {
   max-width: 500px;
-  margin: 2rem auto;
+  margin: 3rem auto;
+  background: var(--glass-bg);
+  backdrop-filter: var(--backdrop-blur);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-2xl);
+  position: relative;
+  overflow: hidden;
+  animation: scaleIn 0.3s var(--bounce);
+}
+
+.confirmation-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, transparent 50%, rgba(220, 38, 38, 0.03) 100%);
+  pointer-events: none;
 }
 
 .confirmation-card .card-body {
   text-align: center;
-  padding: 2rem;
+  padding: 3rem 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .confirmation-card h2 {
   color: var(--danger-color);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .confirmation-card p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   color: var(--gray-700);
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
 .confirmation-card .btn-group {
   justify-content: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 /* ================================
-   STATUS INDICATORS
+   ENHANCED STATUS INDICATORS
    ================================ */
 
 .status-indicator {
@@ -249,63 +498,100 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  backdrop-filter: var(--backdrop-blur);
+  border: 1px solid;
+  transition: var(--transition);
 }
 
 .status-indicator.completed {
+  background: linear-gradient(135deg, var(--success-light) 0%, rgba(16, 185, 129, 0.1) 100%);
   color: var(--success-color);
+  border-color: var(--success-color);
 }
 
 .status-indicator.pending {
+  background: linear-gradient(135deg, var(--warning-light) 0%, rgba(245, 158, 11, 0.1) 100%);
   color: var(--warning-color);
+  border-color: var(--warning-color);
 }
 
 .status-indicator.overdue {
+  background: linear-gradient(135deg, var(--danger-light) 0%, rgba(239, 68, 68, 0.1) 100%);
   color: var(--danger-color);
+  border-color: var(--danger-color);
+  animation: pulse 2s infinite;
 }
 
-/* Status icons */
 .status-indicator i {
   font-size: 1em;
 }
 
 /* ================================
-   RESPONSIVE DESIGN FOR TASKS
+   RESPONSIVE ENHANCEMENTS
    ================================ */
 
 @media (max-width: 575.98px) {
   .task-item {
-    padding: 1rem;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+  }
+
+  .task-item.completed::after,
+  .task-item.overdue::after {
+    top: 1rem;
+    right: 1rem;
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
   }
 
   .task-title {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .task-description {
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
   }
 
   .task-meta {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
   }
 
   .task-actions {
     flex-direction: column;
+    margin-top: 1.25rem;
   }
 
   .task-actions .btn {
     width: 100%;
+    justify-content: center;
   }
 
   .card-body {
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
   .card-header {
-    padding: 0.75rem 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .task-form {
+    padding: 1.5rem;
   }
 
   .task-form .form-actions {
     flex-direction: column;
+    margin-top: 2rem;
   }
 
   .task-form .form-actions .btn {
@@ -319,40 +605,44 @@
   .confirmation-card .btn-group .btn {
     width: 100%;
   }
+
+  .empty-state {
+    padding: 3rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .empty-state h3 {
+    font-size: 1.5rem;
+  }
+
+  .due-date-badge {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
   .task-item {
-    padding: 1.25rem;
+    padding: 1.75rem;
   }
 
   .card-body {
-    padding: 1.25rem;
+    padding: 1.75rem;
   }
 
   .card-header {
-    padding: 1rem 1.25rem;
+    padding: 1.25rem 1.75rem;
+  }
+
+  .task-form {
+    padding: 1.75rem;
   }
 }
 
 /* ================================
-   FOCUS AND ACCESSIBILITY
+   ACCESSIBILITY & MOTION
    ================================ */
 
-/* Better focus styles for task items */
-.task-item:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-}
-
-/* Ensure links and buttons in tasks are accessible */
-.task-item a:focus,
-.task-item button:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-}
-
-/* High contrast mode support */
 @media (prefers-contrast: high) {
   .task-item {
     border-width: 2px;
@@ -366,19 +656,89 @@
   .form-control {
     border-width: 2px;
   }
+
+  .card {
+    border-width: 2px;
+  }
 }
 
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .task-item {
+  .task-item,
+  .btn,
+  .card,
+  .empty-state {
     transition: none;
-  }
-
-  .btn {
-    transition: none;
-  }
-
-  .fade-in {
     animation: none;
   }
+
+  .task-item.overdue,
+  .due-date-badge.overdue,
+  .status-indicator.overdue {
+    animation: none;
+  }
+
+  .empty-state::before {
+    animation: none;
+  }
+
+  .confirmation-card {
+    animation: none;
+  }
+}
+
+/* ================================
+   ADVANCED INTERACTIONS
+   ================================ */
+
+/* Smooth task completion animation */
+.task-item.completing {
+  animation: completeTask 0.6s ease-out forwards;
+}
+
+@keyframes completeTask {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Task deletion animation */
+.task-item.deleting {
+  animation: deleteTask 0.4s ease-out forwards;
+}
+
+@keyframes deleteTask {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/* Stagger animation for task lists */
+.task-list .task-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.task-list .task-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.task-list .task-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.task-list .task-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.task-list .task-item:nth-child(5) {
+  animation-delay: 0.5s;
 }
