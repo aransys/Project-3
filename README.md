@@ -24,6 +24,8 @@ This Task Manager application is a professional-grade, full-stack web applicatio
 ![Task Manager Dashboard](/docs/hero-dashboard.png)
 _Task Manager - A clean, intuitive interface for managing your daily tasks_
 
+> 📚 **Complete Documentation:** This README provides a comprehensive overview. For detailed technical documentation, see [design.md](design.md), [code_quality.md](code_quality.md), and [testing.md](testing.md).
+
 ---
 
 ## Table of Contents
@@ -42,6 +44,12 @@ _Task Manager - A clean, intuitive interface for managing your daily tasks_
 - [Deployment Process](#deployment-process)
 - [Future Enhancements](#future-enhancements)
 - [Conclusion](#conclusion)
+
+### Additional Documentation
+
+- 📋 [Detailed Testing Documentation](testing.md) - Comprehensive testing procedures and results
+- 🎨 [Design Documentation](design.md) - In-depth UX/UI design process and decisions
+- 💎 [Code Quality Documentation](code_quality.md) - Detailed code quality analysis and standards
 
 ---
 
@@ -192,6 +200,8 @@ This Task Manager application addresses the universal challenge of personal prod
 
 ## UX Design Process and Principles
 
+> 📖 **For comprehensive design documentation:** See [design.md](design.md) for detailed wireframes, user research, and design system specifications.
+
 ### Design Philosophy: Cognitive Load Reduction
 
 **Core Principle:** Task management tools should reduce mental overhead, not add to it.
@@ -246,6 +256,8 @@ Mobile considerations:
 - Bottom-placed action buttons for thumb accessibility
 
 These wireframes guided the implementation and ensured the final product maintained focus on user needs and accessibility standards.
+
+> 📐 **Complete wireframes and design assets:** See [design.md](design.md) for full-resolution wireframes, color schemes, and detailed design specifications.
 
 ### Information Hierarchy Implementation
 
@@ -1360,6 +1372,8 @@ This comprehensive CRUD implementation demonstrates:
 
 ## Code Quality and Standards
 
+> 📖 **For detailed code quality analysis:** See [code_quality.md](code_quality.md) for comprehensive code metrics, linting results, and quality assurance procedures.
+
 ### PEP8 Compliance and Python Best Practices
 
 This section demonstrates adherence to professional coding standards as required by assessment criteria 1.6, 1.9, and Merit criteria M(v).
@@ -1927,6 +1941,8 @@ This comprehensive code quality implementation demonstrates:
 - ✅ **Performance Conscious** - Optimized database queries and memory usage
 - ✅ **Maintainable Code** - Low complexity, high readability scores
 
+> 📊 **Detailed metrics and analysis:** See [code_quality.md](code_quality.md) for comprehensive code quality metrics, automated linting results, and detailed complexity analysis.
+
 ---
 
 ## Security Implementation
@@ -2180,6 +2196,8 @@ This security implementation provides production-appropriate protection using Dj
 
 ## Testing and Quality Assurance
 
+> 📖 **For complete testing documentation:** See [testing.md](testing.md) for detailed test cases, results, and testing methodologies.
+
 ### Comprehensive Testing Framework
 
 This section demonstrates thorough testing methodology that ensures application reliability and meets assessment criteria for quality assurance.
@@ -2399,6 +2417,8 @@ Manual testing was conducted systematically across all application components to
 - **Monthly:** Security vulnerability assessment
 
 This comprehensive testing approach ensures the application meets professional quality standards and provides a reliable, secure, and user-friendly experience across all use cases and environments.
+
+**For complete test cases and detailed results:** See [testing.md](testing.md) for the full testing log with individual test case documentation.
 
 ---
 
@@ -3095,6 +3115,14 @@ This Task Manager application successfully demonstrates competency across all re
 6. **Documentation Excellence** - Thorough documentation covering all development aspects
 
 The project stands as evidence of readiness for professional web development roles and continued advancement in software engineering career paths.
+
+### Complete Project Documentation
+
+This README provides a comprehensive overview of the project. For detailed technical information, please refer to:
+
+- 🎨 **[Design Documentation](design.md)** - Complete UX/UI design process, wireframes, and user research
+- 💎 **[Code Quality Documentation](code_quality.md)** - Detailed code analysis, metrics, and quality standards
+- 📋 **[Testing Documentation](testing.md)** - Comprehensive testing procedures, test cases, and results
 
 ---
 
