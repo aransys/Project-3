@@ -1,5 +1,6 @@
 /* ================================
-   PREMIUM TASK COMPONENTS
+   PERFORMANCE OPTIMIZED TASK COMPONENTS
+   Note: Animations simplified for smooth performance
    ================================ */
 
 .task-list {
@@ -16,14 +17,15 @@
   border-radius: var(--border-radius-lg);
   padding: 2rem;
   border-left: 5px solid var(--primary-color);
-  transition: var(--transition-slow);
+  transition: var(--transition-fast);
   box-shadow: var(--shadow-md);
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  will-change: transform, box-shadow;
 }
 
-/* Subtle background pattern */
+/* Simplified background pattern */
 .task-item::before {
   content: "";
   position: absolute;
@@ -31,20 +33,20 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.03) 0%, transparent 50%), radial-gradient(circle at 90% 90%, rgba(139, 92, 246, 0.02) 0%, transparent 50%);
+  background: rgba(99, 102, 241, 0.02);
   pointer-events: none;
-  transition: var(--transition);
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
 }
 
 .task-item:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: var(--shadow-xl), var(--shadow-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
   border-left-color: var(--primary-accent);
 }
 
 .task-item:hover::before {
-  background: radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.08) 0%, transparent 50%), radial-gradient(circle at 90% 90%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+  opacity: 1;
 }
 
 .task-item:focus-within {
@@ -53,10 +55,10 @@
   box-shadow: var(--shadow-xl), 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
-/* Enhanced task states */
+/* Enhanced task states - optimized */
 .task-item.completed {
   border-left-color: var(--success-color);
-  background: linear-gradient(135deg, rgba(209, 250, 229, 0.3) 0%, var(--glass-bg) 100%);
+  background: linear-gradient(135deg, rgba(209, 250, 229, 0.2) 0%, var(--glass-bg) 100%);
   position: relative;
 }
 
@@ -81,7 +83,7 @@
 
 .task-item.completed:hover {
   border-left-color: var(--success-hover);
-  box-shadow: var(--shadow-xl), var(--shadow-success);
+  box-shadow: var(--shadow-lg);
 }
 
 .task-item.completed .task-title {
@@ -92,15 +94,14 @@
 
 .task-item.overdue {
   border-left-color: var(--danger-color);
-  background: linear-gradient(135deg, rgba(254, 226, 226, 0.3) 0%, var(--glass-bg) 100%);
-  animation: pulse 3s infinite;
+  background: linear-gradient(135deg, rgba(254, 226, 226, 0.2) 0%, var(--glass-bg) 100%);
 }
 
 .task-item.overdue::after {
   content: "!";
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 0.5rem;
+  right: 0.5rem;
   width: 32px;
   height: 32px;
   background: var(--danger-color);
@@ -116,8 +117,7 @@
 
 .task-item.overdue:hover {
   border-left-color: var(--danger-hover);
-  box-shadow: var(--shadow-xl), var(--shadow-danger);
-  animation: none;
+  box-shadow: var(--shadow-lg);
 }
 
 /* Priority indicators */
@@ -256,8 +256,9 @@
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
-  transition: var(--transition);
+  transition: var(--transition-fast);
   position: relative;
+  will-change: transform, box-shadow;
 }
 
 .card::before {
@@ -267,14 +268,19 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(99, 102, 241, 0.02) 100%);
+  background: rgba(99, 102, 241, 0.02);
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
 }
 
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: var(--shadow-xl);
-  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card-header {
@@ -524,7 +530,6 @@
   background: linear-gradient(135deg, var(--danger-light) 0%, rgba(239, 68, 68, 0.1) 100%);
   color: var(--danger-color);
   border-color: var(--danger-color);
-  animation: pulse 2s infinite;
 }
 
 .status-indicator i {
@@ -669,12 +674,12 @@
   .empty-state {
     transition: none;
     animation: none;
+    transform: none;
   }
 
-  .task-item.overdue,
-  .due-date-badge.overdue,
-  .status-indicator.overdue {
-    animation: none;
+  .task-item:hover,
+  .card:hover {
+    transform: none;
   }
 
   .empty-state::before {
@@ -684,15 +689,20 @@
   .confirmation-card {
     animation: none;
   }
+
+  .task-item.completing,
+  .task-item.deleting {
+    animation: none;
+  }
 }
 
 /* ================================
-   ADVANCED INTERACTIONS
+   OPTIMIZED INTERACTIONS
    ================================ */
 
 /* Smooth task completion animation */
 .task-item.completing {
-  animation: completeTask 0.6s ease-out forwards;
+  animation: completeTask 0.4s ease-out forwards;
 }
 
 @keyframes completeTask {
@@ -701,8 +711,8 @@
     opacity: 1;
   }
   50% {
-    transform: scale(1.02);
-    opacity: 0.8;
+    transform: scale(1.01);
+    opacity: 0.9;
   }
   100% {
     transform: scale(1);
@@ -712,7 +722,7 @@
 
 /* Task deletion animation */
 .task-item.deleting {
-  animation: deleteTask 0.4s ease-out forwards;
+  animation: deleteTask 0.3s ease-out forwards;
 }
 
 @keyframes deleteTask {
@@ -724,21 +734,4 @@
     transform: translateX(-100%);
     opacity: 0;
   }
-}
-
-/* Stagger animation for task lists */
-.task-list .task-item:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.task-list .task-item:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.task-list .task-item:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.task-list .task-item:nth-child(4) {
-  animation-delay: 0.4s;
-}
-.task-list .task-item:nth-child(5) {
-  animation-delay: 0.5s;
 }
