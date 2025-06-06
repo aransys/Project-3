@@ -200,7 +200,7 @@ This Task Manager application addresses the universal challenge of personal prod
 
 ## UX Design Process and Principles
 
-> 📖 **For comprehensive design documentation:** See [design.md](design.md) for detailed wireframes, user research, and design system specifications.
+> 📖 **For comprehensive design documentation:** See [design.md](design.md) for design system specifications.
 
 ### Design Philosophy: Cognitive Load Reduction
 
