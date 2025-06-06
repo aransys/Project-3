@@ -13,6 +13,57 @@ This document details the UX design process, visual design system, and interface
 
 ---
 
+## Table of Contents
+
+1. [Design Philosophy](#design-philosophy)
+
+   - [Core Design Principles](#core-design-principles)
+   - [Target User Mental Model](#target-user-mental-model)
+
+2. [User Experience (UX) Design](#user-experience-ux-design)
+
+   - [Information Architecture](#information-architecture)
+   - [Interaction Design](#interaction-design)
+
+3. [Visual Design System](#visual-design-system)
+
+   - [Color Palette - WCAG AA Compliant](#color-palette---wcag-aa-compliant)
+   - [Typography System](#typography-system)
+   - [Component Design](#component-design)
+
+4. [Design Process & Wireframes](#design-process--wireframes)
+
+   - [Initial Concept](#initial-concept)
+   - [User Testing Results](#user-testing-results)
+   - [Design Evolution](#design-evolution)
+   - [Mobile-First Design Approach](#mobile-first-design-approach)
+
+5. [Accessibility Design](#accessibility-design)
+
+   - [WCAG AA Implementation](#wcag-aa-implementation)
+   - [Screen Reader Optimization](#screen-reader-optimization)
+
+6. [Performance-Optimized Design](#performance-optimized-design)
+
+   - [Animation Philosophy: "Essential Feedback Only"](#animation-philosophy-essential-feedback-only)
+   - [CSS Architecture for Speed](#css-architecture-for-speed)
+
+7. [Design Validation & Results](#design-validation--results)
+
+   - [Visual Design Implementation](#visual-design-implementation)
+   - [User Experience Metrics](#user-experience-metrics)
+   - [Performance Results](#performance-results)
+   - [Accessibility Validation](#accessibility-validation)
+
+8. [Future Design Considerations](#future-design-considerations)
+
+   - [Planned Enhancements](#planned-enhancements)
+   - [Component Scalability](#component-scalability)
+
+9. [Conclusion](#conclusion)
+
+---
+
 ## Design Philosophy
 
 ### Core Design Principles
