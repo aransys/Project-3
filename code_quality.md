@@ -715,7 +715,7 @@ _Figure 7: Django messages system providing user feedback for all CRUD operation
 - [x] **Field Selection**: All necessary fields included
 - [x] **Validation**: Automatic Django validation
 
-![Form Validation](/docs/screenshots/code_quality/code-quality-validation-tools.png)
+![Form Validation](/docs/screenshots/code_quality/code-quality-form-validation.png)
 _Figure 8: Form validation in action showing error handling and user guidance_
 
 ### Code Quality Assessment
