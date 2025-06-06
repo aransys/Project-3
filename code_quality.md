@@ -638,10 +638,10 @@ npx html-validate "templates/**/*.html"
 npx stylelint "**/*.css"
 ```
 
-![Code Quality Tools](screenshots/code-quality-tools-output.png)
+![Code Quality Tools](/docs/screenshots/code_quality/code-quality-tools-output.png)
 _Figure 9: Terminal showing successful execution of all code quality validation tools_
 
-![Black Code Formatting](screenshots/code-quality-black-formatting.png)
+![Black Code Formatting](/docs/screenshots/code_quality/code-quality-black-formatting.png)
 _Figure 10: Black code formatter results showing consistent code formatting_
 
 ### Quality Metrics Achieved
@@ -653,10 +653,10 @@ _Figure 10: Black code formatter results showing consistent code formatting_
 - ✅ **Code Formatting**: Consistent formatting throughout
 - ✅ **Django Checks**: All system checks passing
 
-![PEP8 Compliance Results](screenshots/code-quality-flake8-results.png)
+![PEP8 Compliance Results](/docs/screenshots/code_quality/code-quality-flake8-results.png)
 _Figure 1: Flake8 linting results showing 100% PEP8 compliance across all Python files_
 
-![Django System Checks](screenshots/code-quality-django-checks.png)
+![Django System Checks](/docs/screenshots/code_quality/code-quality-django-checks.png)
 _Figure 2: Django system check results confirming no configuration issues_
 
 **Django Quality:**
@@ -666,10 +666,10 @@ _Figure 2: Django system check results confirming no configuration issues_
 - ✅ **Template Syntax**: Valid Django template syntax
 - ✅ **Migration Status**: No pending migrations
 
-![Project Structure](screenshots/code-quality-project-structure.png)
+![Project Structure](/docs/screenshots/code_quality/code-quality-project-structure.png)
 _Figure 3: IDE view showing clean project organization following Django conventions_
 
-![Admin Interface](screenshots/code-quality-admin-interface.png)
+![Admin Interface](/docs/screenshots/code_quality/code-quality-admin-interface.png)
 _Figure 4: Django admin interface demonstrating proper model implementation_
 
 **Frontend Quality:**
@@ -679,7 +679,7 @@ _Figure 4: Django admin interface demonstrating proper model implementation_
 - ✅ **Accessibility**: WCAG AA compliance
 - ✅ **Performance**: Optimized asset delivery
 
-![Code Validation Tools](screenshots/code-quality-validation-tools.png)
+![Code Validation Tools](/docs/screenshots/code_quality/code-quality-validation-tools.png)
 _Figure 5: Terminal output showing successful HTML/CSS validation_
 
 ## Code Review Standards
@@ -702,10 +702,10 @@ _Figure 5: Terminal output showing successful HTML/CSS validation_
 - [x] **URL Resolution**: Proper use of reverse_lazy
 - [x] **Template Usage**: Consistent template naming
 
-![Error Handling](screenshots/code-quality-error-handling.png)
+![Error Handling](/docs/screenshots/code_quality/code-quality-error-handling.png)
 _Figure 6: 404 error handling in action showing get_object_or_404 preventing crashes_
 
-![User Feedback System](screenshots/code-quality-user-messages.png)
+![User Feedback System](/docs/screenshots/code_quality/code-quality-user-messages.png)
 _Figure 7: Django messages system providing user feedback for all CRUD operations_
 
 **Form Quality Assessment:**
@@ -715,7 +715,7 @@ _Figure 7: Django messages system providing user feedback for all CRUD operation
 - [x] **Field Selection**: All necessary fields included
 - [x] **Validation**: Automatic Django validation
 
-![Form Validation](screenshots/code-quality-form-validation.png)
+![Form Validation](/docs/screenshots/code_quality/code-quality-validation-tools.png)
 _Figure 8: Form validation in action showing error handling and user guidance_
 
 ### Code Quality Assessment
