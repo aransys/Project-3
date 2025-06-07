@@ -179,10 +179,10 @@ _Safe deletion process with user confirmation dialog_
 ![Desktop View](/docs/screenshots/empty-state.png)
 _Full desktop layout showing optimal spacing and button accessibility_
 
-![Tablet View](/docs/screenshots/tablet-view.png)
+![Tablet View](/docs/screenshots/design/tablet-view.png)
 _Tablet layout demonstrating responsive navigation and touch-friendly buttons_
 
-![Mobile View](/docs/screenshots/mobile-view.png)
+![Mobile View](/docs/screenshots/design/mobile-view.png)
 _Mobile-optimized layout with easy navigation and readable text_
 
 ### 3.2 Bootstrap Components
@@ -814,8 +814,8 @@ _Manual testing with keyboard navigation and screen reader compatibility_
 Application achieves **strong accessibility baseline** with excellent real-world usability. The **93/100 Lighthouse score** reflects minor technical optimizations rather than genuine usability barriers. Manual testing with diverse users confirms the application is fully accessible and provides an excellent user experience across all abilities.
 
 **Visual Evidence:**
-![WCAG Success Criteria](/docs/screenshots/wcag.png)
-_Key WCAG 2.1 success criteria met through manual verification_
+![Color System Implementation](/docs/screenshots/design/design-color-system.png)
+_WCAG AAA color system in action: primary buttons (7.9:1), body text (17.73:1), and warning elements (7.21:1)_
 
 ---
 

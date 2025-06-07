@@ -348,7 +348,7 @@ def toggle_task_complete(request, pk):
 
 The application provides an excellent experience across all devices:
 
-![Mobile Responsive View](/docs/screenshots/mobile-view.png)
+![Mobile Responsive View](/docs/screenshots/design/mobile-view.png)
 _Fully responsive design works perfectly on mobile devices_
 
 #### Mobile-First Approach
@@ -1243,7 +1243,7 @@ def task_delete(request, pk):
 </div>
 ```
 
-![Delete Confirmation](/docs/screenshots/delete-confirmation.png)
+![Delete Confirmation](/docs/screenshots/crud/delete_task.png)
 _Defensive design prevents accidental deletions_
 
 ### CRUD URL Configuration
