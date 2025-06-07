@@ -11,6 +11,9 @@ This document details the UX design process, visual design system, and interface
 - 📱 100% mobile compatibility
 - 🎯 155ms load time (exceeds <200ms target)
 
+![Hero Dashboard](/docs/hero-dashboard.png)
+_Task Manager interface demonstrating clean design, WCAG AAA compliance, and professional layout_
+
 ---
 
 ## Table of Contents
@@ -209,6 +212,9 @@ All colors tested and verified with WebAIM Contrast Checker, achieving AAA stand
 | Body text      | #111827    | #ffffff    | 17.73:1 | ✅ **AAA**  |
 | Warning button | #ffffff    | #b45309    | 7.21:1  | ✅ **AAA**  |
 
+![Color System Implementation](/docs/screenshots/design/design-color-system.png)
+_WCAG AAA color system in action: primary buttons (7.9:1), body text (17.73:1), and warning elements (7.21:1)_
+
 ### Typography System
 
 ```css
@@ -292,6 +298,17 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 ```
 
+![Component Design System](/docs/screenshots/design/design-components.png)
+_Button states and task card components showing consistent design language and accessibility features_
+
+#### Form Design & Validation
+
+![Form Validation UX](/docs/screenshots/form-validation-error.png)
+_Form validation demonstrating user-friendly error handling and clear field labeling_
+
+![Task Creation Flow](/docs/screenshots/design/design-task-creation.png)
+_Task creation form showing accessible design with proper labels, validation, and user guidance_
+
 ---
 
 ## Design Process & Wireframes
@@ -333,6 +350,9 @@ Early prototypes revealed:
 - Simplified animations to color-only transitions
 - Added clear focus states for keyboard navigation
 
+![Design Evolution](/docs/screenshots/design/design-before-after.png)
+_Design evolution: from complex visual effects to performance-optimized, accessible interface_
+
 ### Mobile-First Design Approach
 
 #### Responsive Breakpoints
@@ -367,6 +387,9 @@ Early prototypes revealed:
   }
 }
 ```
+
+![Responsive Design Showcase](/docs/screenshots/design/design-responsive-showcase.png)
+_Mobile-first responsive design: mobile (375px), tablet (768px), and desktop (1200px) layouts_
 
 #### Touch Optimization
 
@@ -418,6 +441,9 @@ Early prototypes revealed:
 2. Tab through form fields → Enter to submit
 3. Tab to task actions → Enter to toggle/edit/delete
 4. **Result**: 100% functionality via keyboard only
+
+![Keyboard Navigation](/docs/screenshots/design/design-keyboard-focus.png)
+_Clear focus indicators demonstrating 100% keyboard accessibility - all CRUD operations accessible via Tab/Enter/Space_
 
 ### Semantic HTML Structure
 
@@ -522,6 +548,9 @@ Animations communicate state changes, not decorate interfaces.
 - **Actual Load Time**: 155ms ✅ (exceeds <200ms target)
 - **First Input Delay**: <16ms ✅ (60fps performance)
 - **Cumulative Layout Shift**: 0 ✅ (no layout jumping)
+
+![Lighthouse Performance Results](/docs/screenshots/lighthouse.png)
+_Lighthouse audit results: 100/100 Performance, 93/100 Accessibility, 98.25/100 overall score_
 
 ### Accessibility Validation
 
