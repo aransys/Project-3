@@ -187,7 +187,7 @@ if "RAILWAY_ENVIRONMENT" in os.environ:
 # Security settings for production
 if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
