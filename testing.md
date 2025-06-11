@@ -16,6 +16,7 @@
 - [3. User Interface Testing](#3-user-interface-testing)
   - [3.1 Responsive Design](#31-responsive-design)
   - [3.2 Bootstrap Components](#32-bootstrap-components)
+  - [3.3 Code Validation](#33-code-validation)
 - [4. Cross-Browser Testing](#4-cross-browser-testing)
 - [5. Performance Testing](#5-performance-testing)
   - [5.1 Page Load Testing](#51-page-load-testing)
