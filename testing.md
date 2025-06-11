@@ -193,6 +193,39 @@ _Mobile-optimized layout with easy navigation and readable text_
 | **Buttons**     | Click all action buttons | - Consistent button styling<br>- Proper hover states<br>- Loading states if applicable | ✅ PASS |
 | **Cards/Lists** | View task displays       | - Consistent card layout<br>- Proper spacing<br>- Responsive behavior                  | ✅ PASS |
 
+### 3.3 Code Validation
+
+| Validator              | Tool Used                                            | Status  |
+| ---------------------- | ---------------------------------------------------- | ------- |
+| **W3C HTML Validator** | https://validator.w3.org/nu/#textarea                | ✅ PASS |
+| **W3C CSS Validator**  | https://jigsaw.w3.org/css-validator/#validate_by_uri | ✅ PASS |
+
+**HTML Validation:**
+
+- Tested application HTML markup using W3C Nu Html Checker
+- No structural HTML errors detected
+
+**CSS Validation:**
+
+- Tested using W3C CSS Validator
+- 69 warnings reported related to CSS variables that validator cannot evaluate dynamic values
+- No actual CSS syntax errors found
+
+**Results Summary:**
+
+- **Zero CSS errors** in custom stylesheets
+- **Valid CSS3 syntax** throughout application
+- Bootstrap CDN styles validated successfully
+- Media queries properly formatted for responsive design
+- No conflicting style declarations
+
+**Visual Evidence:**
+![HTML Validation Results](/docs/screenshots/html-validator.png)
+_W3C HTML validation results_
+
+![CSS Validation Results](/docs/screenshots/css-validator.png)
+_W3C CSS validation results showing warnings about CSS variables_
+
 ## 4. Cross-Browser Testing
 
 | Browser | Version | Create | Read | Update | Delete | Status  |

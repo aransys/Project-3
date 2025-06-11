@@ -504,7 +504,7 @@
    ACCESSIBILITY & MOTION
    ================================ */
 
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .task-item {
     border-width: 2px;
     border-left-width: 6px;
